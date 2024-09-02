@@ -35,7 +35,7 @@ input[type="text"]:focus,input[type="email"]:focus, input[type="password"]:focus
 }
 
 .signup {
-    background-color: aquamarine;
+    background-color: orange;
     color: black;
     padding: 5px 8px;
     margin: 5px 0 22px 0;
@@ -48,7 +48,7 @@ input[type="text"]:focus,input[type="email"]:focus, input[type="password"]:focus
 
 .signup:hover{
     opacity: 1;
-    color: blue;
+    color: black;
 }
 
 .login{
