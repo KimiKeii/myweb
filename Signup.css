@@ -10,8 +10,8 @@ body {
 
       .container{
         position: relative;
-        width: 650px;
-        height: 650px;
+        width: 600px;
+        height: 400px;
         background-color: white;
         border-radius: 20px;
         display: flex;
