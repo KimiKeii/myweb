@@ -1,4 +1,4 @@
-/* Basic Reset */
+    /* Basic Reset */
 * {
     margin: 0;
     padding: 0;
@@ -246,7 +246,7 @@ footer {
 
 @media (max-width: 480px) {
     .sidebar {
-        width: 25%; /* Reduced width for mobile */
+        width: 15%; /* Reduced width for mobile */
         left: -100%;
     }
 
@@ -255,7 +255,7 @@ footer {
     }
 
     .sidebar.active ~ .toggle-btn {
-        left: 25%;  /* Adjust based on sidebar width */
+        left: 15%;  /* Adjust based on sidebar width */
     }
 
     .sidebar.active + .content {
