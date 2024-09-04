@@ -53,7 +53,7 @@ header {
 /* Sidebar Styling */
 .sidebar {
     height: 100%;
-    width: 125px;
+    width: 250px;
     position: fixed;
     top: 0;
     left: -250px;
