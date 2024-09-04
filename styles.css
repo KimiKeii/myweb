@@ -248,7 +248,7 @@ footer {
 
 @media (max-width: 480px) {
     .sidebar {
-        width: 5%;
+        width: 25%;
         left: -100%;
     }
 
@@ -257,7 +257,7 @@ footer {
     }
 
     .sidebar.active ~ .toggle-btn {
-        left: 5%;  /* Make sure the button stays within the viewport */
+        left: 25%;  /* Make sure the button stays within the viewport */
     }
 
     .sidebar.active + .content {
