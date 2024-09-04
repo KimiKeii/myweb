@@ -53,7 +53,7 @@ header {
 /* Sidebar Styling */
 .sidebar {
     height: 100%;
-    width: 250px;
+    width: 125px;
     position: fixed;
     top: 0;
     left: -250px;
@@ -94,7 +94,7 @@ header {
 }
 
 .sidebar.active + .content {
-    margin-left: 250px;
+    margin-left: 0px;
 }
 
 /* Hero Section Styling */
@@ -248,7 +248,7 @@ footer {
 
 @media (max-width: 480px) {
     .sidebar {
-        width: 15%;
+        width: 25%;
         left: -100%;
     }
 
@@ -257,7 +257,7 @@ footer {
     }
 
     .sidebar.active ~ .toggle-btn {
-        left: 15%;  /* Make sure the button stays within the viewport */
+        left: 25%;  /* Make sure the button stays within the viewport */
     }
 
     .sidebar.active + .content {
