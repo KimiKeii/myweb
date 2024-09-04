@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">LOGO</div>
+    </header>
+
+    <div id="sidebar" class="sidebar">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="index.html">Log in</a>
+        <a href="sign-up.html">Sign up</a>
+    </div>
+
+    <div class="content">
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Welcome to "___"</h1>
+                <p>Your solution to everything tech!</p>
+                <a href="#features" class="cta">Learn More</a>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>Feature One</h3>
+                    <p>Description of Feature One.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Feature Two</h3>
+                    <p>Description of Feature Two.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Feature Three</h3>
+                    <p>Description of Feature Three.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2>About Us</h2>
+            <p>Information about the company or product.</p>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Contact Us</h2>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 MyBrand. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+            const toggleBtn = document.querySelector('.toggle-btn');
+            toggleBtn.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

@@ -12,6 +12,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-top: 60px;  /* Adjusted to account for fixed header */
 }
 
 /* Header Styling */
@@ -22,7 +23,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
+    position: fixed;  /* Make the header fixed */
     top: 0;
     left: 0;
     width: 100%;
@@ -45,7 +46,7 @@ header {
     position: fixed;
     top: 6px;
     left: 6px;  /* Initial position */
-    z-index: 2;
+    z-index: 1001;
     transition: left 0.3s;  /* Smooth transition */
 }
 
@@ -56,7 +57,8 @@ header {
     position: fixed;
     top: 0;
     left: -250px;
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.7);  /* Semi-transparent background */
+    backdrop-filter: blur(10px);  /* Apply blur effect */
     overflow-y: auto;
     transition: 0.3s;
     padding-top: 60px;
@@ -81,7 +83,7 @@ header {
 }
 
 .sidebar a:hover {
-    background-color: #575757;
+    background-color: rgba(87, 87, 87, 0.7);  /* Slightly darker on hover */
 }
 
 /* Content Styling */
@@ -92,7 +94,7 @@ header {
 }
 
 .sidebar.active + .content {
-    margin-left: 125px;
+    margin-left: 0px;
 }
 
 /* Hero Section Styling */
@@ -246,7 +248,7 @@ footer {
 
 @media (max-width: 480px) {
     .sidebar {
-        width: 100%;
+        width: 5%;
         left: -100%;
     }
 
@@ -255,7 +257,7 @@ footer {
     }
 
     .sidebar.active ~ .toggle-btn {
-        left: 100%;  /* Make sure the button stays within the viewport */
+        left: 5%;  /* Make sure the button stays within the viewport */
     }
 
     .sidebar.active + .content {
