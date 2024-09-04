@@ -1,4 +1,4 @@
-    /* Basic Reset */
+/* Basic Reset */
 * {
     margin: 0;
     padding: 0;
@@ -12,6 +12,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-top: 60px;  /* Adjusted to account for fixed header */
 }
 
 /* Header Styling */
@@ -22,7 +23,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
+    position: fixed;  /* Make the header fixed */
     top: 0;
     left: 0;
     width: 100%;
@@ -45,18 +46,19 @@ header {
     position: fixed;
     top: 6px;
     left: 6px;  /* Initial position */
-    z-index: 2;
+    z-index: 1001;
     transition: left 0.3s;  /* Smooth transition */
 }
 
 /* Sidebar Styling */
 .sidebar {
     height: 100%;
-    width: 125px;
+    width: 250px;
     position: fixed;
     top: 0;
     left: -250px;
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.7);  /* Semi-transparent background */
+    backdrop-filter: blur(10px);  /* Apply blur effect */
     overflow-y: auto;
     transition: 0.3s;
     padding-top: 60px;
@@ -68,7 +70,7 @@ header {
 }
 
 .sidebar.active ~ .toggle-btn {
-    left: 130px;  /* Adjust position of the toggle button when sidebar is active */
+    left: 260px;  /* Adjust position of the toggle button when sidebar is active */
 }
 
 .sidebar a {
@@ -81,7 +83,7 @@ header {
 }
 
 .sidebar a:hover {
-    background-color: #575757;
+    background-color: rgba(87, 87, 87, 0.7);  /* Slightly darker on hover */
 }
 
 /* Content Styling */
@@ -92,7 +94,7 @@ header {
 }
 
 .sidebar.active + .content {
-    margin-left: 125px;
+    margin-left: 250px;
 }
 
 /* Hero Section Styling */
@@ -210,8 +212,8 @@ footer {
     }
 
     .sidebar {
-        width: 150px;
-        left: -150px;
+        width: 200px;
+        left: -200px;
     }
 
     .sidebar.active {
@@ -219,7 +221,7 @@ footer {
     }
 
     .sidebar.active ~ .toggle-btn {
-        left: 160px;
+        left: 210px;
     }
 
     .sidebar a {
@@ -228,7 +230,7 @@ footer {
     }
 
     .sidebar.active + .content {
-        margin-left: 150px;
+        margin-left: 200px;
     }
 
     .hero h1 {
@@ -246,7 +248,7 @@ footer {
 
 @media (max-width: 480px) {
     .sidebar {
-        width: 15%; /* Reduced width for mobile */
+        width: 5%;
         left: -100%;
     }
 
@@ -255,15 +257,10 @@ footer {
     }
 
     .sidebar.active ~ .toggle-btn {
-        left: 15%;  /* Adjust based on sidebar width */
+        left: 5%;  /* Make sure the button stays within the viewport */
     }
 
     .sidebar.active + .content {
         margin-left: 0;
-    }
-
-    .sidebar a {
-        font-size: 14px;
-        padding: 10px;
     }
 }
