@@ -75,6 +75,8 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 
 @media screen and (max-width: 400px) {
     .container {
+        width: 100%;
+        height: auto;
         padding: 10px;
         border-radius: 10px;
     }
