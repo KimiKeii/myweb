@@ -8,62 +8,71 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div class="logo">LOGO</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="login.html">Log in</a></li>
-                <li><a href="sign-up.html" class="signup-link">Sign up</a></li>
-            </ul>
-        </nav>
+        <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">LOGO</div>
     </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Welcome to "___"</h1>
-            <p>Your solution to everything tech!</p>
-            <a href="#features" class="cta">Learn More</a>
-        </div>
-    </section>
+    <div id="sidebar" class="sidebar">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
 
-    <section id="features" class="features">
-        <h2>Features</h2>
-        <div class="feature-grid">
-            <div class="feature-item">
-                <h3>Feature One</h3>
-                <p>description of Feature One.</p>
+    <div class="content">
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Welcome to "___"</h1>
+                <p>Your solution to everything tech!</p>
+                <a href="#features" class="cta">Learn More</a>
             </div>
-            <div class="feature-item">
-                <h3>Feature Two</h3>
-                <p>description of Feature Two.</p>
-            </div>
-            <div class="feature-item">
-                <h3>Feature Three</h3>
-                <p>description of Feature Three.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="about" class="about">
-        <h2>About Us</h2>
-        <p>Information about the company or product.</p>
-    </section>
+        <section id="features" class="features">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>Feature One</h3>
+                    <p>Description of Feature One.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Feature Two</h3>
+                    <p>Description of Feature Two.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Feature Three</h3>
+                    <p>Description of Feature Three.</p>
+                </div>
+            </div>
+        </section>
 
-    <section id="contact" class="contact">
-        <h2>Contact Us</h2>
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
+        <section id="about" class="about">
+            <h2>About Us</h2>
+            <p>Information about the company or product.</p>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Contact Us</h2>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </div>
 
     <footer>
         <p>&copy; 2024 MyBrand. All rights reserved.</p>
     </footer>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+            const toggleBtn = document.querySelector('.toggle-btn');
+            toggleBtn.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>

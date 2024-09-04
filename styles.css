@@ -10,47 +10,86 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header Styling */
 header {
     background-color: #333;
     color: white;
-    padding: 10px 0;
-}
-
-nav {
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: auto;
-    padding: 0 20px;
+    position: relative;
 }
 
 .logo {
     font-size: 1.5em;
     font-weight: bold;
+    margin-left: auto;
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
+.toggle-btn {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+    position: fixed;
+    top: 6px;
+    left: 6px;  /* Initial position */
+    z-index: 2;
+    transition: left 0.3s;  /* Smooth transition */
 }
 
-    .nav-links li {
-        margin-left: 20px;
-    }
+/* Sidebar Styling */
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    background-color: #333;
+    overflow-y: auto;
+    transition: 0.3s;
+    padding-top: 60px;
+    z-index: 1;
+}
 
-    .nav-links a {
-        color: white;
-        text-decoration: none;
-        font-size: 1em;
-    }
+.sidebar.active {
+    left: 0;
+}
 
-        .nav-links a:hover {
-            text-decoration: underline;
-        }
+.sidebar.active ~ .toggle-btn {
+    left: 260px;  /* Adjust position of the toggle button when sidebar is active */
+}
+
+.sidebar a {
+    padding: 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #575757;
+}
+
+/* Content Styling */
+.content {
+    margin-left: 0;
+    padding: 20px;
+    transition: margin-left 0.3s;
+}
+
+.sidebar.active + .content {
+    margin-left: 250px;
+}
 
 /* Hero Section Styling */
 .hero {
@@ -85,9 +124,9 @@ nav {
     font-size: 1.2em;
 }
 
-    .cta:hover {
-        background-color: #ff2e00;
-    }
+.cta:hover {
+    background-color: #ff2e00;
+}
 
 /* Features Section Styling */
 .features {
@@ -124,32 +163,32 @@ nav {
     text-align: center;
 }
 
-    .contact form {
-        max-width: 600px;
-        margin: auto;
-    }
+.contact form {
+    max-width: 600px;
+    margin: auto;
+}
 
-    .contact input, .contact textarea {
-        width: 100%;
-        padding: 10px;
-        margin: 10px 0;
-        border: none;
-        border-radius: 5px;
-    }
+.contact input, .contact textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+}
 
-    .contact button {
-        padding: 10px 20px;
-        border: none;
-        background-color: #ff5733;
-        color: white;
-        font-size: 1em;
-        cursor: pointer;
-        border-radius: 5px;
-    }
+.contact button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ff5733;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+}
 
-        .contact button:hover {
-            background-color: #ff2e00;
-        }
+.contact button:hover {
+    background-color: #ff2e00;
+}
 
 /* Footer Styling */
 footer {
@@ -161,14 +200,32 @@ footer {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    .nav-links {
-        flex-direction: column;
-        text-align: center;
+    .toggle-btn {
+        font-size: 1.2em;
+        padding: 8px;
     }
 
-        .nav-links li {
-            margin: 10px 0;
-        }
+    .sidebar {
+        width: 200px;
+        left: -200px;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .sidebar.active ~ .toggle-btn {
+        left: 210px;
+    }
+
+    .sidebar a {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .sidebar.active + .content {
+        margin-left: 200px;
+    }
 
     .hero h1 {
         font-size: 2em;
@@ -180,5 +237,24 @@ footer {
 
     .feature-item {
         margin: 20px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+        left: -100%;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .sidebar.active ~ .toggle-btn {
+        left: 100%;  /* Make sure the button stays within the viewport */
+    }
+
+    .sidebar.active + .content {
+        margin-left: 0;
     }
 }
