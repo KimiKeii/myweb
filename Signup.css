@@ -62,21 +62,9 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 }
 
 @media screen and (max-width: 600px) {
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-        background-color: gray;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        padding: 0;
-    }
-
     .container {
-        width: 100%;
-        height: auto;
+        width: 90%;
+        height: 90%;
         padding: 10px;
     }
     
@@ -88,8 +76,8 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 
 @media screen and (max-width: 400px) {
     .container {
-        width: 100%;
-        height: auto;
+        width: 90%;
+        height: 90%;
         padding: 10px;
         border-radius: 10px;
     }
