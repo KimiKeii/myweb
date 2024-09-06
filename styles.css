@@ -50,8 +50,8 @@ header {
     flex-direction: column;
     justify-content: space-between;
     z-index: 1001;
-    transition: left 0.3s;
     padding: 0;
+    transition: left 0.3s ease-in-out;
 }
 
 /* Styling for hamburger lines */
@@ -106,18 +106,18 @@ header {
 }
 
 .toggle-btn.active span:nth-child(2) {
-    transform: rotate(-45deg) translate(4px, -5px);
+    opacity: 0;  /* Hide middle bar for "X" effect */
 }
 
 .toggle-btn.active span:nth-child(3) {
-    opacity: 0;
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* Content Styling */
 .content {
     margin-left: 0;
     padding: 20px;
-    transition: margin-left 0.3s;
+    transition: margin-left 0.3s ease-in-out;
 }
 
 .sidebar.active + .content {
