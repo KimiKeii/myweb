@@ -297,7 +297,7 @@ footer {
     }
     
     .toggle-btn.active span:nth-child(2) {
-        transform: rotate(-45deg) translate(5px, -5px);
+        transform: rotate(-45deg) translate(3px, -6px);
     }
 
     .toggle-btn.active span:nth-child(3) {
