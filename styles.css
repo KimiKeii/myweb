@@ -293,6 +293,19 @@ footer {
         height: 4px;  /* Slightly thicker for better visibility */
     }
 
+
+    .toggle-btn.active span:nth-child(1) {
+    width: 21px;
+    transform: rotate(45deg) translate(-5px, 3px);
+    }
+    
+    .toggle-btn.active span:nth-child(2) {
+    }
+    
+    .toggle-btn.active span:nth-child(3) {
+        width: 21px;
+        transform: rotate(-45deg) translate(-5px, -3px);
+    }
     .sidebar.active + .content {
         margin-left: 0;
     }
