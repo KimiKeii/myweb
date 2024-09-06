@@ -50,8 +50,8 @@ header {
     flex-direction: column;
     justify-content: space-between;
     z-index: 1001;
+    transition: left 0.3s;
     padding: 0;
-    transition: left 0.3s ease-in-out;
 }
 
 /* Styling for hamburger lines */
@@ -106,18 +106,18 @@ header {
 }
 
 .toggle-btn.active span:nth-child(2) {
-    opacity: 0;  /* Hide middle bar for "X" effect */
+    transform: rotate(-45deg) translate(4px, -5px);
 }
 
 .toggle-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    opacity: 0;
 }
 
 /* Content Styling */
 .content {
     margin-left: 0;
     padding: 20px;
-    transition: margin-left 0.3s ease-in-out;
+    transition: margin-left 0.3s;
 }
 
 .sidebar.active + .content {
@@ -275,7 +275,7 @@ footer {
 
 @media (max-width: 480px) {
     .sidebar {
-        width: 100%;
+        width: 22%;
         left: -100%;
     }
 
@@ -284,12 +284,24 @@ footer {
     }
 
     .sidebar.active ~ .toggle-btn {
-        left: 80%;  /* Adjusted to keep the button aligned on mobile */
+        left: 22%;  /* Ensure the button is visible */
     }
 
     .toggle-btn span {
         width: 100%;
-        height: 4px;
+        height: 4px;  /* Slightly thicker for better visibility */
+    }
+
+    .toggle-btn.active span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);  /* Adjusted translation */
+    }
+
+    .toggle-btn.active span:nth-child(2) {
+        transform: rotate(-45deg) translate(6px, -6px);  /* Adjusted translation */
+    }
+
+    .toggle-btn.active span:nth-child(3) {
+        opacity: 0;
     }
 
     .sidebar.active + .content {
