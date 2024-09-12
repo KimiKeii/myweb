@@ -7,7 +7,7 @@
 
 body { 
   font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(to right, #107fa9 25%, white 50%); /* Add color stops */
+  background: linear-gradient(to right, #107fa9 40%, white 50%); /* Add color stops */
   box-sizing: border-box;
   display: flex;
   justify-content: center;

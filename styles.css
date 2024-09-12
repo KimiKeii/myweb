@@ -30,10 +30,10 @@ header {
     z-index: 1000;
 }
 
-.logo {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-left: auto; /* Keep the logo aligned */
+.logo img{
+    height: 30px;
+    width: 30px;
+    margin-left: 1450px; /* Keep the logo aligned */
 }
 
 /* Toggle Button Styling */
