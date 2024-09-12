@@ -1,28 +1,51 @@
-  <html>
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="wigth-device-width, initial-scale=1">
-      <title>Log in Page</title>
-      <link rel="stylesheet" href="login.css" />  
-    </head>
-    <body>
-        <div class="wrapper">
-                <div>
-                  <form>
-                    <H1 class="question">Log in or Sign up</H1>
-                    <br>
-                        <label>Name</label>
-                        <input type="text" placeholder="Username">
-                    <br>
-                        <label>password</label>
-                        <input type="password" placeholder="password">
-                    <br>
-                  </form>
-                </div>
-                <div class="btn-group">
-                  <button onclick="document.location='home.html'" class="login-btn">Log in</button>
-                  <button onclick="document.location='sign-up.html'" class="signup-btn">Sign up</button>
-                </div>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log in Page</title>
+  <link rel="stylesheet" href="login.css" />
+  <script>
+    function login() {
+        // Get input values
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        // Simple validation logic
+        if (username === "admin" && password === "admin123") {
+            // Redirect to admin page
+            window.location.href = "home.html";
+        } else if (username === "user" && password === "user123") {
+            // Redirect to user page
+            window.location.href = "user.html";
+        } else {
+            alert("Invalid credentials. Please try again.");
+        }
+    }
+  </script>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img src="AosLOGO.png" alt="AOS Logo">
         </div>
-    </body>
+    </div>
+    <div class="wrapper">
+        <div>
+            <form onsubmit="event.preventDefault(); login();">
+                <h1 class="question">Login</h1>
+                <br>
+                <label for="username">Name</label>
+                <input type="text" id="username" placeholder="Username" required>
+                <br>
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Password" required>
+                <br>
+            </form>
+        </div>
+        <div class="btn-group">
+            <button onclick="login()" class="login-btn">Login</button>
+        </div>
+    </div>
+</body>
 </html>
