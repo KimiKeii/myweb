@@ -102,15 +102,17 @@ header {
 
 /* Hamburger to X transformation */
 .toggle-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    width: 21px;
+    transform: rotate(-45deg) translate(-7px, 3px);
 }
 
 .toggle-btn.active span:nth-child(2) {
-    transform: rotate(-45deg) translate(4px, -5px);
+    width: 100%;
 }
 
 .toggle-btn.active span:nth-child(3) {
-    opacity: 0;
+    width: 21px;
+    transform: rotate(45deg) translate(-7px, -3px);
 }
 
 /* Content Styling */
@@ -284,7 +286,12 @@ footer {
     }
 
     .sidebar.active ~ .toggle-btn {
-        left: 22%;  /* Make sure the button stays within the viewport */
+        left: 22%;  /* Ensure the button is visible */
+    }
+
+    .toggle-btn span {
+        width: 100%;
+        height: 4px;  /* Slightly thicker for better visibility */
     }
 
     .sidebar.active + .content {
