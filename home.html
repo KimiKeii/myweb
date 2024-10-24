@@ -8,77 +8,110 @@
 </head>
 <body>
     <header>
-        <button class="toggle-btn" onclick="toggleSidebar()"> 
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        
-        <div class="logo"><img src="AosLogo1.png" alt="AOS Logo"></div>
+        <div class="header-content">
+            <h1 id="header-title"></h1>
+            <button id="sidebutton">☰</button>
+        </div>
     </header>
 
     <div id="sidebar" class="sidebar">
-        <a href="#home">Home</a>
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="index.html">Log out</a>
+        <div class="profile-section">
+            <img src="Jordie.jpg" alt="Profile Picture">
+            <h3>Jordie</h3>
+        </div>
+        <nav class="menu">
+            <a href="#" class="um" onclick="loadContent('unitManagement', 'Unit Management')">Unit Management</a>
+            <a href="#" class="ti" onclick="loadContent('tenantInfo', 'Tenant Information')">Tenant Information</a>
+            <a href="#" class="mm" onclick="loadContent('maintenance', 'Maintenance Management')">Maintenance Management</a>
+            <a href="#" ="ms" onclick="loadContent('messaging', 'Messaging System')">Messaging System</a>
+            <div class="logout">
+                <div class="logout-content">
+                    <a href="index.html" class="logout">Logout</a>
+                </div>
+            </div>
+        </nav>
     </div>
 
     <div class="content">
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Welcome to Apartment Organizer System Owner View</h1>
-                <p>Your solution to everything tech!</p>
-                <a href="#features" class="cta">Learn More</a>
-            </div>
-        </section>
-
-        <section id="features" class="features">
-            <h2>Features</h2>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <h3>Feature One</h3>
-                    <p>Description of Feature One.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Feature Two</h3>
-                    <p>Description of Feature Two.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Feature Three</h3>
-                    <p>Description of Feature Three.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="about">
-            <h2>About Us</h2>
-            <p>Information about the company or product.</p>
-        </section>
-
-        <section id="contact" class="contact">
-            <h2>Contact Us</h2>
-            <form>
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </section>
+        <!-- The default content will be loaded here via JavaScript -->
     </div>
 
     <footer>
-        <p>&copy; 2024 MyBrand. All rights reserved.</p>
+        <p>&copy; 2024 AOS. All rights reserved.</p>
     </footer>
 
     <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('active');
-            const toggleBtn = document.querySelector('.toggle-btn');
-            toggleBtn.classList.toggle('active');
+        // Function to change both content and header title
+        function loadContent(section, headerTitle) {
+            const content = document.querySelector('.content'); // Get content div
+            const header = document.getElementById('header-title'); // Get header title
+            
+            // Define different content for each section
+            const sections = {
+                unitManagement: `
+                    <div class="unit-grid">
+                        <div class="unit">
+                            <img src="Unit1.png" alt="Unit 00 Layout">
+                            <h3>001</h3>
+                        </div>
+                        <div class="unit">
+                            <img src="unit2.png" alt="Unit 002 Layout">
+                            <h3>002</h3>
+                        </div>
+                        <div class="unit">
+                            <img src="unit3.png" alt="Unit 003 Layout">
+                            <h3>003</h3>
+                        </div>
+                        <div class="unit">
+                            <img src="unit4.png" alt="Unit 004 Layout">
+                            <h3>004</h3>
+                        </div>
+                        <div class="unit">
+                            <h3>005</h3>
+                            <img src="unit5.png" alt="Unit 005 Layout">
+                        </div>
+                        <div class="unit">
+                            <h3>006</h3>
+                            <img src="unit6.png" alt="Unit 006 Layout">
+                        </div>
+                        <div class="unit">
+                            <h3>007</h3>
+                            <img src="unit7.png" alt="Unit 007 Layout">
+                        </div>
+                        <div class="unit">
+                            <h3>008</h3>
+                            <img src="unit8.png" alt="Unit 008 Layout">
+                        </div>
+                    </div>`,
+                tenantInfo: '<h2>Tenant Information</h2><p>List of tenants and their details will be displayed here.</p>',
+                maintenance: '<h2>Maintenance Management</h2><p>Manage maintenance requests and tasks.</p>',
+                messaging: '<h2>Messaging System</h2><p>Send messages to tenants or staff.</p>',
+            };
+
+            // Update the inner HTML of the content section
+            content.innerHTML = sections[section] || '<p>Content not found.</p>';
+            
+            // Update the header title to match the selected section
+            header.textContent = headerTitle;
+
+            // Debug log to check if the function works
+            console.log(`Header changed to: ${headerTitle}`);
         }
+
+        const sidebar = document.getElementById('sidebar');
+        const sidebutton = document.getElementById('sidebutton');
+
+        sidebutton.addEventListener('click', function() {
+            sidebar.classList.toggle('open');
+        });
+
+        // Load default content when the page loads
+        window.onload = function() {
+            loadContent('unitManagement', 'Unit Management'); // Load Unit Management by default
+        };
     </script>
 </body>
 </html>
+
+
+

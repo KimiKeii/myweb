@@ -8,64 +8,28 @@
 </head>
 <body>
     <header>
-        <button class="toggle-btn" onclick="toggleSidebar()"> 
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        
-        <div class="logo">LOGO</div>
+        <div class="header-content">
+            <h1 id="header-title"></h1>
+        </div>
     </header>
 
     <div id="sidebar" class="sidebar">
-        <a href="#home">Home</a>
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="index.html">Log out</a>
+        <div class="profile-section">
+            <img src="Emmy.jpg" alt="Profile Picture">
+            <h3>Emmy</h3>
+        </div>
+        <nav class="menu">
+            <a href="#" onclick="loadContent('contractaccess', 'Contract Access')">Contract Access</a>
+            <a href="#" onclick="loadContent('onlinepayment', 'Online Payment')">Online Payment</a>
+            <a href="#" onclick="loadContent('maintenancerequest', 'Maintenance Request')">Maintenance Request</a>
+            <a href="#" onclick="loadContent('chatsupport', 'Chat Support')">Chat Support</a>
+            <a href="#" onclick="loadContent('transactionhistory', 'Transaction History')">Transaction History</a>
+            <a href="index.html" class="logout">Logout</a>
+        </nav>
     </div>
 
     <div class="content">
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Welcome to Apartment Organizer System Owner View</h1>
-                <p>Your solution to everything tech!</p>
-                <a href="#features" class="cta">Learn More</a>
-            </div>
-        </section>
-
-        <section id="features" class="features">
-            <h2>Features</h2>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <h3>Feature One</h3>
-                    <p>Description of Feature One.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Feature Two</h3>
-                    <p>Description of Feature Two.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Feature Three</h3>
-                    <p>Description of Feature Three.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="about">
-            <h2>About Us</h2>
-            <p>Information about the company or product.</p>
-        </section>
-
-        <section id="contact" class="contact">
-            <h2>Contact Us</h2>
-            <form>
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </section>
+        
     </div>
 
     <footer>
@@ -73,12 +37,34 @@
     </footer>
 
     <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('active');
-            const toggleBtn = document.querySelector('.toggle-btn');
-            toggleBtn.classList.toggle('active');
+        // Function to change both content and header title
+        function loadContent(section, headerTitle) {
+            const content = document.querySelector('.content'); // Get content div
+            const header = document.getElementById('header-title'); // Get header title
+
+            // Define different content for each section
+            const sections = {
+                contractaccess: '<h2>Contract Access</h2><p>Contract Access and their details will be displayed here.</p>',
+                onlinepayment: '<h2>Online Payment</h2><p>Pay Online here.</p>',
+                maintenancerequest: '<h2>Maintenance Request</h2><p>Request maintenance Here.</p>',
+                chatsupport: '<h2>Chat Support</h2><p>Send messages to staff.</p>',
+                transactionhistory: '<h2>Transaction History</h2><p>Access transaction history here.</p>',
+            };
+
+            // Update the inner HTML of the content section
+            content.innerHTML = sections[section] || '<p>Content not found.</p>';
+            
+            // Update the header title to match the selected section
+            header.textContent = headerTitle;
+
+            // Debug log to check if the function works
+            console.log(`Header changed to: ${headerTitle}`);
         }
+
+        // Load default content when the page loads
+        window.onload = function() {
+            loadContent('contractaccess', 'Contract Access') // Load Contract Access by default
+        };
     </script>
 </body>
 </html>

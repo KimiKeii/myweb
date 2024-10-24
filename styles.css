@@ -1,25 +1,23 @@
-/* Basic Reset */
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body Styling */
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
-    min-height: 100vh;
     display: flex;
+    min-height: 100vh;
     flex-direction: column;
-    padding-top: 60px;  /* Adjusted to account for fixed header */
+    background-color: white;
 }
 
-/* Header Styling */
+/* Header */
 header {
-    background-color: #333;
-    color: white;
+    background-color: transparent;
     padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -27,268 +25,160 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
 }
 
-.logo img{
-    height: 30px;
-    width: 30px;
-    margin-left: 1450px; /* Keep the logo aligned */
-}
-
-/* Toggle Button Styling */
-.toggle-btn {
+/* To avoid overlapping with header */
+.header-content h1 {
+    margin-left: 270px; /* Ensures the header title is placed beside the sidebar */
     background-color: transparent;
-    border: none;
-    cursor: pointer;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Sidebar */
+#sidebar {
+    width: 250px;
+    background-image: linear-gradient(to right, #1f7acf, rgb(184, 225, 251));
     position: fixed;
-    top: 15px;
-    left: 20px;
-    width: 30px;
-    height: 30px;
+    top: 0px;
+    bottom: 0;
+    left: 0px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
-    z-index: 1001;
     transition: left 0.3s;
-    padding: 0;
 }
 
-/* Styling for hamburger lines */
-.toggle-btn span {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: white;
-    border-radius: 2px;
-    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
-}
-
-/* Sidebar Styling */
-.sidebar {
-    height: 100%;
-    width: 125px;
-    position: fixed;
-    top: 0;
-    left: -250px;
-    background-color: rgba(51, 51, 51, 0.7);  /* Semi-transparent background */
-    backdrop-filter: blur(10px);  /* Apply blur effect */
-    overflow-y: auto;
-    transition: 0.3s;
-    padding-top: 60px;
-    z-index: 1;
-}
-
-.sidebar.active {
+#sidebar.open{
     left: 0;
 }
 
-.sidebar.active ~ .toggle-btn {
-    left: 260px;  /* Adjust position of the toggle button when sidebar is active */
+#sidebutton{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1;
+    font-size: 20px;
+    background-color: #2a75bb;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
 }
 
-.sidebar a {
+.menu {
+    width: 100%;
+    flex-grow: 1; /* Let the menu take available space */
+
+}
+
+.menu a{
+    font-size: 20px;
+    color: blueviolet;
+    margin-left: 2rem;
+    font-weight: 200;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s ease;
+}
+
+.menu a:hover{
+    border-bottom: 3px solid var(--text-color);
+    color: var(--text-color);
+}
+
+
+.logout {
+    position: fixed;
+    bottom: 10px; /* Slightly move it up from the bottom */
+    width: 100%;
+    padding: 10px; /* Adjust padding for visual balance */
+    display: flex;
+    justify-content: center; /* Center the entire logout block */
+}
+
+
+.logout-content {
+    width: 100%;
+    text-align: left; /* Text inside aligned left */
+}
+
+.profile-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-section img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+
+.menu a {
+    display: block;
+    color: white;
     padding: 15px;
     text-decoration: none;
-    font-size: 18px;
-    color: white;
-    display: block;
-    transition: 0.3s;
+    font-size: 1.1em;
 }
 
-.sidebar a:hover {
-    background-color: rgba(87, 87, 87, 0.7);  /* Slightly darker on hover */
+
+.menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Hamburger to X transformation */
-.toggle-btn.active span:nth-child(1) {
-    width: 21px;
-    transform: rotate(-45deg) translate(-7px, 3px);
-}
-
-.toggle-btn.active span:nth-child(2) {
-    width: 100%;
-}
-.toggle-btn.active span:nth-child(3) {
-    width: 21px;
-    transform: rotate(45deg) translate(-7px, -3px);
-}
-
-/* Content Styling */
+/* Content */
 .content {
-    margin-left: 0;
+    margin-left: 270px;  /* Adjusted to account for the width of the sidebar */
+    margin-top: 50px;    /* Added margin to prevent content from going under the fixed header */
     padding: 20px;
-    transition: margin-left 0.3s;
+    background-color: #d5d5d5e3;
+    min-height: 40vh;
 }
 
-.sidebar.active + .content {
-    margin-left: 0px;
+.unit-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
 
-/* Hero Section Styling */
-.hero {
-    background: url('https://via.placeholder.com/1920x600') no-repeat center center/cover;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
+.unit {
+    background-color: #fff;
+    padding: 15px;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.hero-content {
-    max-width: 600px;
+.unit h3 {
+    margin-bottom: 10px;
 }
 
-.hero h1 {
-    font-size: 3em;
+.unit img {
+    max-width: 100%;
+    height:200px;
 }
 
-.hero p {
-    margin: 20px 0;
-    font-size: 1.2em;
-}
-
-.cta {
-    background-color: #ff5733;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-}
-
-.cta:hover {
-    background-color: #ff2e00;
-}
-
-/* Features Section Styling */
-.features {
-    padding: 50px 20px;
-    background-color: #f4f4f4;
-    text-align: center;
-}
-
-.feature-grid {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.feature-item {
-    background-color: white;
-    margin: 20px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    flex-basis: 300px;
-}
-
-/* About Section Styling */
-.about {
-    padding: 50px 20px;
-    text-align: center;
-}
-
-/* Contact Section Styling */
-.contact {
-    padding: 50px 20px;
-    background-color: #333;
-    color: white;
-    text-align: center;
-}
-
-.contact form {
-    max-width: 600px;
-    margin: auto;
-}
-
-.contact input, .contact textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-}
-
-.contact button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #ff5733;
-    color: white;
-    font-size: 1em;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.contact button:hover {
-    background-color: #ff2e00;
-}
-
-/* Footer Styling */
+/* Footer */
 footer {
-    background-color: #333;
-    color: white;
+    background-color: transparent;
+    padding: 5px;
     text-align: center;
-    padding: 10px 0;
+    margin-top: 5px;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .toggle-btn {
-        font-size: 1.2em;
-        padding: 8px;
-    }
 
-    .sidebar {
-        width: 200px;
-        left: -200px;
-    }
 
-    .sidebar.active {
-        left: 0;
-    }
 
-    .sidebar.active ~ .toggle-btn {
-        left: 210px;
-    }
-
-    .sidebar a {
-        font-size: 16px;
-        padding: 12px;
-    }
-
-    .sidebar.active + .content {
-        margin-left: 200px;
-    }
-
-    .hero h1 {
-        font-size: 2em;
-    }
-
-    .feature-grid {
-        flex-direction: column;
-    }
-
-    .feature-item {
-        margin: 20px auto;
-    }
-}
-
-@media (max-width: 480px) {
-    .sidebar {
-        width: 22%;
-        left: -100%;
-    }
-
-    .sidebar.active {
-        left: 0;
-    }
-
-    .sidebar.active ~ .toggle-btn {
-        left: 22%;  /* Make sure the button stays within the viewport */
-    }
-
-    .sidebar.active + .content {
-        margin-left: 0;
-    }
-}

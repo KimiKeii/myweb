@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Log in Page</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="login2.css">
   <script>
     function login() {
         // Get input values
@@ -49,35 +48,27 @@
 </head>
 <body>
     <div class="container">
-        <div class="row col-md-12 wrapper">
-            <div class="col-md-6">
-                <div class="imagewrap">
-                    <div class="image-container">
-                        <img src="AOSlogo.svg" alt="AOS Logo">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="Loginwrap">
-                    <div>
-                        <form onsubmit="event.preventDefault(); login();">
-                            <h1 class="question">Login</h1>
-                            <br>
-                            <label for="username">Name</label>
-                            <br>
-                            <input type="text" id="username" placeholder="Username" required>
-                            <br>
-                            <label for="password">Password</label>
-                            <br>
-                            <input type="password" id="password" placeholder="Password" required>
-                            <br>
-                        </form>
-                    </div>
-                    <div class="btn-group">
-                        <button id="lgbtn" onclick="login()" class="login-btn">Login</button>
-                    </div>
-                </div>
-            </div>
+        <div class="image-container">
+            <img src="AOSlogo.svg" alt="AOS Logo">
+        </div>
+    </div>
+    <div class="wrapper">
+        <div>
+            <form onsubmit="event.preventDefault(); login();">
+                <h1 class="question">Login</h1>
+                <br>
+                <label for="username">Name</label>
+                <br>
+                <input type="text" id="username" placeholder="Username" required>
+                <br>
+                <label for="password">Password</label>
+                <br>
+                <input type="password" id="password" placeholder="Password" required>
+                <br>
+            </form>
+        </div>
+        <div class="btn-group">
+            <button id="lgbtn" onclick="login()" class="login-btn">Login</button>
         </div>
     </div>
 </body>

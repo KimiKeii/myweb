@@ -1,33 +1,79 @@
-<html>
-    <head>
-        <title>Sign Up Page</title>
-        <link rel="stylesheet" type="text/css" href="Signup.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div class="container">
-            <Form>
-                <H1>Sign up</H1>
-                <p>Please fill up this form to create an account</p>
-                <br>
-                    <label>Name</label>
-                    <input type="text" placeholder="Name">
-                <br>
-                    <label>Email</label>
-                    <input type="email" placeholder="Email">
-                <br>
-                    <label>password</label>
-                    <input type="password" placeholder="password">
-                <br>
-                    <Label>Re-Enter password</Label>
-                    <input type="password" placeholder="password">
-                <p>By creating an account you agree to our <a href="#">Terms and privacy</a></p>
-                    <button onclick="document.location='index.html'" class="signup">Sign up</button>
-                <div class="login">
-                    <P>Already have an account? <a href="index.html">login</a></P> 
-                </div>
-            
-            </Form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AOS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Unit Management</h1>
         </div>
-    </body>
+    </header>
+
+    <div id="sidebar" class="sidebar">
+        <div class="profile-section">
+            <img src="Jordie.jpg" alt="Profile Picture">
+            <h3>Jordie</h3>
+        </div>
+        <nav class="menu">
+            <a href="#" onclick="loadContent('unitManagement')">Unit Management</a>
+            <a href="#" onclick="loadContent('tenantInfo')">Tenant Information</a>
+            <a href="#" onclick="loadContent('paymentTracking')">Payment Tracking</a>
+            <a href="#" onclick="loadContent('maintenance')">Maintenance Management</a>
+            <a href="#" onclick="loadContent('messaging')">Messaging System</a>
+            <a href="#" onclick="loadContent('transactionHistory')">Transaction History</a>
+            <div class="logout">
+                <div class="logout-content">
+                    <a href="index.html" class="logout">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <section id="content">
+        <div class="content">
+            <!-- Default content here -->
+            <h2>Welcome to Unit Management</h2>
+            <p>Select an option from the sidebar to see more details.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 AOS. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function loadContent(section) {
+            const content = document.querySelector('.content');
+
+            // Define different content for each section
+            const sections = {
+                unitManagement: `
+                    <div class="unit-grid">
+                        <div class="unit">
+                            <img src="Unit1.png" alt="Unit 00 Layout">
+                            <h3>001</h3>
+                        </div>
+                        <div class="unit">
+                            <img src="unit2.png" alt="Unit 002 Layout">
+                            <h3>002</h3>
+                        </div>
+                        <!-- Add more units here -->
+                    </div>`,
+                tenantInfo: '<h2>Tenant Information</h2><p>List of tenants and their details will be displayed here.</p>',
+                paymentTracking: '<h2>Payment Tracking</h2><p>Track the payments of tenants here.</p>',
+                maintenance: '<h2>Maintenance Management</h2><p>Manage maintenance requests and tasks.</p>',
+                messaging: '<h2>Messaging System</h2><p>Send messages to tenants or staff.</p>',
+                transactionHistory: '<h2>Transaction History</h2><p>View all transactions and their history here.</p>'
+            };
+
+            // Update the inner HTML of the content section
+            content.innerHTML = sections[section] || '<p>Content not found.</p>';
+        }
+    </script>
+
+</body>
 </html>
