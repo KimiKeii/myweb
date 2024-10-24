@@ -26,7 +26,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('C:/xampp/htdocs/myweb/apartmentbg.jpg');
+  background-image: url('apartmentbg.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -142,35 +142,64 @@ button:hover {
   .Loginwrap {
     width: 100%;
     max-width: 500px;
-    height: 400px;
-    background-color: white; /* Solid white background */
+    height: 350px;
+    background-color: white;
     border-radius: 20px;
     display: flex;
-    justify-content: top;
+    justify-content: flex-start; /* Align content at the top */
     align-items: center;
     font-weight: 800; 
     flex-direction: column;
-    padding: 20px;
+    padding: 0 20px; /* Removed top padding to prevent spacing */
     margin-left: 20px;
-    margin-top: 45px;
+    margin-top: 0; /* Remove margin on top */
     
-    /* Add shadow to simulate fading effect */
+    /* Box shadow for fading effect */
     box-shadow: 0 4px 20px rgba(51, 51, 51, 0.541), 0 0 30px 15px rgba(36, 36, 36, 0);
+  }
+
+  input[type="text"], input[type="password"] {
+    width: 300px;
+    padding: 15px;
+    margin: 0 0 10px 0; 
+    display: inline-block;
+    border: none;
+    background-color: whitesmoke;
+    box-sizing: border-box;
   }
 
   .imagewrap {
     display: flex;
-    height: 280px;
-    max-width: 80%;
+    justify-content: center;
     align-items: center;
-    margin-top: 100px;
-    margin-left: 50px;
+    width: 100%; /* Full width to remove left space */
+    height: 280px;
+    max-width: 100%; /* Ensure no extra space around */
+    margin: 0; /* Remove all margins */
+    margin-left: 15px;
+    padding: 0; /* Remove padding to avoid spacing */
     border-radius: 20px;
     background-color: rgba(44, 44, 44, 0.592);
   }
-  
-  button {
-      width: 70px;
-      font-size: 0.7rem;
+
+  .image-container {
+    position: relative;
+    width: 100%; /* Fill available width */
+    height: 100%; /* Fill available height */
+    max-width: 300px;
+    max-height: 280px; /* Adjust max height to fit the container */
+    overflow: hidden;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: contain; /* Ensures image fits without distortion */
+  }
+
+  .image {
+    width: 100%; /* Full width of the container */
+    height: 280px; /* Match the height of the image container */
   }
 }
