@@ -117,24 +117,70 @@ button:hover {
   background-color: white;
 }
 
-@media screen and (max-width: 600px) {
-  .wrapper {
-      width: 100%;
-      height: auto;
-      padding: 10px;
+@media screen and (max-width: 1024px) {
+ .Loginwrap {
+    width: 100%;
+    max-width: 500px;
+    height: 350px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-start; /* Align content at the top */
+    align-items: center;
+    font-weight: 800; 
+    flex-direction: column;
+    padding: 0 20px; /* Padding on the sides */
+    margin-left: 20px;
+    margin-top: 0; /* Remove margin on top */
+    
+    /* Box shadow for fading effect */
+    box-shadow: 0 4px 20px rgba(51, 51, 51, 0.541), 0 0 30px 15px rgba(36, 36, 36, 0);
   }
-  
-  button {
-      width: 80px;
-      font-size: 0.8rem;
+
+  input[type="text"], input[type="password"] {
+    width: 100%; /* Change to 100% to fit the parent */
+    max-width: 300px; /* Ensure it doesn't exceed a certain width */
+    padding: 15px;
+    margin: 0 0 10px 0; 
+    display: inline-block;
+    border: none;
+    background-color: whitesmoke;
+    box-sizing: border-box; /* Include padding and border in width calculation */
   }
-  
-  .login-btn {
-      margin-left: 0;
+
+  .imagewrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width to remove left space */
+    height: 280px;
+    max-width: 100%; /* Ensure no extra space around */
+    margin: 0; /* Remove all margins */
+    margin-left: 15px; /* Optional: Adjust as needed */
+    padding: 0; /* Remove padding to avoid spacing */
+    border-radius: 20px;
+    background-color: rgba(44, 44, 44, 0.592);
   }
-  
-  .signup-btn {
-      margin-right: 0;
+
+  .image-container {
+    position: relative;
+    width: 100%; /* Fill available width */
+    height: 100%; /* Fill available height */
+    max-width: 300px;
+    max-height: 280px; /* Adjust max height to fit the container */
+    overflow: hidden;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: contain; /* Ensures image fits without distortion */
+  }
+
+  .image {
+    width: 100%; /* Full width of the container */
+    height: 280px; /* Match the height of the image container */
   }
 }
 
@@ -150,7 +196,7 @@ button:hover {
     align-items: center;
     font-weight: 800; 
     flex-direction: column;
-    padding: 0 20px; /* Removed top padding to prevent spacing */
+    padding: 0 20px; /* Padding on the sides */
     margin-left: 20px;
     margin-top: 0; /* Remove margin on top */
     
@@ -159,13 +205,14 @@ button:hover {
   }
 
   input[type="text"], input[type="password"] {
-    width: 300px;
+    width: 100%; /* Change to 100% to fit the parent */
+    max-width: 300px; /* Ensure it doesn't exceed a certain width */
     padding: 15px;
     margin: 0 0 10px 0; 
     display: inline-block;
     border: none;
     background-color: whitesmoke;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Include padding and border in width calculation */
   }
 
   .imagewrap {
@@ -176,7 +223,74 @@ button:hover {
     height: 280px;
     max-width: 100%; /* Ensure no extra space around */
     margin: 0; /* Remove all margins */
-    margin-left: 15px;
+    margin-left: 15px; /* Optional: Adjust as needed */
+    padding: 0; /* Remove padding to avoid spacing */
+    border-radius: 20px;
+    background-color: rgba(44, 44, 44, 0.592);
+  }
+
+  .image-container {
+    position: relative;
+    width: 100%; /* Fill available width */
+    height: 100%; /* Fill available height */
+    max-width: 300px;
+    max-height: 280px; /* Adjust max height to fit the container */
+    overflow: hidden;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: contain; /* Ensures image fits without distortion */
+  }
+
+  .image {
+    width: 100%; /* Full width of the container */
+    height: 280px; /* Match the height of the image container */
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .Loginwrap {
+    width: 100%;
+    max-width: 500px;
+    height: 350px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-start; /* Align content at the top */
+    align-items: center;
+    font-weight: 800; 
+    flex-direction: column;
+    padding: 0 20px; /* Padding on the sides */
+    margin-left: 20px;
+    margin-top: 0; /* Remove margin on top */
+    
+    /* Box shadow for fading effect */
+    box-shadow: 0 4px 20px rgba(51, 51, 51, 0.541), 0 0 30px 15px rgba(36, 36, 36, 0);
+  }
+
+  input[type="text"], input[type="password"] {
+    width: 100%; /* Change to 100% to fit the parent */
+    max-width: 300px; /* Ensure it doesn't exceed a certain width */
+    padding: 15px;
+    margin: 0 0 10px 0; 
+    display: inline-block;
+    border: none;
+    background-color: whitesmoke;
+    box-sizing: border-box; /* Include padding and border in width calculation */
+  }
+
+  .imagewrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width to remove left space */
+    height: 280px;
+    max-width: 100%; /* Ensure no extra space around */
+    margin: 0; /* Remove all margins */
+    margin-left: 15px; /* Optional: Adjust as needed */
     padding: 0; /* Remove padding to avoid spacing */
     border-radius: 20px;
     background-color: rgba(44, 44, 44, 0.592);

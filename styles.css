@@ -17,7 +17,6 @@ body {
 header {
     background-color: transparent;
     padding: 10px 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,8 +46,9 @@ header {
 
 /* Sidebar */
 #sidebar {
-    width: 250px;
-    background-image: linear-gradient(to right, #1f7acf, rgb(184, 225, 251));
+    width: 270px;
+    /* background-image: linear-gradient(to right, #1f7acf, rgb(184, 225, 251)); */
+    background-color: transparent;
     position: fixed;
     top: 0px;
     bottom: 0;
@@ -61,55 +61,74 @@ header {
     transition: left 0.3s;
 }
 
-#sidebar.open{
-    left: 0;
-}
-
-#sidebutton{
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 1;
-    font-size: 20px;
-    background-color: #2a75bb;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
 .menu {
     width: 100%;
     flex-grow: 1; /* Let the menu take available space */
-
-}
-
-.menu a{
-    font-size: 20px;
-    color: blueviolet;
-    margin-left: 2rem;
-    font-weight: 200;
-    border-bottom: 3px solid transparent;
-    transition: 0.3s ease;
-}
-
-.menu a:hover{
-    border-bottom: 3px solid var(--text-color);
     color: var(--text-color);
 }
 
-
-.logout {
-    position: fixed;
-    bottom: 10px; /* Slightly move it up from the bottom */
-    width: 100%;
-    padding: 10px; /* Adjust padding for visual balance */
-    display: flex;
-    justify-content: center; /* Center the entire logout block */
+:root {
+    --text-color: rgb(24, 122, 250); /* Define the variable */
+    --new-color: white;
+    --bg-color: rgba(168, 168, 168, 0.623);
 }
 
+.menu a {
+    display: block;
+    margin-bottom: 7px;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 1.1em;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    border-radius: 20px;
+}
+
+.menu .link {
+    color: var(--text-color); /* Specific color for "Unit Management" */
+}
+
+.menu .link:hover{
+    border-bottom: 3px solid var(--text-color);
+    border-radius: 20px;
+    background-color: var(--text-color); /* Change background on hover */
+    color: var(--new-color);
+}
+
+.menu a:hover {
+    border-bottom: 3px solid var(--text-color);
+    border-radius: 20px;
+    background-color: var(--text-color); /* Change background on hover */
+    color: var(--new-color);
+}
+
+.dbicon{
+    height: 20px;
+    width: 20px;
+}
+
+.logout-content .logout {
+    position: fixed;
+    border-radius: 20px;
+    font-size: 1.1em;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    bottom: 10px; /* Slightly move it up from the bottom */
+    width: 225px;
+    padding: 10px; /* Adjust padding for visual balance */
+    display: flex;
+    text-align: left;
+}
+
+.logout-content .logout:hover {
+    border-bottom: 3px solid var(--text-color);
+    border-radius: 20px;
+    background-color: var(--text-color); /* Change background on hover */
+    color: var(--new-color);
+}
 
 .logout-content {
+    font-size: 1.1em;
     width: 100%;
     text-align: left; /* Text inside aligned left */
 }
@@ -124,20 +143,6 @@ header {
     height: 80px;
     border-radius: 50%;
     margin-bottom: 10px;
-}
-
-
-.menu a {
-    display: block;
-    color: white;
-    padding: 15px;
-    text-decoration: none;
-    font-size: 1.1em;
-}
-
-
-.menu a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Content */
