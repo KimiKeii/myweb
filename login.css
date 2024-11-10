@@ -60,7 +60,7 @@ body::before {
 .Loginwrap {
   width: 90%;
   max-width: 500px;
-  height: 400px;
+  height: 450px;
   background-color: white; /* Solid white background */
   border-radius: 20px;
   display: flex;
@@ -315,5 +315,32 @@ button:hover {
   .image {
     width: 100%; /* Full width of the container */
     height: 280px; /* Match the height of the image container */
-  }
+  } 
+}
+
+input.invalid {
+  border: 2px solid red;
+  background-color: #ffe6e6;
+}
+
+/* Popup styling */
+.popup {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f44336; /* Red background */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  z-index: 1000;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease;
+}
+
+.popup.hidden {
+  opacity: 0;
+  pointer-events: none; /* Makes the popup unclickable when hidden */
 }

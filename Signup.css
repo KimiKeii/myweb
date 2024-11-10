@@ -1,89 +1,345 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: gray;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{
+  font-family: "Poppins";
 }
 
-.container {
-    position: relative;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(0, 0, 0) ;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('apartmentbg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.7; /* Set more transparency (lower value for higher transparency) */
+  z-index: -1; /* Place it behind the content */
+}
+
+
+.imagewrap {
+  display: flex;
+  height: 280px;
+  max-width: 80%;
+  align-items: center;
+  margin-top: 100px;
+  margin-left: 100px;
+  border-radius: 20px;
+  background-color: rgba(44, 44, 44, 0.592);
+}
+
+.image-container img {
+  width: 400px; 
+  height: 400px;
+  border-radius: 20px;
+  object-fit: contain;
+}
+
+.question {
+  text-align: center;
+}
+
+.signup-wrap {
+  width: 90%;
+  max-width: 500px;
+  height: 625px;
+  background-color: white; /* Solid white background */
+  border-radius: 20px;
+  display: flex;
+  justify-content: top;
+  align-items: center;
+  font-weight: 800; 
+  flex-direction: column;
+  padding: 20px;
+  margin-left: 100px;
+  
+  /* Add shadow to simulate fading effect */
+  box-shadow: 0 4px 20px rgba(51, 51, 51, 0.541), 0 0 30px 15px rgba(36, 36, 36, 0);
+}
+
+
+input[type="text"], input[type="password"] {
+  width: 400px;
+  padding: 15px;
+  margin: 0 0 10px 0; /* Adjust margins to move them up */
+  display: inline-block;
+  border: none;
+  background-color: whitesmoke;
+  box-sizing: border-box;
+}
+
+
+.btn-group { 
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px; /* Reduce margin to move buttons closer to the input fields */
+}
+
+button {
+  width: 400px;
+  margin-bottom: 50px;
+  height: inherit;
+  color: white;
+  font-size: 1rem;
+  font-weight: 800;
+  border-radius: 30px;
+  border: 2px solid #107fa9;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin: 0 10px;
+  background-color: #107fa9;
+}
+
+button:hover {
+  border-bottom: 3px solid var(--text-color);
+  color: #107fa9;
+  background-color: white;
+}
+
+@media screen and (max-width: 1024px) {
+ .Loginwrap {
     width: 100%;
-    height: 100%;
-    max-width: 650px;
-    max-height: 675px;
+    max-width: 500px;
+    height: 350px;
     background-color: white;
     border-radius: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* Align content at the top */
     align-items: center;
+    font-weight: 800; 
     flex-direction: column;
-    padding: 20px;
+    padding: 0 20px; /* Padding on the sides */
+    margin-left: 20px;
+    margin-top: 0; /* Remove margin on top */
+    
+    /* Box shadow for fading effect */
+    box-shadow: 0 4px 20px rgba(51, 51, 51, 0.541), 0 0 30px 15px rgba(36, 36, 36, 0);
+  }
 
-}
-
-input[type="text"], input[type="email"], input[type="password"] {
-    width: 100%;
+  input[type="text"], input[type="password"] {
+    width: 100%; /* Change to 100% to fit the parent */
+    max-width: 300px; /* Ensure it doesn't exceed a certain width */
     padding: 15px;
-    margin: 5px 0 22px 0;
+    margin: 0 0 10px 0; 
     display: inline-block;
     border: none;
     background-color: whitesmoke;
-    box-sizing: border-box;
-}
+    box-sizing: border-box; /* Include padding and border in width calculation */
+  }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
-    background-color: #bbb;
-}
-
-.signup {
-    background-color: orange;
-    color: black;
-    padding: 5px 8px;
-    margin: 5px 0 22px 0;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
+  .imagewrap {
+    display: flex;
     justify-content: center;
-}
+    align-items: center;
+    width: 100%; /* Full width to remove left space */
+    height: 280px;
+    max-width: 100%; /* Ensure no extra space around */
+    margin: 0; /* Remove all margins */
+    margin-left: 15px; /* Optional: Adjust as needed */
+    padding: 0; /* Remove padding to avoid spacing */
+    border-radius: 20px;
+    background-color: rgba(44, 44, 44, 0.592);
+  }
 
+  .image-container {
+    position: relative;
+    width: 100%; /* Fill available width */
+    height: 100%; /* Fill available height */
+    max-width: 300px;
+    max-height: 280px; /* Adjust max height to fit the container */
+    overflow: hidden;
+  }
 
-.signup:hover {
-    opacity: 1;
-}
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: contain; /* Ensures image fits without distortion */
+  }
 
-.login {
-    background-color: whitesmoke;
-    text-align: center;
-}
-
-@media screen and (max-width: 600px) {
-    .container {
-        width: 90%;
-        height: 90%;
-        padding: 10px;
-    }
-    
-    .signup, .login {
-        padding: 10px 15px;
-        font-size: 0.9rem;
-    }
+  .image {
+    width: 100%; /* Full width of the container */
+    height: 280px; /* Match the height of the image container */
+  }
 }
 
 @media screen and (max-width: 400px) {
-    .container {
-        width: 90%;
-        height: 90%;
-        padding: 10px;
-        border-radius: 10px;
-    }
+  .Loginwrap {
+    width: 100%;
+    max-width: 500px;
+    height: 350px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-start; /* Align content at the top */
+    align-items: center;
+    font-weight: 800; 
+    flex-direction: column;
+    padding: 0 20px; /* Padding on the sides */
+    margin-left: 20px;
+    margin-top: 0; /* Remove margin on top */
     
-    .signup, .login {
-        padding: 8px 10px;
-        font-size: 0.8rem;
-    }
+    /* Box shadow for fading effect */
+    box-shadow: 0 4px 20px rgba(51, 51, 51, 0.541), 0 0 30px 15px rgba(36, 36, 36, 0);
+  }
+
+  input[type="text"], input[type="password"] {
+    width: 100%; /* Change to 100% to fit the parent */
+    max-width: 300px; /* Ensure it doesn't exceed a certain width */
+    padding: 15px;
+    margin: 0 0 10px 0; 
+    display: inline-block;
+    border: none;
+    background-color: whitesmoke;
+    box-sizing: border-box; /* Include padding and border in width calculation */
+  }
+
+  .imagewrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width to remove left space */
+    height: 280px;
+    max-width: 100%; /* Ensure no extra space around */
+    margin: 0; /* Remove all margins */
+    margin-left: 15px; /* Optional: Adjust as needed */
+    padding: 0; /* Remove padding to avoid spacing */
+    border-radius: 20px;
+    background-color: rgba(44, 44, 44, 0.592);
+  }
+
+  .image-container {
+    position: relative;
+    width: 100%; /* Fill available width */
+    height: 100%; /* Fill available height */
+    max-width: 300px;
+    max-height: 280px; /* Adjust max height to fit the container */
+    overflow: hidden;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: contain; /* Ensures image fits without distortion */
+  }
+
+  .image {
+    width: 100%; /* Full width of the container */
+    height: 280px; /* Match the height of the image container */
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .Loginwrap {
+    width: 100%;
+    max-width: 500px;
+    height: 350px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-start; /* Align content at the top */
+    align-items: center;
+    font-weight: 800; 
+    flex-direction: column;
+    padding: 0 20px; /* Padding on the sides */
+    margin-left: 20px;
+    margin-top: 0; /* Remove margin on top */
+    
+    /* Box shadow for fading effect */
+    box-shadow: 0 4px 20px rgba(51, 51, 51, 0.541), 0 0 30px 15px rgba(36, 36, 36, 0);
+  }
+
+  input[type="text"], input[type="password"] {
+    width: 100%; /* Change to 100% to fit the parent */
+    max-width: 300px; /* Ensure it doesn't exceed a certain width */
+    padding: 15px;
+    margin: 0 0 10px 0; 
+    display: inline-block;
+    border: none;
+    background-color: whitesmoke;
+    box-sizing: border-box; /* Include padding and border in width calculation */
+  }
+
+  .imagewrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width to remove left space */
+    height: 280px;
+    max-width: 100%; /* Ensure no extra space around */
+    margin: 0; /* Remove all margins */
+    margin-left: 15px; /* Optional: Adjust as needed */
+    padding: 0; /* Remove padding to avoid spacing */
+    border-radius: 20px;
+    background-color: rgba(44, 44, 44, 0.592);
+  }
+
+  .image-container {
+    position: relative;
+    width: 100%; /* Fill available width */
+    height: 100%; /* Fill available height */
+    max-width: 300px;
+    max-height: 280px; /* Adjust max height to fit the container */
+    overflow: hidden;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: contain; /* Ensures image fits without distortion */
+  }
+
+  .image {
+    width: 100%; /* Full width of the container */
+    height: 280px; /* Match the height of the image container */
+  } 
+}
+
+input.invalid {
+  border: 2px solid red;
+  background-color: #ffe6e6;
+}
+
+/* Popup styling */
+.popup {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f44336; /* Red background */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  z-index: 1000;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease;
+}
+
+.popup.hidden {
+  opacity: 0;
+  pointer-events: none; /* Makes the popup unclickable when hidden */
 }

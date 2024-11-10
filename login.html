@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log in Page</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="login.css">
+  <script>
+    function login() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      var usernameField = document.getElementById("username");
+      var passwordField = document.getElementById("password");
+      var popup = document.getElementById("popup");
+      
+      // Clear any previous invalid styling
+      document.getElementById("username").classList.remove("invalid");
+      document.getElementById("password").classList.remove("invalid");
+      
+      // Hide the popup initially
+      popup.classList.add("hidden");
+      
+      if (username === "jordie" && password === "jordanpogi") {
+        window.location.href = "home.html";
+      } else if (username === "emmy" && password === "emmy123") {
+            window.location.href = "user.html";
+          } else if ((username === "jordie" || username === "emmy") && password !== "jordanpogi" && password !== "emmy123") {
+            // Incorrect password
+            document.getElementById("password").classList.add("invalid");
+            popup.innerText = "Invalid password. Please try again.";
+            popup.classList.remove("hidden");
+            setTimeout(() => {
+              popup.classList.add("hidden"); // Hide the popup after 3 seconds
+            }, 3000); // Change the timeout duration if needed
+            
+            // Move focus to the password field
+            passwordField.focus();
+          } else {
+            // Invalid credentials
+            document.getElementById("username").classList.add("invalid");
+            document.getElementById("password").classList.add("invalid");
+            popup.innerText = "Invalid credentials. Please try again.";
+            popup.classList.remove("hidden");
+            setTimeout(() => {
+              popup.classList.add("hidden"); // Hide the popup after 3 seconds
+            }, 3000); // Change the timeout duration if needed
+            
+            // Move focus to the username field
+            usernameField.focus();
+          }
+        }
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            var usernameField = document.getElementById("username");
+            var passwordField = document.getElementById("password");
+
+        usernameField.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                passwordField.focus();
+            }
+        });
+
+        passwordField.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                document.querySelector(".login-btn").click();
+            }
+        });
+
+        // Add event listeners to clear the invalid class when typing
+        usernameField.addEventListener("input", function() {
+            this.classList.remove("invalid");
+            popup.classList.add("hidden"); // Hide the popup when typing
+        });
+
+        passwordField.addEventListener("input", function() {
+            this.classList.remove("invalid");
+            popup.classList.add("hidden"); // Hide the popup when typing
+        });
+    });
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div id="popup" class="popup hidden">Invalid credentials. Please try again.</div>
+    <div class="container">
+        <div class="row col-md-12 wrapper">
+            <div class="col-md-6">
+                <div class="imagewrap">
+                    <div class="image-container">
+                        <img src="AOSlogo.svg" class="Logo" alt="AOS Logo">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="Loginwrap">
+                    <div>
+                        <form onsubmit="event.preventDefault(); login();">
+                            <h1 class="question">Login</h1>
+                            <br>
+                            <label for="username">Name</label>
+                            <br>
+                            <input type="text" id="username" placeholder="Username" required>
+                            <br>
+                            <label for="password">Password</label>
+                            <br>
+                            <input type="password" id="password" placeholder="Password" required>
+                            <br>
+                        </form>
+                    </div>
+                    <div class="btn-group">
+                        <button type="submit" id="lgbtn" onclick="login()" class="login-btn">Login</button>
+                    </div>
+                        <br>
+                        <p>Dosent Have an Account?<a href="sign-up.html">SignUp</a></p>
+                        <a href="index.html">HomePage</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

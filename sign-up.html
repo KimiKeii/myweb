@@ -1,79 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AOS</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log in Page</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="Signup.css">
+<script>
+    function signup() {
+        var username = document.getElementById("username").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var popup = document.getElementById("popup");
+
+        document.querySelectorAll("input").forEach(input => input.classList.remove("invalid"));
+        popup.classList.add("hidden");
+
+        if (!email.includes("@")) {
+            document.getElementById("email").classList.add("invalid");
+            popup.innerText = "Invalid email.";
+            popup.classList.remove("hidden");
+            document.getElementById("email").focus();
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            document.getElementById("confirmPassword").classList.add("invalid");
+            popup.innerText = "Passwords do not match.";
+            popup.classList.remove("hidden");
+            document.getElementById("confirmPassword").focus();
+            return;
+        }
+
+        // Store username and password in localStorage
+        localStorage.setItem("signupUsername", username);
+        localStorage.setItem("signupPassword", password);
+
+        popup.innerText = "Signup successful!";
+        popup.classList.remove("hidden");
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var usernameField = document.getElementById("username");
+        var emailField = document.getElementById("email");
+        var passwordField = document.getElementById("password");
+        var confirmPasswordField = document.getElementById("confirmPassword");
+
+        usernameField.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                emailField.focus();
+            }
+        });
+
+        emailField.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                passwordField.focus();
+            }
+        });
+
+        passwordField.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                confirmPasswordField.focus();
+            }
+        });
+
+        confirmPasswordField.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                document.querySelector(".signup-btn").click();
+            }
+        });
+    });
+</script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1>Unit Management</h1>
-        </div>
-    </header>
-
-    <div id="sidebar" class="sidebar">
-        <div class="profile-section">
-            <img src="Jordie.jpg" alt="Profile Picture">
-            <h3>Jordie</h3>
-        </div>
-        <nav class="menu">
-            <a href="#" onclick="loadContent('unitManagement')">Unit Management</a>
-            <a href="#" onclick="loadContent('tenantInfo')">Tenant Information</a>
-            <a href="#" onclick="loadContent('paymentTracking')">Payment Tracking</a>
-            <a href="#" onclick="loadContent('maintenance')">Maintenance Management</a>
-            <a href="#" onclick="loadContent('messaging')">Messaging System</a>
-            <a href="#" onclick="loadContent('transactionHistory')">Transaction History</a>
-            <div class="logout">
-                <div class="logout-content">
-                    <a href="index.html" class="logout">Logout</a>
+    <div id="popup" class="popup hidden">Invalid credentials. Please try again.</div>
+    <div class="container">
+        <div class="row col-md-12 wrapper">
+            <div class="col-md-6">
+                <div class="imagewrap">
+                    <div class="image-container">
+                        <img src="AOSlogo.svg" class="Logo" alt="AOS Logo">
+                    </div>
                 </div>
             </div>
-        </nav>
-    </div>
-
-    <section id="content">
-        <div class="content">
-            <!-- Default content here -->
-            <h2>Welcome to Unit Management</h2>
-            <p>Select an option from the sidebar to see more details.</p>
+            <div class="col-md-6">
+                <div class="signup-wrap">
+                    <form onsubmit="event.preventDefault(); signup();">
+                        <h1 class="question">Sign Up</h1>
+                        <br>
+                        
+                        <label for="username">Username</label>
+                        <br>
+                        <input type="text" id="username" placeholder="Enter username" required>
+                        <br>
+                        
+                        <label for="email">Email</label>
+                        <br>
+                        <input type="text" id="email" placeholder="Enter email" required>
+                        <br>
+                        
+                        <label for="password">Password</label>
+                        <br>
+                        <input type="password" id="password" placeholder="Enter password" required>
+                        <br>
+                        
+                        <label for="confirmPassword">Confirm Password</label>
+                        <br>
+                        <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+                        <br>
+                    </form>
+                    <div class="btn-group">
+                        <button type="submit" id="signupBtn" onclick="signup()" class="signup-btn">Sign Up</button>
+                    </div>
+                        <br>
+                        <p>Already Have an Account?<a href="login.html">Login</a></p>
+                        <a href="index.html">HomePage</a>
+                </div>
+            </div>
         </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 AOS. All rights reserved.</p>
-    </footer>
-
-    <script>
-        function loadContent(section) {
-            const content = document.querySelector('.content');
-
-            // Define different content for each section
-            const sections = {
-                unitManagement: `
-                    <div class="unit-grid">
-                        <div class="unit">
-                            <img src="Unit1.png" alt="Unit 00 Layout">
-                            <h3>001</h3>
-                        </div>
-                        <div class="unit">
-                            <img src="unit2.png" alt="Unit 002 Layout">
-                            <h3>002</h3>
-                        </div>
-                        <!-- Add more units here -->
-                    </div>`,
-                tenantInfo: '<h2>Tenant Information</h2><p>List of tenants and their details will be displayed here.</p>',
-                paymentTracking: '<h2>Payment Tracking</h2><p>Track the payments of tenants here.</p>',
-                maintenance: '<h2>Maintenance Management</h2><p>Manage maintenance requests and tasks.</p>',
-                messaging: '<h2>Messaging System</h2><p>Send messages to tenants or staff.</p>',
-                transactionHistory: '<h2>Transaction History</h2><p>View all transactions and their history here.</p>'
-            };
-
-            // Update the inner HTML of the content section
-            content.innerHTML = sections[section] || '<p>Content not found.</p>';
-        }
-    </script>
-
+    </div>
 </body>
 </html>

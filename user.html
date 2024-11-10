@@ -9,22 +9,56 @@
 <body>
     <header>
         <div class="header-content">
-            <h1 id="header-title"></h1>
+            <div class="profile-section">
+                <img src="Emmy.jpg" alt="Profile Picture">
+                <h3 class="profile-name">Emmy</h3>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle">▼</button>
+                        <a href="index.html" class="logout">
+                            <span class="text-wrapper">
+                                <h5 class="logout-name">Logout</h5>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
     <div id="sidebar" class="sidebar">
-        <div class="profile-section">
-            <img src="Emmy.jpg" alt="Profile Picture">
-            <h3>Emmy</h3>
+        <div>
+            <img src="LOGO.svg" class="logo" alt="Logo">
         </div>
         <nav class="menu">
-            <a href="#" onclick="loadContent('contractaccess', 'Contract Access')">Contract Access</a>
-            <a href="#" onclick="loadContent('onlinepayment', 'Online Payment')">Online Payment</a>
-            <a href="#" onclick="loadContent('maintenancerequest', 'Maintenance Request')">Maintenance Request</a>
-            <a href="#" onclick="loadContent('chatsupport', 'Chat Support')">Chat Support</a>
-            <a href="#" onclick="loadContent('transactionhistory', 'Transaction History')">Transaction History</a>
-            <a href="index.html" class="logout">Logout</a>
+            <a href="#" class="link" onclick="loadContent('contractaccess')">
+                <img src="DASHBOARD.svg" alt="dashboard-Icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Contract</h5>
+                </span>
+            </a>
+            <br>
+            <a href="#" class="link" onclick="loadContent('onlinepayment')">
+                <img src="TENANTS INFO.svg" alt="tenantInfo-icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Payment</h5>
+                </span>
+            </a>
+            <br>
+            <a href="#" class="link" onclick="loadContent('contact')">
+                <img src="TRANSACTION.svg" alt="transaction-icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Contact</h5>
+                </span>
+            </a>
+            <br>
+            <a href="#" class="link" onclick="loadContent('transactionhistory',)">
+                <img src="CONTACT.svg" alt="contact-icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Transaction</h5>
+                </span>
+            </a>
+            <br>
+            
         </nav>
     </div>
 
@@ -37,6 +71,37 @@
     </footer>
 
     <script>
+        document.querySelectorAll('.link').forEach(link => {
+            link.addEventListener('click', function() {
+                // Remove active class from all links
+                document.querySelectorAll('.link').forEach(item => {
+                    item.classList.remove('active'); // Remove active state
+                    item.querySelector('.text-wrapper').style.width = '0'; // Reset text wrapper width
+                });
+
+                // Add active class to the clicked link
+                this.classList.add('active'); // Set clicked link to active
+                this.querySelector('.text-wrapper').style.width = '210px'; // Expand text wrapper
+            });
+
+            link.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('active')) {
+                    this.querySelector('.text-wrapper').style.width = '210px';
+                }
+            });
+
+            link.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('active')) {
+                    this.querySelector('.text-wrapper').style.width = '0';
+                }
+            });
+        });
+
+        // Optional: Keep the first link active by default
+        document.querySelector('.link').classList.add('active'); 
+        document.querySelector('.link .text-wrapper').style.width = '210px';
+
+
         // Function to change both content and header title
         function loadContent(section, headerTitle) {
             const content = document.querySelector('.content'); // Get content div
@@ -47,7 +112,7 @@
                 contractaccess: '<h2>Contract Access</h2><p>Contract Access and their details will be displayed here.</p>',
                 onlinepayment: '<h2>Online Payment</h2><p>Pay Online here.</p>',
                 maintenancerequest: '<h2>Maintenance Request</h2><p>Request maintenance Here.</p>',
-                chatsupport: '<h2>Chat Support</h2><p>Send messages to staff.</p>',
+                contact: '<h2>Chat Support</h2><p>Send messages to staff.</p>',
                 transactionhistory: '<h2>Transaction History</h2><p>Access transaction history here.</p>',
             };
 

@@ -9,30 +9,60 @@
 <body>
     <header>
         <div class="header-content">
-            <h1 id="header-title"></h1>
-        </div>
-    </header>
-
-    <div id="sidebar" class="sidebar">
-        <div class="profile-section">
-            <img src="Jordie.jpg" alt="Profile Picture">
-            <h3>Jordie</h3>
-        </div>
-        <nav class="menu">
-            <a href="#" class="link" onclick="loadContent('unitManagement', 'Unit Management')">
-                <img src="DASHBOARD.svg" alt="Dashboard Icon" class="dbicon">
-                Unit Management
-            </a>
-            <a href="#" class="link" onclick="loadContent('tenantInfo', 'Tenant Information')">Tenant Information</a>
-            <a href="#" class="link" onclick="loadContent('maintenance', 'Maintenance Management')">Maintenance Management</a>
-            <a href="#" class="link" onclick="loadContent('messaging', 'Messaging System')">Messaging System</a>
-            <div class="logoutwrap">
-                <div class="logout-content">
-                    <a href="index.html" class="logout">Logout</a>
+            <div class="profile-section">
+                <img src="Jordie.jpg" alt="Profile Picture">
+                <h3 class="profile-name">Jordie</h3>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle">▼</button>
+                        <a href="index.html" class="logout">
+                            <span class="text-wrapper">
+                                <h5 class="logout-name">Logout</h5>
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
+        </div>
+    </header>
+    
+    <div id="sidebar" class="sidebar">
+        <div>
+            <img src="LOGO.svg" class="logo" alt="Logo">
+        </div>
+        <nav class="menu">
+            <a href="#" class="link" onclick="loadContent('dashboard')">
+                <img src="DASHBOARD.svg" alt="dashboard-Icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Dashboard</h5>
+                </span>
+            </a>
+            <br>
+            <a href="#" class="link" onclick="loadContent('tenantInfo')">
+                <img src="TENANTS INFO.svg" alt="tenantInfo-icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Tenant Info</h5>
+                </span>
+            </a>
+            <br>
+            <a href="#" class="link" onclick="loadContent('Transaction')">
+                <img src="TRANSACTION.svg" alt="transaction-icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Transaction</h5>
+                </span>
+            </a>
+            <br>
+            <a href="#" class="link" onclick="loadContent('contact',)">
+                <img src="CONTACT.svg" alt="contact-icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Contact</h5>
+                </span>
+            </a>
+            <br>
+            
         </nav>
     </div>
+
+    
 
     <div class="content">
         <!-- The default content will be loaded here via JavaScript -->
@@ -43,14 +73,44 @@
     </footer>
 
     <script>
+        document.querySelectorAll('.link').forEach(link => {
+            link.addEventListener('click', function() {
+                // Remove active class from all links
+                document.querySelectorAll('.link').forEach(item => {
+                    item.classList.remove('active'); // Remove active state
+                    item.querySelector('.text-wrapper').style.width = '0'; // Reset text wrapper width
+                });
+
+                // Add active class to the clicked link
+                this.classList.add('active'); // Set clicked link to active
+                this.querySelector('.text-wrapper').style.width = '210px'; // Expand text wrapper
+            });
+
+            link.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('active')) {
+                    this.querySelector('.text-wrapper').style.width = '210px';
+                }
+            });
+
+            link.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('active')) {
+                    this.querySelector('.text-wrapper').style.width = '0';
+                }
+            });
+        });
+
+        // Optional: Keep the first link active by default
+        document.querySelector('.link').classList.add('active'); 
+        document.querySelector('.link .text-wrapper').style.width = '210px';
+
+
         // Function to change both content and header title
-        function loadContent(section, headerTitle) {
+        function loadContent(section) {
             const content = document.querySelector('.content'); // Get content div
-            const header = document.getElementById('header-title'); // Get header title
             
             // Define different content for each section
             const sections = {
-                unitManagement: `
+                dashboard: `
                     <div class="unit-grid">
                         <div class="unit">
                             <img src="Unit1.png" alt="Unit 00 Layout">
@@ -85,16 +145,68 @@
                             <img src="Unit8.png" alt="Unit 008 Layout">
                         </div>
                     </div>`,
-                tenantInfo: '<h2>Tenant Information</h2><p>List of tenants and their details will be displayed here.</p>',
-                maintenance: '<h2>Maintenance Management</h2><p>Manage maintenance requests and tasks.</p>',
-                messaging: '<h2>Messaging System</h2><p>Send messages to tenants or staff.</p>',
+                tenantInfo: `
+                    <div class="tenant-wrap">
+                        <div class="room-info">
+                            <span>Room #6</span>
+                            <button>▼</button>
+                        </div>
+                        
+                        <div class="profile-tenant">
+                            <img class="tenant-image" src="profile.jpg" alt="tenant Picture">
+                            <div class="profile-info">
+                                <h3>My Profile</h3>
+                                <p><strong>Name:</strong> Emanuel Manaloto</p>
+                                <p><strong>Email:</strong> manalotoeman@gmail.com</p>
+                                <p><strong>Phone:</strong> 63+ 956 776 1982</p>
+                                <button class="save-button">Save</button>
+                            </div>
+                        </div>
+
+                        <div class="valid-ids-section">
+                            <h4>Valid I.D.'s</h4>
+                            <div class="id-card">
+                                <img src="id-card.png" alt="ID Card">
+                                <span>See More +</span>
+                            </div>
+                        </div>
+
+                        <div class="contract-section">
+                            <h4>Contract</h4>
+                        </div>
+                    </div>`,
+                Transaction: `
+                    <div class="transaction-wrap">
+                        <div class="history">
+                            <div class="text-header">
+                                <p>History</p>
+                            </div>
+                            <div class="today">
+                                <h3 class="today-text">Today</h3>
+                                <div class="payment">
+                                    <h4>Room 1</h4><h5 class="money">&#8369; 10,000</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tracking">
+                            <div class="text-header">
+                                <p>Payment Tracking</p>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                contact: `
+                    <div class="message-wrap">
+                        <p class="message-name">Emanuel</p>
+                        <div class="message-inner"> 
+
+                        </div>
+                    </div>
+                `,
             };
 
             // Update the inner HTML of the content section
             content.innerHTML = sections[section] || '<p>Content not found.</p>';
-            
-            // Update the header title to match the selected section
-            header.textContent = headerTitle;
 
             // Debug log to check if the function works
             console.log(`Header changed to: ${headerTitle}`);
@@ -102,7 +214,7 @@
 
         // Load default content when the page loads
         window.onload = function() {
-            loadContent('unitManagement', 'Unit Management'); // Load Unit Management by default
+            loadContent('dashboard'); // Load Unit Management by default
         };
     </script>
 </body>

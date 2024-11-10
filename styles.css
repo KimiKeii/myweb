@@ -10,7 +10,8 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background-color: white;
+    /* background-color: white; */
+    background-image: linear-gradient(to right, white, #1f7acf);
 }
 
 /* Header */
@@ -46,7 +47,7 @@ header {
 
 /* Sidebar */
 #sidebar {
-    width: 270px;
+    width: 290px;
     /* background-image: linear-gradient(to right, #1f7acf, rgb(184, 225, 251)); */
     background-color: transparent;
     position: fixed;
@@ -61,110 +62,166 @@ header {
     transition: left 0.3s;
 }
 
+.logo{
+    margin-top: 20px;
+}
+
 .menu {
+    margin-left: 20px;
+    margin-top: 90px;
     width: 100%;
     flex-grow: 1; /* Let the menu take available space */
-    color: var(--text-color);
 }
 
 :root {
-    --text-color: rgb(24, 122, 250); /* Define the variable */
+    --text-color: #001F4D; /* Define the variable */
     --new-color: white;
-    --bg-color: rgba(168, 168, 168, 0.623);
+    --bg-color: #E0E0E0B2;
 }
 
-.menu a {
-    display: block;
-    margin-bottom: 7px;
+.icon{
+    height: 20px;
+    width: 20px;
+    margin-right: 8px;
+}
+
+.link {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 15px;
     padding: 15px;
     text-decoration: none;
     font-size: 1.1em;
-    color: var(--text-color);
-    background-color: var(--bg-color);
+    background-color: #ddd; /* Default background color */
+    color: #001F4D; /* Text color */
     border-radius: 20px;
+    transition: background-color 0.3s;
+    overflow: hidden; /* Prevent overflow when collapsed */
 }
 
-.menu .link {
-    color: var(--text-color); /* Specific color for "Unit Management" */
+.link:hover {
+    background-color: #ccc; /* Active and hover background color */
 }
 
-.menu .link:hover{
-    border-bottom: 3px solid var(--text-color);
-    border-radius: 20px;
-    background-color: var(--text-color); /* Change background on hover */
-    color: var(--new-color);
+.link.active{
+    background-color: #ccc; /* Active and hover background color */
 }
 
-.menu a:hover {
-    border-bottom: 3px solid var(--text-color);
-    border-radius: 20px;
-    background-color: var(--text-color); /* Change background on hover */
-    color: var(--new-color);
+.text-wrapper {
+    overflow: hidden; /* Prevent overflow */
+    white-space: nowrap; /* Prevent text from wrapping to a new line */
+    text-overflow: ellipsis; /* Show ellipsis (...) when text overflows */
+    width: 0; /* Initially hidden */
+    transition: width 0.3s ease-in-out;
 }
 
-.dbicon{
-    height: 20px;
-    width: 20px;
+.link.active .text-wrapper{
+    width: 210px; /* Expand to show text when hovered or active */
 }
 
-.logout-content .logout {
-    position: fixed;
-    border-radius: 20px;
-    font-size: 1.1em;
-    color: var(--text-color);
-    background-color: var(--bg-color);
-    bottom: 10px; /* Slightly move it up from the bottom */
-    width: 225px;
-    padding: 10px; /* Adjust padding for visual balance */
-    display: flex;
-    text-align: left;
+.icon-name {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
 }
 
-.logout-content .logout:hover {
-    border-bottom: 3px solid var(--text-color);
-    border-radius: 20px;
-    background-color: var(--text-color); /* Change background on hover */
-    color: var(--new-color);
+.link.active .icon-name {
+    transform: translateX(0); /* Show icon name when active or hovered */
 }
 
-.logout-content {
-    font-size: 1.1em;
-    width: 100%;
-    text-align: left; /* Text inside aligned left */
+.link:hover .icon-name{
+    transform: translateX(0); /* Show icon name when active or hovered */
+}
+
+.link:hover .text-wrapper {
+    width: 210px; /* Expand on hover for any link */
 }
 
 .profile-section {
-    text-align: center;
-    margin-bottom: 30px;
+    border-radius: 20px;
+    background-color: var(--bg-color);
+    width: 130px;
+    height: 60px;
+    position: absolute;
+    right: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 10px;
 }
 
 .profile-section img {
-    width: 80px;
-    height: 80px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    margin-bottom: 10px;
+    margin-left: 5px;
 }
+
+.profile-name {
+    margin-left: 5px;
+}
+
+.dropdown {
+    position: relative; /* Make this the reference point for the absolute positioning of logout */
+}
+
+.dropdown-toggle {
+    margin-left: 5px;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.logout {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position below the toggle */
+    left: 0;
+    background-color: var(--bg-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    white-space: nowrap; /* Prevents text from wrapping */
+    cursor: pointer;
+    z-index: 10; /* Ensures it appears on top */
+}
+
+.logout-name{
+    font-size: 20px;
+}
+
+/* Show the logout button when hovering over the dropdown container */
+.dropdown:hover .logout {
+    display: block;
+    color: var(--text-color);
+}
+
 
 /* Content */
 .content {
-    margin-left: 270px;  /* Adjusted to account for the width of the sidebar */
-    margin-top: 50px;    /* Added margin to prevent content from going under the fixed header */
+    width: 1060px;
+    margin-left: 350px;  /* Adjusted to account for the width of the sidebar */
+    margin-top: 100px;    /* Added margin to prevent content from going under the fixed header */
     padding: 20px;
-    background-color: #d5d5d5e3;
+    background-color: #E0E0E0B2;
+    border-radius: 20px;
     min-height: 40vh;
 }
 
+/* dashboard */
 .unit-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    background-color: transparent;
 }
 
 .unit {
-    background-color: #fff;
+    background-color: transparent;
+    border-radius: 20px;
     padding: 15px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.37);
 }
 
 .unit h3 {
@@ -184,6 +241,190 @@ footer {
     margin-top: 5px;
 }
 
+/* tenant info */
+.tenant-wrap {
+    background-color: transparent;
+    padding: 20px;
+    width: 1020px;
+    height: 551px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
 
+.room-info {
+    grid-column: 1 / 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #ffffff;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    width: 180px;
+}
 
+.room-info span {
+    font-weight: bold;
+}
 
+.profile-tenant {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.tenant-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.profile-info h3 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.profile-info p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.save-button {
+    margin-top: 10px;
+    padding: 8px 20px;
+    background-color: #ddd;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.valid-ids-section, .contract-section {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.valid-ids-section h4, .contract-section h4 {
+    font-size: 1.1em;
+    color: #001F4D;
+    margin-bottom: 15px;
+}
+
+.id-card {
+    display: flex;
+    align-items: center;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.id-card img {
+    width: 100px;
+    border-radius: 5px;
+}
+
+.id-card span {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* transaction */
+.transaction-wrap{
+    background-color: transparent;
+    padding: 20px;
+    width: 1020px;
+    height: 551px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.history{
+    margin-top: 5px;
+    margin-right: 120px;
+    width: 420px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.37);
+
+}
+
+.text-header{
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.today{
+    margin-top: 35px;
+    margin-left: 60px;
+}
+
+.payment{
+    display: flex;
+    margin-top: 15px;
+    margin-left: 30px;
+}
+
+.money{
+    position: absolute;
+    left: 700px;
+    display: flex;
+    align-items: center;
+}
+
+.tracking{
+    margin-top: 5px;
+    width: 420px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.37);
+
+}
+
+/* Contact */
+
+.message-wrap{
+    background-image: radial-gradient(#FFFFFFB2,#558AE17D);
+    border-radius: 20px;
+    width: 1004px;
+    height: 551px;
+    display: grid;
+    position: relative;
+    align-items: center;
+    left: 37px;
+}
+
+.message-name{
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: #2368D8;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.message-inner{
+    background-color: white;
+    border-radius: 20px;
+    margin-top: 50px;
+    margin-left: 50px;
+    width: 900px;
+    height: 450px;
+    display: flex;
+    position: relative;
+    left: 10px;
+    bottom: 20px;
+    grid-template-columns: 1fr 1fr;
+}
