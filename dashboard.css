@@ -204,8 +204,8 @@ nav {
     top: 0px;
     right:-80px;
     border-radius: 20px;
-    width: 720px;
-    height: 720px;
+    width: 770px;
+    height: 770px;
    
 }
 
@@ -272,12 +272,19 @@ nav {
 
 .categories-content {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
 }
 
+.categories-content h1 {
+    margin-left: 630px;
+    font-size: 3rem;
+    color: var(--text-color);
+}
+
+
+
 .carousel-content {
-    margin-top: 120px;
+    margin-top: 80px;
     width: calc(var(--width) * 2); /* Adjust this to fit the container as needed */
     height: var(--height);
     position: relative;

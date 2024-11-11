@@ -34,14 +34,17 @@ body::before {
   z-index: -1; /* Place it behind the content */
 }
 
-
 .imagewrap {
+  margin-left: 50px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 37%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: 280px;
   max-width: 80%;
-  align-items: center;
-  margin-top: 100px;
-  margin-left: 100px;
   border-radius: 20px;
   background-color: rgba(44, 44, 44, 0.592);
 }
@@ -57,64 +60,111 @@ body::before {
   text-align: center;
 }
 
+/* Basic styling */
 .signup-wrap {
-  width: 90%;
-  max-width: 500px;
-  height: 625px;
-  background-color: white; /* Solid white background */
+  background-color: white;
   border-radius: 20px;
-  display: flex;
-  justify-content: top;
-  align-items: center;
-  font-weight: 800; 
-  flex-direction: column;
   padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   margin-left: 100px;
-  
-  /* Add shadow to simulate fading effect */
-  box-shadow: 0 4px 20px rgba(51, 51, 51, 0.541), 0 0 30px 15px rgba(36, 36, 36, 0);
+  align-items: center;
 }
 
-
-input[type="text"], input[type="password"] {
-  width: 400px;
-  padding: 15px;
-  margin: 0 0 10px 0; /* Adjust margins to move them up */
-  display: inline-block;
-  border: none;
-  background-color: whitesmoke;
-  box-sizing: border-box;
-}
-
-
-.btn-group { 
-  width: 100%;
-  height: 40px;
+.btn-group2 {
   display: flex;
-  justify-content: center;
-  margin-top: 5px; /* Reduce margin to move buttons closer to the input fields */
+  justify-content: space-around;
+  margin-bottom: 10px;
 }
 
-button {
-  width: 400px;
-  margin-bottom: 50px;
-  height: inherit;
-  color: white;
-  font-size: 1rem;
-  font-weight: 800;
-  border-radius: 30px;
-  border: 2px solid #107fa9;
-  outline: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  margin: 0 10px;
+.toggle-btn {
+  padding: 10px 20px;
   background-color: #107fa9;
+  color: white;
+  border: 2px solid #107fa9;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-button:hover {
-  border-bottom: 3px solid var(--text-color);
+.toggle-btn:hover{
   color: #107fa9;
   background-color: white;
 }
+
+/* Hide all content sections initially */
+.content {
+  display: none;
+}
+
+/* Show content based on anchor target */
+#owner-section:target,
+#tenant-section:target {
+  display: block;
+}
+
+/* Additional styling for forms */
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.signup-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #107fa9;
+  color: white;
+  border: 2px solid #107fa9;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.signup-btn:hover{
+  color: #107fa9;
+  background-color: white;
+}
+
+.links {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.links a {
+  color: #107fa9;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.btn-group3 {
+  display: flex; /* Use Flexbox */
+  justify-content: center; /* Center content horizontally */
+  width: 100%; /* Ensure it takes the full width */
+  margin-top: 5px; /* Add some space above the button */
+}
+
+.back-btn {
+  width: 20%;
+  padding: 5px;
+  background-color: #107fa9;
+  color: white;
+  border: 2px solid #107fa9;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background-color: white;
+  color: #107fa9;
+}
+
+
 
 @media screen and (max-width: 1024px) {
  .Loginwrap {
@@ -336,10 +386,12 @@ input.invalid {
   font-weight: bold;
   z-index: 1000;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0s 0.3s; /* Add visibility with delay */
 }
 
 .popup.hidden {
   opacity: 0;
+  visibility: hidden; /* Hide after opacity transition */
   pointer-events: none; /* Makes the popup unclickable when hidden */
 }
+

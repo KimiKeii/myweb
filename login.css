@@ -36,12 +36,16 @@ body::before {
 
 
 .imagewrap {
+  margin-left: 50px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: 280px;
   max-width: 80%;
-  align-items: center;
-  margin-top: 100px;
-  margin-left: 100px;
   border-radius: 20px;
   background-color: rgba(44, 44, 44, 0.592);
 }
@@ -58,12 +62,9 @@ body::before {
 }
 
 .Loginwrap {
-  width: 90%;
-  max-width: 500px;
-  height: 450px;
   background-color: white; /* Solid white background */
   border-radius: 20px;
-  display: flex;
+  display: inline-flex;
   justify-content: top;
   align-items: center;
   font-weight: 800; 
