@@ -281,8 +281,6 @@ nav {
     color: var(--text-color);
 }
 
-
-
 .carousel-content {
     margin-top: 80px;
     width: calc(var(--width) * 2); /* Adjust this to fit the container as needed */
@@ -335,7 +333,6 @@ nav {
 /* Contact Section Styling */
 .contact{
     background-color: #f4f4f4;
-    margin: auto;
 }
 
 .contact-grid{
@@ -344,17 +341,62 @@ nav {
     margin: auto;
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap;
 }
 
 .contact-item{
+    text-align: left;
+    border-top: 2px solid black;
+    height: 350px;
+    width: 290px;
+}
+
+.contact-item h3{
+    margin-top: 80px;
+}
+
+.contact-item2{
+    text-align: left;
     border-top: 2px solid black;
     padding: 20px 20px;
     height: 350px;
-    width: 250px;
-    margin: 20px;
+    width: 290px;
 }
 
+.top-pics{
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.top-pic{
+    width: 80px;
+    margin-right: 20px;
+}
+
+.contact-item3{
+    text-align: left;
+    border-top: 2px solid black;
+    padding: 20px 20px;
+    height: 350px;
+    width: 290px;
+}
+
+.icon-social{
+    width: 40px;
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.icon-pic{
+    margin-right: 10px;
+}
+
+.icon-social2{
+    width: 40px;
+    display: flex;
+    margin-left: 3px;
+}
 
 /* Footer Styling */
 footer {
@@ -365,6 +407,6 @@ footer {
 }
 
 footer p{
-    margin-top: 30px;
+    margin-top: 10px;
     margin-left: 100px;
 }
