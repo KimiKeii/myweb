@@ -176,6 +176,12 @@ function hideToggleButtons() {
     document.querySelector("#tenant-section").style.display = "none"; // Hide Tenant section when toggling
 }
 
+function hideToggleButtons2() {
+    document.querySelector(".btn-group2").style.display = "none";
+    document.querySelector("#owner-section").style.display = "none"; // Show Owner section when toggling
+    document.querySelector("#tenant-section").style.display = "block"; // Hide Tenant section when toggling
+}
+
 function showToggleButtons() {
     document.querySelector(".btn-group2").style.display = "flex"; // Show the toggle buttons
     document.querySelector("#owner-section").style.display = "none"; // Hide Owner section
@@ -201,7 +207,7 @@ function showToggleButtons() {
                         <!-- Toggle buttons for Owner and Tenant -->
                         <div class="btn-group2">
                             <a href="#owner-section" class="toggle-btn" onclick="hideToggleButtons()">Owner</a>
-                            <a href="#tenant-section" class="toggle-btn" onclick="hideToggleButtons()">Tenant</a>
+                            <a href="#tenant-section" class="toggle-btn" onclick="hideToggleButtons2()">Tenant</a>
                         </div>
                     
                         <!-- Owner Sign-Up Form -->
