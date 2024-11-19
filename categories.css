@@ -1,0 +1,33 @@
+.body{
+    color: #E6F4FF;
+    align-items: center;
+    justify-items: center;  
+}
+
+.content{
+    justify-items: auto;
+    padding: 20px 20px;
+}
+
+.item{
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 1020px;
+    margin-top: 40px;
+    margin-left: 250px;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.item p{
+    margin-left: 40px;
+    font-size: 30px;
+}
+
+.item-pic{
+    width: 350px;
+    border-radius: 15px;
+    margin-top:    30px ;
+    margin-bottom: 30px ;
+    margin-left:   30px ;
+}

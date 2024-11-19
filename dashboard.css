@@ -162,30 +162,6 @@ nav {
     margin-top: 200px;
 }
 
-.button-group{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    margin-left: 10px;
-    width: 200px;
-}
-.button{
-    display: flex;
-    align-items:center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.37);
-    background: var(--bg-color);
-    height: 35px;
-    border-radius: 20px;
-    border: transparent;
-    width: 150px;
-    margin-right: 20px;
-}
-
-.button:hover{
-    box-shadow: 0 2px 5px rgb(0, 0, 0);
-    text-decoration: underline;
-}
-
 .hero h1{
     width: 750px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -218,9 +194,9 @@ nav {
     font-size: 1.2em;
 }
 
-    .cta:hover {
-        background-color: #ff2e00;
-    }
+.cta:hover {
+    background-color: #ff2e00;
+}
 
 /* About Section Styling */
 .about {
@@ -326,17 +302,13 @@ nav {
     transition: filter 0.3s ease-in-out;
 }
 
-
-
-
-
 /* Contact Section Styling */
 .contact{
-    background-color: #f4f4f4;
+    background-color: rgb(203, 217, 230);
 }
 
 .contact-grid{
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #0056b3;
     max-width: 1350px;
     margin: auto;
     display: flex;
@@ -345,7 +317,7 @@ nav {
 
 .contact-item{
     text-align: left;
-    border-top: 2px solid black;
+    border-top: 2px solid #0056b3;
     height: 350px;
     width: 290px;
 }
@@ -356,7 +328,7 @@ nav {
 
 .contact-item2{
     text-align: left;
-    border-top: 2px solid black;
+    border-top: 2px solid #0056b3;
     padding: 20px 20px;
     height: 350px;
     width: 290px;
@@ -376,7 +348,7 @@ nav {
 
 .contact-item3{
     text-align: left;
-    border-top: 2px solid black;
+    border-top: 2px solid #0056b3;
     padding: 20px 20px;
     height: 350px;
     width: 290px;
