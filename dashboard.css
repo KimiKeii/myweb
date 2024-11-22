@@ -251,6 +251,8 @@ nav {
     flex-wrap: wrap;
 }
 
+
+
 .categories-content h1 {
     margin-left: 630px;
     font-size: 3rem;
@@ -274,7 +276,8 @@ nav {
     height: var(--height);
     flex-shrink: 0;
     margin-right: 20px;
-    animation: scrollCarousel 25s linear infinite;
+    animation: scrollCarousel 45s linear infinite;
+    scroll-snap-align: start; /* Aligns each item when scrolled */
 }
 
 .item img {
@@ -304,7 +307,7 @@ nav {
 
 /* Contact Section Styling */
 .contact{
-    background-color: rgb(203, 217, 230);
+    background-color: rgb(212, 228, 244);
 }
 
 .contact-grid{
@@ -318,7 +321,7 @@ nav {
 .contact-item{
     text-align: left;
     border-top: 2px solid #0056b3;
-    height: 350px;
+    height: 250px;
     width: 290px;
 }
 
@@ -330,7 +333,7 @@ nav {
     text-align: left;
     border-top: 2px solid #0056b3;
     padding: 20px 20px;
-    height: 350px;
+    height: 250px;
     width: 290px;
 }
 
@@ -350,7 +353,7 @@ nav {
     text-align: left;
     border-top: 2px solid #0056b3;
     padding: 20px 20px;
-    height: 350px;
+    height: 250px;
     width: 290px;
 }
 
