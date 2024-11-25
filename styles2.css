@@ -1,0 +1,222 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    /* background-color: white; */
+    background-image: linear-gradient(to right, white, #1f7acf);
+}
+
+/* Header */
+header {
+    background-color: transparent;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;  /* Make the header fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* To avoid overlapping with header */
+.header-content h1 {
+    margin-left: 270px; /* Ensures the header title is placed beside the sidebar */
+    background-color: transparent;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Sidebar */
+#sidebar {
+    width: 290px;
+    /* background-image: linear-gradient(to right, #1f7acf, rgb(184, 225, 251)); */
+    background-color: transparent;
+    position: fixed;
+    top: 0px;
+    bottom: 0;
+    left: 0px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: left 0.3s;
+}
+
+.logo{
+    margin-top: 20px;
+}
+
+.menu {
+    margin-left: 20px;
+    margin-top: 90px;
+    width: 100%;
+    flex-grow: 1; /* Let the menu take available space */
+}
+
+:root {
+    --text-color: #001F4D; /* Define the variable */
+    --new-color: white;
+    --bg-color: #E0E0E0B2;
+}
+
+.icon{
+    height: 20px;
+    width: 20px;
+    margin-right: 8px;
+}
+
+.link {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 1.1em;
+    background-color: #ddd; /* Default background color */
+    color: #001F4D; /* Text color */
+    border-radius: 20px;
+    transition: background-color 0.3s;
+    overflow: hidden; /* Prevent overflow when collapsed */
+}
+
+.link:hover {
+    background-color: #ccc; /* Active and hover background color */
+}
+
+.link.active{
+    background-color: #ccc; /* Active and hover background color */
+}
+
+.text-wrapper {
+    overflow: hidden; /* Prevent overflow */
+    white-space: nowrap; /* Prevent text from wrapping to a new line */
+    text-overflow: ellipsis; /* Show ellipsis (...) when text overflows */
+    width: 0; /* Initially hidden */
+    transition: width 0.3s ease-in-out;
+}
+
+.link.active .text-wrapper{
+    width: 210px; /* Expand to show text when hovered or active */
+}
+
+.icon-name {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.link.active .icon-name {
+    transform: translateX(0); /* Show icon name when active or hovered */
+}
+
+.link:hover .icon-name{
+    transform: translateX(0); /* Show icon name when active or hovered */
+}
+
+.link:hover .text-wrapper {
+    width: 210px; /* Expand on hover for any link */
+}
+
+.profile-section {
+    border-radius: 20px;
+    background-color: var(--bg-color);
+    width: 130px;
+    height: 60px;
+    position: absolute;
+    right: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 10px;
+}
+
+.profile-section img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+.profile-name {
+    margin-left: 5px;
+}
+
+.dropdown {
+    position: relative; /* Make this the reference point for the absolute positioning of logout */
+}
+
+.dropdown-toggle {
+    margin-left: 5px;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.logout {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position below the toggle */
+    left: 0;
+    background-color: var(--bg-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    white-space: nowrap; /* Prevents text from wrapping */
+    cursor: pointer;
+    z-index: 10; /* Ensures it appears on top */
+}
+
+.logout-name{
+    font-size: 20px;
+}
+
+/* Show the logout button when hovering over the dropdown container */
+.dropdown:hover .logout {
+    display: block;
+    color: var(--text-color);
+}
+
+
+/* Content */
+.content {
+    width: 840px;
+    margin-left: 350px;  /* Adjusted to account for the width of the sidebar */
+    margin-top: 100px;    /* Added margin to prevent content from going under the fixed header */
+    padding: 20px;
+    background-color: #E0E0E0B2;
+    border-radius: 20px;
+    min-height: 40vh;
+}
+
+/* Footer */
+footer {
+    background-color: transparent;
+    padding: 5px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* My Property */
+.myproperty{
+    width: 800px;
+}

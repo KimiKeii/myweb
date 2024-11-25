@@ -107,21 +107,22 @@
         // Function to change both content and header title
         function loadContent(section) {
             const content = document.querySelector('.content'); // Get content div
+            const message = document.querySelector('.message-inner'); // Get the message div
             
             // Define different content for each section
             const sections = {
                 dashboard: `
                     <div class="unit-grid">
                         <div class="unit">
-                            <img src="Unit1.png" alt="Unit 00 Layout">
+                            <img src="Unit1.jpg" class="Unit-img">
                             <h3>001</h3>
                         </div>
                         <div class="unit">
-                            <img src="Unit2.png" alt="Unit 002 Layout">
+                            <img src="Unit2.jpg" class="Unit-img">
                             <h3>002</h3>
                         </div>
                         <div class="unit">
-                            <img src="Unit3.png" alt="Unit 003 Layout">
+                            <img src="Unit3.jpg" class="Unit-img">
                             <h3>003</h3>
                     </div>`,
                 tenantInfo: `
@@ -135,7 +136,7 @@
                             <img class="tenant-image" src="profile.jpg" alt="tenant Picture">
                             <div class="profile-info">
                                 <h3>My Profile</h3>
-                                <p><strong>Name:</strong> Emanuel Manaloto</p>
+                                <p><strong>Name:</strong> MANALOTO, EMMANUEL</p>
                                 <p><strong>Email:</strong> manalotoeman@gmail.com</p>
                                 <p><strong>Phone:</strong> 63+ 956 776 1982</p>
                                 <button class="save-button">Save</button>
@@ -145,8 +146,7 @@
                         <div class="valid-ids-section">
                             <h4>Valid I.D.'s</h4>
                             <div class="id-card">
-                                <img src="id-card.png" alt="ID Card">
-                                <span>See More +</span>
+                                <img src="Jordan-id.jpg" alt="ID Card">
                             </div>
                         </div>
 
@@ -160,10 +160,36 @@
                             <div class="text-header">
                                 <p>History</p>
                             </div>
-                            <div class="today">
-                                <h3 class="today-text">Today</h3>
+                            <div class="payments">
+                                <h3 class="day-text">Today</h3>
                                 <div class="payment">
-                                    <h4>Room 1</h4><h5 class="money">&#8369; 10,000</h5>
+                                    <div class="money-wrap"><h4 class="money">&#8369; 10,000</h4></div> 
+                                    <h4>Room 1</h4>
+                                    <br>
+                                    <div class="money-wrap"><h4 class="money">&#8369; 10,000</h4></div> 
+                                    <h4>Room 3</h4>
+                                    <br>
+                                    <div class="money-wrap"><h4 class="money">&#8369; 10,000</h4></div> 
+                                    <h4>Room 7</h4>
+                                    <br>
+                                    <div class="money-wrap"><h4 class="money">&#8369; 10,000</h4></div> 
+                                    <h4>Room 6</h4>
+                                </div>
+                                <br>
+                                <h3 class="day-text">Last Week</h3>
+                                <div class="payment">
+                                    <div class="money-wrap"><h4 class="money">&#8369; 10,000</h4></div> 
+                                    <h4>Room 2</h4>
+                                    <br>
+                                    <div class="money-wrap"><h4 class="money">&#8369; 10,000</h4></div> 
+                                    <h4>Room 5</h4>
+                                    <br>
+                                </div>
+                                <h3 class="day-text">Last Month</h3>
+                                <div class="payment">
+                                    <div class="money-wrap"><h4 class="money">&#8369; 10,000</h4></div> 
+                                    <h4>Room 1</h4>
+                                    <br>
                                 </div>
                             </div>
                         </div>
@@ -171,17 +197,144 @@
                             <div class="text-header">
                                 <p>Payment Tracking</p>
                             </div>
+                            <div class="people-pay">
+                            <h3 class="day-text2">Today</h3>
+                                <div class="payment">
+                                    <div class="money-wrap"><h4 class="money2">&#8369; 10,000</h4></div> 
+                                    <h4>Ayaka</h4>
+                                    <br>
+                                    <div class="money-wrap"><h4 class="money2">&#8369; 10,000</h4></div> 
+                                    <h4>Kazuha</h4>
+                                    <br>
+                                    <div class="money-wrap"><h4 class="money2">&#8369; 100,000</h4></div> 
+                                    <h4>Ninguang</h4>
+                                    <br>
+                                    <div class="money-wrap"><h4 class="money2">&#8369; 10,000</h4></div> 
+                                    <h4>Eman</h4>
+                                </div>
+                                <h3 class="day-text2">Not paid</h3>
+                                <div class="payment">
+                                    <div class="money-wrap"><h4 class="money2">- &#8369; 10,000</h4></div> 
+                                    <h4>Mona</h4>
+                                    <br>
+                                    <div class="money-wrap"><h4 class="money2">- &#8369; 10,000</h4></div> 
+                                    <h4>Zhongli</h4>
+                                    <br>
+                                    <div class="money-wrap"><h4 class="money2">- &#8369; 10,000</h4></div> 
+                                    <h4>Venti</h4>
+                                    <br>
+                                    <div class="money-wrap"><h4 class="money2">- &#8369; 10,000</h4></div> 
+                                    <h4>Paimon</h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 `,
                 contact: `
+                    <div class="profiles">
+                        <div class="profile-icon"><a onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon2"><a onclick="loadContent('paimon')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon3"><a onclick="loadContent('zhongli')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon4"><a onclick="loadContent('kazuha')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon5"><a onclick="loadContent('ninguang')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon6"><a onclick="loadContent('hutao')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                    </div> 
                     <div class="message-wrap">
-                        <p class="message-name">Emanuel</p>
                         <div class="message-inner"> 
-
+                            
                         </div>
                     </div>
                 `,
+                eman: `
+                    <div class="profiles">
+                        <div class="profile-icon"><a onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon2"><a onclick="loadContent('paimon')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon3"><a onclick="loadContent('zhongli')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon4"><a onclick="loadContent('kazuha')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon5"><a onclick="loadContent('ninguang')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon6"><a onclick="loadContent('hutao')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                    </div> 
+                    <div class="message-wrap">
+                        <p class="message-name">Emanuel</p>
+                        <div class="message-inner"> 
+                        </div>
+                    </div>
+                    `,
+                paimon: `
+                    <div class="profiles">
+                        <div class="profile-icon"><a onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon2"><a onclick="loadContent('paimon')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon3"><a onclick="loadContent('zhongli')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon4"><a onclick="loadContent('kazuha')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon5"><a onclick="loadContent('ninguang')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon6"><a onclick="loadContent('hutao')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                    </div> 
+                    <div class="message-wrap">
+                        <p class="message-name">Paimon</p>
+                        <div class="message-inner"> 
+                        </div>
+                    </div>
+                    `,
+                zhongli: `
+                    <div class="profiles">
+                        <div class="profile-icon"><a onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon2"><a onclick="loadContent('paimon')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon3"><a onclick="loadContent('zhongli')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon4"><a onclick="loadContent('kazuha')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon5"><a onclick="loadContent('ninguang')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon6"><a onclick="loadContent('hutao')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                    </div> 
+                    <div class="message-wrap">
+                        <p class="message-name">Zhongli</p>
+                        <div class="message-inner"> 
+                        </div>
+                    </div>
+                    `,
+                kazuha: `
+                    <div class="profiles">
+                        <div class="profile-icon"><a onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon2"><a onclick="loadContent('paimon')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon3"><a onclick="loadContent('zhongli')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon4"><a onclick="loadContent('kazuha')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon5"><a onclick="loadContent('ninguang')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon6"><a onclick="loadContent('hutao')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                    </div> 
+                    <div class="message-wrap">
+                        <p class="message-name">Kazuha</p>
+                        <div class="message-inner"> 
+                        </div>
+                    </div>
+                    `,
+                    ninguang: `
+                    <div class="profiles">
+                        <div class="profile-icon"><a onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon2"><a onclick="loadContent('paimon')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon3"><a onclick="loadContent('zhongli')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon4"><a onclick="loadContent('kazuha')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon5"><a onclick="loadContent('ninguang')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon6"><a onclick="loadContent('hutao')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                    </div> 
+                    <div class="message-wrap">
+                        <p class="message-name">Ninguang</p>
+                        <div class="message-inner"> 
+                        </div>
+                    </div>
+                    `,
+                    hutao: `
+                    <div class="profiles">
+                        <div class="profile-icon"><a onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon2"><a onclick="loadContent('paimon')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon3"><a onclick="loadContent('zhongli')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon4"><a onclick="loadContent('kazuha')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon5"><a onclick="loadContent('ninguang')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                        <div class="profile-icon6"><a onclick="loadContent('hutao')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
+                    </div> 
+                    <div class="message-wrap">
+                        <p class="message-name">Hutao</p>
+                        <div class="message-inner"> 
+                        </div>
+                    </div>
+                    `,
             };
 
             // Update the inner HTML of the content section

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AOS</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
     <header>
@@ -30,31 +30,31 @@
             <img src="LOGO.svg" class="logo" alt="Logo">
         </div>
         <nav class="menu">
-            <a href="#" class="link" onclick="loadContent('contractaccess')">
+            <a href="#" class="link" onclick="loadContent('myproperty')">
                 <img src="DASHBOARD.svg" alt="dashboard-Icon" class="icon">
                 <span class="text-wrapper">
-                    <h5 class="icon-name">Contract</h5>
+                    <h5 class="icon-name">My Property</h5>
                 </span>
             </a>
             <br>
-            <a href="#" class="link" onclick="loadContent('onlinepayment')">
+            <a href="#" class="link" onclick="loadContent('payment')">
                 <img src="TENANTS INFO.svg" alt="tenantInfo-icon" class="icon">
                 <span class="text-wrapper">
                     <h5 class="icon-name">Payment</h5>
                 </span>
             </a>
             <br>
-            <a href="#" class="link" onclick="loadContent('transactionhistory')">
+            <a href="#" class="link" onclick="loadContent('mydetails')">
                 <img src="TRANSACTION.svg" alt="transaction-icon" class="icon">
                 <span class="text-wrapper">
-                    <h5 class="icon-name">Transaction</h5>
+                    <h5 class="icon-name">My Details</h5>
                 </span>
             </a>
             <br>
-            <a href="#" class="link" onclick="loadContent('contact',)">
+            <a href="#" class="link" onclick="loadContent('report',)">
                 <img src="CONTACT.svg" alt="contact-icon" class="icon">
                 <span class="text-wrapper">
-                    <h5 class="icon-name">Contact</h5>
+                    <h5 class="icon-name">Reportt</h5>
                 </span>
             </a>
             <br>
@@ -109,11 +109,10 @@
 
             // Define different content for each section
             const sections = {
-                contractaccess: '<h2>Contract Access</h2><p>Contract Access and their details will be displayed here.</p>',
-                onlinepayment: '<h2>Online Payment</h2><p>Pay Online here.</p>',
-                maintenancerequest: '<h2>Maintenance Request</h2><p>Request maintenance Here.</p>',
-                transactionhistory: '<h2>Transaction History</h2><p>Access transaction history here.</p>',
-                contact: '<h2>Chat Support</h2><p>Send messages to staff.</p>',
+                myproperty: '<img src="MyProperty.png" class="myproperty">',
+                payment: '<img src="Payment.png" class="myproperty">',
+                mydetails: '<img src="MyDetails.png" class="myproperty">',
+                report: '<img src="Report.png" class="myproperty">',
             };
 
             // Update the inner HTML of the content section
@@ -128,7 +127,7 @@
 
         // Load default content when the page loads
         window.onload = function() {
-            loadContent('contractaccess', 'Contract Access') // Load Contract Access by default
+            loadContent('myproperty') // Load Contract Access by default
         };
     </script>
 </body>
