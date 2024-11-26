@@ -58,7 +58,6 @@
                 </span>
             </a>
             <br>
-            
         </nav>
     </div>
 
@@ -66,6 +65,7 @@
 
     <div class="content">
         <!-- The default content will be loaded here via JavaScript -->
+         <textarea name="text" id=""></textarea>
     </div>
 
     <footer>
@@ -128,8 +128,17 @@
                 tenantInfo: `
                     <div class="tenant-wrap">
                         <div class="room-info">
-                            <span>Room #6</span>
-                            <button>▼</button>
+                            <span>Room #3</span>
+                            <div class="dropdown">
+                                <button class="dropdown-toggle">▼</button>
+                                <a href="" class="logout">
+                                    <span class="text-wrapper">
+                                        <h5 class="logout-name">Room1</h5>
+                                        <h5 class="logout-name">Room2</h5>
+                                        <h5 class="logout-name">Room3</h5>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
                         
                         <div class="profile-tenant">
@@ -139,19 +148,14 @@
                                 <p><strong>Name:</strong> MANALOTO, EMMANUEL</p>
                                 <p><strong>Email:</strong> manalotoeman@gmail.com</p>
                                 <p><strong>Phone:</strong> 63+ 956 776 1982</p>
-                                <button class="save-button">Save</button>
                             </div>
                         </div>
 
                         <div class="valid-ids-section">
                             <h4>Valid I.D.'s</h4>
                             <div class="id-card">
-                                <img src="Jordan-id.jpg" alt="ID Card">
+                                <img src="Emmyid.jpg" alt="ID Card">
                             </div>
-                        </div>
-
-                        <div class="contract-section">
-                            <h4>Contract</h4>
                         </div>
                     </div>`,
                 Transaction: `
@@ -241,10 +245,9 @@
                     </div> 
                     <div class="message-wrap">
                         <div class="message-inner"> 
-                            
-                        </div>
-                    </div>
-                `,
+                            </div>
+                            </div>
+                            `,
                 eman: `
                     <div class="profiles">
                         <div class="profile-icon"><a onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
@@ -257,6 +260,7 @@
                     <div class="message-wrap">
                         <p class="message-name">Emanuel</p>
                         <div class="message-inner"> 
+                            <input type="text" class="message" id="Message" placeholder="Message" required>
                         </div>
                     </div>
                     `,
