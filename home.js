@@ -192,7 +192,7 @@ function loadContent(section) {
                 <div class="chat-box" id="chatBox"></div>
 
                     <div class="message">
-                        <input type="text" class="message-input" id="messageInput" placeholder="Type a message..." required>
+                        <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
                         <button id="sendBtn" onclick="sendMessage()">Send</button>
                     </div>
                 </div>
@@ -216,7 +216,7 @@ function loadContent(section) {
                 <div class="chat-box" id="chatBox"></div>
 
                     <div class="message">
-                        <input type="text" class="message-input" id="messageInput" placeholder="Type a message..." required>
+                        <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
                         <button id="sendBtn" onclick="sendMessage()">Send</button>
                     </div>
                 </div>
@@ -240,7 +240,7 @@ function loadContent(section) {
                 <div class="chat-box" id="chatBox"></div>
 
                     <div class="message">
-                        <input type="text" class="message-input" id="messageInput" placeholder="Type a message..." required>
+                        <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
                         <button id="sendBtn" onclick="sendMessage()">Send</button>
                     </div>
                 </div>
@@ -264,7 +264,7 @@ function loadContent(section) {
                 <div class="chat-box" id="chatBox"></div>
 
                     <div class="message">
-                        <input type="text" class="message-input" id="messageInput" placeholder="Type a message..." required>
+                        <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
                         <button id="sendBtn" onclick="sendMessage()">Send</button>
                     </div>
                 </div>
@@ -288,7 +288,7 @@ function loadContent(section) {
                 <div class="chat-box" id="chatBox"></div>
 
                     <div class="message">
-                        <input type="text" class="message-input" id="messageInput" placeholder="Type a message..." required>
+                        <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
                         <button id="sendBtn" onclick="sendMessage()">Send</button>
                     </div>
                 </div>
@@ -312,7 +312,7 @@ function loadContent(section) {
                 <div class="chat-box" id="chatBox"></div>
 
                     <div class="message">
-                        <input type="text" class="message-input" id="messageInput" placeholder="Type a message..." required>
+                        <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
                         <button id="sendBtn" onclick="sendMessage()">Send</button>
                     </div>
                 </div>

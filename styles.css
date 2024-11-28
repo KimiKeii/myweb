@@ -543,9 +543,11 @@ footer {
     bottom: 5px;
     right: 100px;
     width: 500px;
+    height: 38px;
     padding: 10px;
     border-radius: 20px;
     border: 2px solid blue;
+    resize: none;
   }
   
   .message button {
