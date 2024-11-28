@@ -112,7 +112,20 @@
                 myproperty: '<img src="MyProperty.png" class="myproperty">',
                 payment: '<img src="Payment.png" class="myproperty">',
                 mydetails: '<img src="MyDetails.png" class="myproperty">',
-                report: '<img src="Report.png" class="myproperty">',
+                report: `
+                <!-- Chat Box Section -->
+                <div class="message-wrap">
+                    <p class="message-name" id="chatName">Owner</p>
+
+                <div class="message-inner">
+                    <div class="chat-box" id="chatBox"></div>
+
+                        <div class="message">
+                            <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
+                            <button id="sendBtn" onclick="sendMessage()">Send</button>
+                        </div>
+                    </div>
+                </div>`,
             };
 
             // Update the inner HTML of the content section
@@ -129,6 +142,45 @@
         window.onload = function() {
             loadContent('myproperty') // Load Contract Access by default
         };
+
+        document.addEventListener("keydown", function(event) {
+    if (event.target.id === "messageInput" && event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();
+    }
+});
+
+// Send message function
+function sendMessage() {
+    const input = document.getElementById("messageInput");
+    const message = input.value.trim();
+    const chatBox = document.getElementById("chatBox");
+
+    if (message !== "") {
+        // Create user message (aligned right)
+        const newMessage = document.createElement("div");
+        newMessage.classList.add("message", "user");
+        newMessage.textContent = message;
+
+        chatBox.appendChild(newMessage);
+
+        // Scroll to the bottom of the chat box
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Simulate friend response (aligned left)
+        setTimeout(() => {
+            const friendMessage = document.createElement("div");
+            friendMessage.classList.add("message", "friend");
+            friendMessage.textContent = `Got your message, ${message}`;
+
+            chatBox.appendChild(friendMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }, 1500); // Simulated delay for friend reply
+
+        // Clear the input field
+        input.value = "";  // This line clears the input field after sending the message
+    }
+}
     </script>
 </body>
 </html>

@@ -220,3 +220,123 @@ footer {
 .myproperty{
     width: 800px;
 }
+
+/* report */
+.message-wrap {
+    background-image: radial-gradient(#FFFFFFB2,#558AE17D);
+    border-radius: 20px;
+    width: 784px;
+    height: 551px;
+    display: grid;
+    position: relative;
+    align-items: center;
+    left: 37px;
+  }
+  
+  .message-name {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: #2368D8;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  
+  .message-inner {
+    background-color: white;
+    border-radius: 20px;
+    margin-top: 50px;
+    margin-left: 50px;
+    width: 700px;
+    height: 450px;
+    display: flex;
+    position: relative;
+    left: 10px;
+    bottom: 20px;
+    flex-direction: column;
+    padding: 10px;
+    overflow-y: auto;
+  }
+  
+  .chat-box {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  
+  .message {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px;
+    max-width: 70%; /* Limit width */
+    margin-bottom: 10px;
+  }
+  
+  .message-input {
+    position: absolute;
+    bottom: 5px;
+    right: 100px;
+    width: 500px;
+    height: 38px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid blue;
+    resize: none;
+  }
+  
+  .message button {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    width: 50px;
+    padding: 10px;
+    border: none;
+    background-color: #0078FF;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  button:hover {
+    background-color: #005BB5;
+  }
+  
+  /* Message Styles */
+  .message.user {
+    background-color: #DCF8C6;
+    align-self: flex-end;
+    border-radius: 20px;
+    word-wrap: break-word;
+    max-width: 75%;
+    padding: 10px;
+  }
+  
+  .message.friend {
+    background-color: #ECECEC;
+    align-self: flex-start;
+    border-radius: 20px;
+    word-wrap: break-word;
+    max-width: 75%;
+    padding: 10px;
+    margin-left: 10px;
+  }
+  
+  /* Scrollbar */
+  .chat-box::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .chat-box::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+  
+  .chat-box::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
