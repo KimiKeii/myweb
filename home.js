@@ -93,32 +93,35 @@ function loadContent(section) {
                     <div class="payments">
                         <h3 class="day-text">Today</h3>
                         <div class="payment">
+                            <div class="line-with-balls"></div>
                             <div class="money-wrap"><h4 class="money">&#8369; 10,000</h4></div> 
                             <h4>Room 1</h4>
+                            <p>Friday</p>
                             <br>
                             <div class="money-wrap"><h4 class="money">&#8369; 10,000</h4></div> 
                             <h4>Room 3</h4>
+                            <p>Friday</p>
                             <br>
-                            <div class="money-wrap"><h4 class="money">&#8369; 10,000</h4></div> 
-                            <h4>Room 7</h4>
-                            <br>
-                            <div class="money-wrap"><h4 class="money">&#8369; 10,000</h4></div> 
-                            <h4>Room 6</h4>
                         </div>
                         <br>
                         <h3 class="day-text">Last Week</h3>
                         <div class="payment">
+                            <div class="line-with-balls2"></div>
                             <div class="money-wrap"><h4 class="money">&#8369; 10,000</h4></div> 
                             <h4>Room 2</h4>
+                            <p>Saturday</p>
                             <br>
                             <div class="money-wrap"><h4 class="money">&#8369; 10,000</h4></div> 
                             <h4>Room 5</h4>
+                            <p>Monday</p>
                             <br>
                         </div>
                         <h3 class="day-text">Last Month</h3>
                         <div class="payment">
+                            <div class="ball"></div>
                             <div class="money-wrap"><h4 class="money">&#8369; 10,000</h4></div> 
                             <h4>Room 1</h4>
+                            <p>Monday</p>
                             <br>
                         </div>
                     </div>
@@ -128,33 +131,31 @@ function loadContent(section) {
                         <p>Payment Tracking</p>
                     </div>
                     <div class="people-pay">
-                    <h3 class="day-text2">Today</h3>
+                    <div class="day-text2">
+                        <span class="arrow">←</span>
+                        <span class="people-pay-text">Today</span>
+                        <span class="arrow">→</span>
+                    </div>
                         <div class="payment">
+                            <img src="Profile2-icon.svg" class="tracking-icon-pic">
                             <div class="money-wrap"><h4 class="money2">&#8369; 10,000</h4></div> 
                             <h4>Ayaka</h4>
                             <br>
+                            <img src="Profile2-icon.svg" class="tracking-icon2-pic">
                             <div class="money-wrap"><h4 class="money2">&#8369; 10,000</h4></div> 
                             <h4>Kazuha</h4>
                             <br>
-                            <div class="money-wrap"><h4 class="money2">&#8369; 100,000</h4></div> 
-                            <h4>Ninguang</h4>
-                            <br>
+                            <img src="Profile2-icon.svg" class="tracking-icon3-pic">
                             <div class="money-wrap"><h4 class="money2">&#8369; 10,000</h4></div> 
                             <h4>Eman</h4>
-                        </div>
-                        <h3 class="day-text2">Not paid</h3>
-                        <div class="payment">
+                            <br>
+                            <img src="Profile2-icon.svg" class="tracking-icon4-pic">
                             <div class="money-wrap"><h4 class="money2">- &#8369; 10,000</h4></div> 
                             <h4>Mona</h4>
                             <br>
+                            <img src="Profile2-icon.svg" class="tracking-icon5-pic">
                             <div class="money-wrap"><h4 class="money2">- &#8369; 10,000</h4></div> 
                             <h4>Zhongli</h4>
-                            <br>
-                            <div class="money-wrap"><h4 class="money2">- &#8369; 10,000</h4></div> 
-                            <h4>Venti</h4>
-                            <br>
-                            <div class="money-wrap"><h4 class="money2">- &#8369; 10,000</h4></div> 
-                            <h4>Paimon</h4>
                         </div>
                     </div>
                 </div>

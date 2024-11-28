@@ -357,6 +357,7 @@ footer {
     width: 420px;
     height: 551px;
     background-color: white;
+    color: var(--text-color);
     border-radius: 20px;
     padding: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.37);
@@ -378,6 +379,7 @@ footer {
 
 .day-text{
     margin-top: 10px;
+    font-size: 19px;
 }
 
 .payment{
@@ -385,6 +387,12 @@ footer {
     flex-direction: column;
     margin-top: 20px;
     margin-left: 30px;
+    font-size: 15px;
+}
+
+.payment p{
+    margin-top: 5px;
+    font-size: 11px;
 }
 
 .money{
@@ -393,6 +401,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: #426B1F;
 }
 
 .tracking{
@@ -400,15 +409,73 @@ footer {
     width: 420px;
     height: 551px;
     background-color: white;
+    color: var(--text-color);
     border-radius: 20px;
     padding: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.37);
+    line-height: 35px;
+}
+
+.people-pay h4{
+    margin-left: 40px;
+    margin-bottom: 10px;
+}
+
+.tracking-icon-pic{
+    position:absolute;
+    width: 36px;
+    height: 36px;
+    right: 520px;
+    top: 290px;
+}
+
+.tracking-icon2-pic{
+    position:absolute;
+    width: 36px;
+    height: 36px;
+    right: 520px;
+    top: 370px;
+}
+
+.tracking-icon3-pic{
+    position:absolute;
+    width: 36px;
+    height: 36px;
+    right: 520px;
+    top: 450px;
+}
+
+.tracking-icon4-pic{
+    position:absolute;
+    width: 36px;
+    height: 36px;
+    right: 520px;
+    top: 530px;
+}
+
+.tracking-icon5-pic{
+    position:absolute;
+    width: 36px;
+    height: 36px;
+    right: 520px;
+    top: 610px;
 }
 
 .day-text2{
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers everything if needed */
+    gap: 40px; /* Adds equal space between the arrows and text */
+    background-color: var(--bg-color);
+    border-radius: 20px;
+    width: 200px;
+    margin: auto;
     text-align: center;
+    font-size: 19px;
+    font-weight: 600;
     margin-top: 20px;
 }
+
 
 .money2{
     position: absolute;
@@ -416,8 +483,66 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: #426B1F;
 }
 
+.line-with-balls {
+    position: absolute;
+    top: 284px;
+    left: 467px;
+    width: 1.5px; /* Line width */
+    height: 52px; /* Line height */
+    background-color: #2368d8; /* Line color */
+    margin: 0 auto; /* Center horizontally */
+  }
+
+  .line-with-balls2 {
+    position: absolute;
+    top: 459px;
+    left: 467px;
+    width: 1.5px; /* Line width */
+    height: 52px; /* Line height */
+    background-color: #2368d8; /* Line color */
+    margin: 0 auto; /* Center horizontally */
+  }
+  
+  .line-with-balls::before,
+  .line-with-balls::after,
+  .line-with-balls2::before,
+  .line-with-balls2::after{
+    content: '';
+    position: absolute;
+    width: 6.5px; /* Ball diameter */
+    height: 6.5px; /* Ball diameter */
+    background-color: #2368d8; /* Ball color */
+    border-radius: 50%; /* Makes it circular */
+  }
+  
+  .line-with-balls::before,
+  .line-with-balls2::before {
+    top: -5px; /* Position at the top */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .line-with-balls::after,
+  .line-with-balls2::after {
+    bottom: -5px; /* Position at the bottom */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .ball{
+    position: absolute;
+    top: 620px;
+    left: 467px;
+    width: 6.5px; /* Ball diameter */
+    height: 6.5px; /* Ball diameter */
+    background-color: #2368d8; /* Line color */
+    margin: 0 auto; /* Center horizontally */
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
 
 /* Contact */
 
