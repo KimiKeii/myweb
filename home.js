@@ -56,8 +56,8 @@ function loadContent(section) {
                 <div class="room-info">
                     <span>Room #3</span>
                     <div class="dropdown">
-                        <button class="dropdown-toggle">▼</button>
-                        <a href="" class="logout">
+                    <button class="dropdown-toggle">▼</button>
+                    <a href="" class="logout">
                             <span class="text-wrapper">
                                 <h5 class="logout-name">Room1</h5>
                                 <h5 class="logout-name">Room2</h5>
@@ -68,7 +68,7 @@ function loadContent(section) {
                 </div>
                 
                 <div class="profile-tenant">
-                    <img class="tenant-image" src="emmy.jpg">
+                    <img class="tenant-image" src="Emmy.jpg">
                     <div class="profile-info">
                         <h3>My Profile</h3>
                         <p><strong>Name:</strong> MANALOTO, EMMANUEL</p>

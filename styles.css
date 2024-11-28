@@ -160,13 +160,13 @@ header {
 }
 
 .dropdown {
-    position: relative; /* Make this the reference point for the absolute positioning of logout */
+    position: relative; 
 }
 
 .dropdown-toggle {
     margin-left: 5px;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 500px;
     background-color: transparent;
     border-color: transparent;
 }
@@ -548,7 +548,7 @@ footer {
     border: 2px solid blue;
   }
   
-  button {
+  .message button {
     position: absolute;
     bottom: 5px;
     right: 10px;
