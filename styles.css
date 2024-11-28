@@ -10,8 +10,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    /* background-color: white; */
-    background-image: linear-gradient(to right, white, #1f7acf);
+    background-color: #E6F4FF;
 }
 
 /* Header */
@@ -100,11 +99,11 @@ header {
 }
 
 .link:hover {
-    background-color: #ccc; /* Active and hover background color */
+    background-color: white; /* Active and hover background color */
 }
 
 .link.active{
-    background-color: #ccc; /* Active and hover background color */
+    background-color: white; /* Active and hover background color */
 }
 
 .text-wrapper {
@@ -166,8 +165,8 @@ header {
 
 .dropdown-toggle {
     margin-left: 5px;
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 15px;
+    font-weight: 500;
     background-color: transparent;
     border-color: transparent;
 }
@@ -206,6 +205,8 @@ header {
     background-color: #E0E0E0B2;
     border-radius: 20px;
     min-height: 40vh;
+    outline: 1px solid white;
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* dashboard */
@@ -260,26 +261,32 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 0px 20px;
     font-size: 1.2em;
     background-color: #ffffff;
     border-radius: 20px;
-    margin-bottom: 10px;
-    width: 180px;
+    width: 150px;
+    height: 40px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
 }
 
 .room-info span {
+    color: var(--text-color);
     font-weight: bold;
+    font-size: 16px;
 }
 
 .profile-tenant {
     background-color: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);;
     padding: 20px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    height: 450px;
+    width: 350px;
 }
 
 .tenant-image {
@@ -291,7 +298,7 @@ footer {
 
 .profile-info h3 {
     margin-bottom: 10px;
-    font-size: 24px;
+    font-size: 16px;
 }
 
 .profile-info p {
@@ -310,13 +317,15 @@ footer {
     cursor: pointer;
 }
 
-.valid-ids-section, .contract-section {
+.valid-ids-section{
     background-color: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);;
     padding: 20px;
     border-radius: 20px;
+    height: 300px;
 }
 
-.valid-ids-section h4, .contract-section h4 {
+.valid-ids-section h4{
     font-size: 1.1em;
     color: #001F4D;
     margin-bottom: 15px;
@@ -325,20 +334,14 @@ footer {
 .id-card {
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: transparent;
     border-radius: 10px;
-    padding: 10px;
-    justify-content: space-between;
 }
 
 .id-card img {
-    width: 400px;
-    border-radius: 20px;
-}
-
-.id-card span {
-    color: #666;
-    font-size: 0.9em;
+    width: 350px;
+    border-radius: 15px;
 }
 
 /* transaction */
@@ -479,7 +482,8 @@ footer {
 }
 
 
-.message-wrap{
+/* Message Container */
+.message-wrap {
     background-image: radial-gradient(#FFFFFFB2,#558AE17D);
     border-radius: 20px;
     width: 1004px;
@@ -488,18 +492,18 @@ footer {
     position: relative;
     align-items: center;
     left: 37px;
-}
-
-.message-name{
+  }
+  
+  .message-name {
     display: block;
     font-size: 24px;
     font-weight: 700;
     color: #2368D8;
     margin-top: 20px;
     margin-left: 20px;
-}
-
-.message-inner{
+  }
+  
+  .message-inner {
     background-color: white;
     border-radius: 20px;
     margin-top: 50px;
@@ -510,17 +514,89 @@ footer {
     position: relative;
     left: 10px;
     bottom: 20px;
-    grid-template-columns: 1fr 1fr;
-}
-
-
-.message{
+    flex-direction: column;
+    padding: 10px;
+    overflow-y: auto;
+  }
+  
+  .chat-box {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  
+  .message {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px;
+    max-width: 70%; /* Limit width */
+    margin-bottom: 10px;
+  }
+  
+  .message-input {
     position: absolute;
+    bottom: 5px;
+    right: 100px;
+    width: 500px;
     padding: 10px;
     border-radius: 20px;
-    border: 2px solid blue ;
-    bottom: 10px;
-    right: 70px;
-    width: 500px;
-    height: 40px;
-}
+    border: 2px solid blue;
+  }
+  
+  button {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    width: 50px;
+    padding: 10px;
+    border: none;
+    background-color: #0078FF;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  button:hover {
+    background-color: #005BB5;
+  }
+  
+  /* Message Styles */
+  .message.user {
+    background-color: #DCF8C6;
+    align-self: flex-end;
+    border-radius: 20px;
+    word-wrap: break-word;
+    max-width: 75%;
+    padding: 10px;
+  }
+  
+  .message.friend {
+    background-color: #ECECEC;
+    align-self: flex-start;
+    border-radius: 20px;
+    word-wrap: break-word;
+    max-width: 75%;
+    padding: 10px;
+    margin-left: 10px;
+  }
+  
+  /* Scrollbar */
+  .chat-box::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .chat-box::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+  
+  .chat-box::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+  
