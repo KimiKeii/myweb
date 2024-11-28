@@ -10,7 +10,8 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background-color: #E6F4FF;
+    /* background-color: white; */
+    background-image: linear-gradient(to right, white, #1f7acf);
 }
 
 /* Header */
@@ -99,11 +100,11 @@ header {
 }
 
 .link:hover {
-    background-color: white; /* Active and hover background color */
+    background-color: #ccc; /* Active and hover background color */
 }
 
 .link.active{
-    background-color: white; /* Active and hover background color */
+    background-color: #ccc; /* Active and hover background color */
 }
 
 .text-wrapper {
@@ -160,13 +161,13 @@ header {
 }
 
 .dropdown {
-    position: relative; 
+    position: relative; /* Make this the reference point for the absolute positioning of logout */
 }
 
 .dropdown-toggle {
     margin-left: 5px;
-    font-size: 15px;
-    font-weight: 500px;
+    font-size: 20px;
+    font-weight: 700;
     background-color: transparent;
     border-color: transparent;
 }
@@ -198,43 +199,13 @@ header {
 
 /* Content */
 .content {
-    width: 1060px;
+    width: 840px;
     margin-left: 350px;  /* Adjusted to account for the width of the sidebar */
     margin-top: 100px;    /* Added margin to prevent content from going under the fixed header */
     padding: 20px;
     background-color: #E0E0E0B2;
     border-radius: 20px;
     min-height: 40vh;
-    outline: 1px solid white;
-    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
-}
-
-/* dashboard */
-.unit-grid {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    background-color: transparent;
-}
-
-.unit{
-    width: 350px;
-    height: 400px;
-    background-color: transparent;
-    border-radius: 20px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.37);
-}
-
-.unit h3 {
-    margin-bottom: 10px;
-}
-
-.unit img {
-    max-width: 100%;
-    height:300px;
-    border-radius: 15px;
 }
 
 /* Footer */
@@ -245,248 +216,16 @@ footer {
     margin-top: 5px;
 }
 
-/* tenant info */
-.tenant-wrap {
-    background-color: transparent;
-    padding: 20px;
-    width: 1020px;
-    height: 551px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+/* My Property */
+.myproperty{
+    width: 800px;
 }
 
-.room-info {
-    grid-column: 1 / 3;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 20px;
-    font-size: 1.2em;
-    background-color: #ffffff;
-    border-radius: 20px;
-    width: 150px;
-    height: 40px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
-}
-
-.room-info span {
-    color: var(--text-color);
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.profile-tenant {
-    background-color: #ffffff;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);;
-    padding: 20px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    height: 450px;
-    width: 350px;
-}
-
-.tenant-image {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    margin-bottom: 15px;
-}
-
-.profile-info h3 {
-    margin-bottom: 10px;
-    font-size: 16px;
-}
-
-.profile-info p {
-    margin: 5px 0;
-    font-size: 20px;
-    color: #333;
-}
-
-.save-button {
-    margin-top: 10px;
-    padding: 8px 20px;
-    background-color: #ddd;
-    color: #333;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.valid-ids-section{
-    background-color: #ffffff;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);;
-    padding: 20px;
-    border-radius: 20px;
-    height: 300px;
-}
-
-.valid-ids-section h4{
-    font-size: 1.1em;
-    color: #001F4D;
-    margin-bottom: 15px;
-}
-
-.id-card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    border-radius: 10px;
-}
-
-.id-card img {
-    width: 350px;
-    border-radius: 15px;
-}
-
-/* transaction */
-.transaction-wrap{
-    display: flex;
-    flex-direction: row;
-    padding: 20px;
-    background-color: transparent;
-    justify-content: space-between;
-}
-
-.history{
-    width: 420px;
-    height: 551px;
-    background-color: white;
-    border-radius: 20px;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.37);
-
-}
-
-.text-header{
-    font-size: 24px;
-    font-weight: 700;
-    margin-top: 15px;
-    margin-left: 15px;
-}
-
-.payments{
-    margin-top: 35px;
-    margin-left: 60px;
-    margin-bottom: 100px;
-}
-
-.day-text{
-    margin-top: 10px;
-}
-
-.payment{
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    margin-left: 30px;
-}
-
-.money{
-    position: absolute;
-    left: 700px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.tracking{
-    margin-top: 10px;
-    width: 420px;
-    height: 551px;
-    background-color: white;
-    border-radius: 20px;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.37);
-}
-
-.day-text2{
-    text-align: center;
-    margin-top: 20px;
-}
-
-.money2{
-    position: absolute;
-    right: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-/* Contact */
-
-.profile-icon-pic{
-    background-color: white;
-    border-radius: 20px;
-}
-
-.profile-icon{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 360px;
-    top: 200px;
-    width: 40px;
-    height: 40px;
-}
-.profile-icon2{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 360px;
-    top: 260px;
-    width: 40px;
-    height: 40px;
-}
-.profile-icon3{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 360px;
-    top: 320px;
-    width: 40px;
-    height: 40px;
-}
-.profile-icon4{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 360px;
-    top: 380px;
-    width: 40px;
-    height: 40px;
-}
-.profile-icon5{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 360px;
-    top: 440px;
-    width: 40px;
-    height: 40px;
-}
-.profile-icon6{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 360px;
-    top: 500px;
-    width: 40px;
-    height: 40px;
-}
-
-
-/* Message Container */
+/* report */
 .message-wrap {
     background-image: radial-gradient(#FFFFFFB2,#558AE17D);
     border-radius: 20px;
-    width: 1004px;
+    width: 784px;
     height: 551px;
     display: grid;
     position: relative;
@@ -508,7 +247,7 @@ footer {
     border-radius: 20px;
     margin-top: 50px;
     margin-left: 50px;
-    width: 900px;
+    width: 700px;
     height: 450px;
     display: flex;
     position: relative;
@@ -601,4 +340,3 @@ footer {
   .chat-box::-webkit-scrollbar-thumb:hover {
     background-color: #555;
   }
-  

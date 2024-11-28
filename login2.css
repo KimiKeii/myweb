@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{
+  font-family: "Poppins";
+}
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(0, 0, 0) ;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('C:/xampp/htdocs/myweb/apartmentbg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.7; /* Set more transparency (lower value for higher transparency) */
+  z-index: -1; /* Place it behind the content */
+}
+
+
+.container {
+  display: flex;
+  height: 250px;
+  max-width: 80%;
+  align-items: center;
+  margin-left: 100px;
+  border-radius: 20px;
+  background-color: rgba(44, 44, 44, 0.592);
+}
+
+.image-container img {
+  width: 400px; 
+  height: 400px;
+  border-radius: 20px;
+  object-fit: contain;
+}
+
+.question {
+  text-align: center;
+}
+
+.wrapper {
+  width: 90%;
+  max-width: 500px;
+  height: 400px;
+  background-color: white; /* Solid white background */
+  border-radius: 20px;
+  display: flex;
+  justify-content: top;
+  align-items: center;
+  font-weight: 800; 
+  flex-direction: column;
+  padding: 20px;
+  margin-left: 200px;
+  margin-top: 45px;
+  
+  /* Add shadow to simulate fading effect */
+  box-shadow: 0 4px 20px rgba(51, 51, 51, 0.541), 0 0 30px 15px rgba(36, 36, 36, 0);
+}
+
+
+input[type="text"], input[type="password"] {
+  width: 400px;
+  padding: 15px;
+  margin: 0 0 10px 0; /* Adjust margins to move them up */
+  display: inline-block;
+  border: none;
+  background-color: whitesmoke;
+  box-sizing: border-box;
+}
+
+
+.btn-group { 
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px; /* Reduce margin to move buttons closer to the input fields */
+}
+
+button {
+  width: 400px;
+  margin-bottom: 50px;
+  height: inherit;
+  color: white;
+  font-size: 1rem;
+  font-weight: 800;
+  border-radius: 30px;
+  border: 2px solid #107fa9;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin: 0 10px;
+  background-color: #107fa9;
+}
+
+button:hover {
+  border-bottom: 3px solid var(--text-color);
+  color: #107fa9;
+  background-color: white;
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper {
+      width: 100%;
+      height: auto;
+      padding: 10px;
+  }
+  
+  button {
+      width: 80px;
+      font-size: 0.8rem;
+  }
+  
+  .login-btn {
+      margin-left: 0;
+  }
+  
+  .signup-btn {
+      margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .wrapper {
+      padding: 10px;
+      border-radius: 10px;
+  }
+  
+  button {
+      width: 70px;
+      font-size: 0.7rem;
+  }
+}

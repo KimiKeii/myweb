@@ -1,0 +1,264 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --text-color: #001F4D; /* Define the variable */
+    --new-color: white;
+    --bg-color: #ffffffdd;
+}
+
+/* Body Styling */
+body {
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #E6F4FF;
+}
+
+/* Header Styling */
+header {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1152px; 
+    color: white;
+    padding: 0px 20px;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* Contracted header on scroll */
+header.scrolled {
+    width: 576px;
+    font-size: 14px;
+    padding: 0px 10px; /* Smaller padding when scrolled */
+    color: #333;
+}
+
+header.scrolled .logo .Logo{
+    width: 80px;
+}
+
+header.scrolled .profile-section img{
+    width: 25px;
+}
+
+
+nav {
+    top: 0;
+    display: flex;
+    width: 1152px;
+    justify-content: space-between;
+    background-color: var(--bg-color);   /* Light background color */
+    padding: 10px 30px;          /* Space inside the navbar */
+    border-radius: 0 0 20px 20px; /* Only the bottom corners are rounded */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.Logo {
+    width: 177.4px;
+    height: 37.61px;
+}
+
+.nav-links {
+    align-items: center;
+    display: flex;
+    gap: 20px;        
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #1a1a1a;    /* Dark text color for links */
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+    color: #0056b3;    /* Hover color */
+}
+
+.profile-section{
+    display: flex;
+}
+
+.profile-section .user-icon{
+    width: 35px;       /* User icon size */
+    border-radius: 50%;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    margin-left: 5px;
+    font-size: 12px;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+/* Position dropdown content below the button */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 70%;           /* Position below the button */
+    left: 0;
+    background-color: var(--bg-color);
+    border-radius: 20px;
+    padding: 10px 0;     /* Adjusts padding for individual items */
+    z-index: 1;
+}
+
+.dropdown-content a {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 10px 15px;
+    display: block;
+    width: 100%;         /* Full width of dropdown */
+}
+
+.dropdown-content a:hover {
+    text-decoration: underline;
+    color: #0056b3;    /* Hover color */
+}
+
+/* Show the dropdown content on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* hero styling */
+/* carousel1 */
+#carousel1,
+#carousel2,
+#carousel3,
+#carousel4,
+#carousel5,
+#carousel6,
+#carousel7,
+#carousel8  {
+    display: none;
+}
+
+#carousel1:target,
+#carousel2:target,
+#carousel3:target,
+#carousel4:target,
+#carousel5:target,
+#carousel6:target,
+#carousel7:target,
+#carousel8:target {
+    width: 1080px;
+    display: flex;
+    padding: 10px 20px;
+    height: 200vh; /* Full screen height */
+}
+
+.apartment-pic{
+    position: absolute;
+    right: 200px;
+    top: 200px;
+    border-radius: 15px;
+}
+
+.picture p{
+    position: absolute;
+    top: 150px;
+    right: 460px;
+    font-size: 30px;
+    text-decoration: solid;
+}
+
+/* Contact Section Styling */
+.contact{
+    background-color: rgb(212, 228, 244);
+}
+
+.contact-grid{
+    border-bottom: 2px solid #0056b3;
+    max-width: 1350px;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.contact-item{
+    text-align: left;
+    border-top: 2px solid #0056b3;
+    height: 250px;
+    width: 290px;
+}
+
+.contact-item h3{
+    margin-top: 80px;
+}
+
+.contact-item2{
+    text-align: left;
+    border-top: 2px solid #0056b3;
+    padding: 20px 20px;
+    height: 250px;
+    width: 290px;
+}
+
+.top-pics{
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.top-pic{
+    width: 80px;
+    margin-right: 20px;
+}
+
+.contact-item3{
+    text-align: left;
+    border-top: 2px solid #0056b3;
+    padding: 20px 20px;
+    height: 250px;
+    width: 290px;
+}
+
+.icon-social{
+    width: 40px;
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.icon-pic{
+    margin-right: 10px;
+}
+
+.icon-social2{
+    width: 40px;
+    display: flex;
+    margin-left: 3px;
+}
+
+/* Footer Styling */
+footer {
+    height: 70px;
+    background-color: white;
+    color: var(--text-color);
+    padding: 10px 0;
+}
+
+footer p{
+    margin-top: 10px;
+    margin-left: 100px;
+}
+    

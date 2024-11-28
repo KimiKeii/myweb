@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log in Page</title>
+  <link rel="stylesheet" href="login2.css">
+  <script>
+    function login() {
+        // Get input values
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        // Simple validation logic
+        if (username === "jordie" && password === "jordanpogi") {
+            // Redirect to admin page
+            window.location.href = "home.html";
+        } else if (username === "emmy" && password === "emmy123") {
+            // Redirect to user page
+            window.location.href = "user.html";
+        } else {
+            alert("Invalid credentials. Please try again.");
+        }
+    }
+
+    // Add event listener to move focus to password on "Enter" in username field
+    document.addEventListener("DOMContentLoaded", function() {
+      var usernameField = document.getElementById("username");
+      var passwordField = document.getElementById("password");
+
+      // Move to password field on pressing "Enter" in the username field
+      usernameField.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          passwordField.focus();  // Move focus to the password field
+        }
+      });
+
+      // Trigger login on pressing "Enter" in the password field
+      passwordField.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          document.querySelector(".login-btn").click();  // Simulate button click
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img src="AOSlogo.svg" alt="AOS Logo">
+        </div>
+    </div>
+    <div class="wrapper">
+        <div>
+            <form onsubmit="event.preventDefault(); login();">
+                <h1 class="question">Login</h1>
+                <br>
+                <label for="username">Name</label>
+                <br>
+                <input type="text" id="username" placeholder="Username" required>
+                <br>
+                <label for="password">Password</label>
+                <br>
+                <input type="password" id="password" placeholder="Password" required>
+                <br>
+            </form>
+        </div>
+        <div class="btn-group">
+            <button id="lgbtn" onclick="login()" class="login-btn">Login</button>
+        </div>
+    </div>
+</body>
+</html>

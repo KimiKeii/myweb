@@ -1,0 +1,397 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{
+  font-family: "Poppins";
+}
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(0, 0, 0) ;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('apartmentbg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.7; /* Set more transparency (lower value for higher transparency) */
+  z-index: -1; /* Place it behind the content */
+}
+
+.imagewrap {
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 37%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 280px;
+  max-width: 80%;
+  border-radius: 20px;
+  background-color: rgba(44, 44, 44, 0.592);
+}
+
+.image-container img {
+  width: 400px; 
+  height: 400px;
+  border-radius: 20px;
+  object-fit: contain;
+}
+
+.question {
+  text-align: center;
+}
+
+/* Basic styling */
+.signup-wrap {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  margin-left: 100px;
+  align-items: center;
+}
+
+.btn-group2 {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.toggle-btn {
+  padding: 10px 20px;
+  background-color: #107fa9;
+  color: white;
+  border: 2px solid #107fa9;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.toggle-btn:hover{
+  color: #107fa9;
+  background-color: white;
+}
+
+/* Hide all content sections initially */
+.content {
+  display: none;
+}
+
+/* Show content based on anchor target */
+#owner-section:target,
+#tenant-section:target {
+  display: block;
+}
+
+/* Additional styling for forms */
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.signup-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #107fa9;
+  color: white;
+  border: 2px solid #107fa9;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.signup-btn:hover{
+  color: #107fa9;
+  background-color: white;
+}
+
+.links {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.links a {
+  color: #107fa9;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.btn-group3 {
+  display: flex; /* Use Flexbox */
+  justify-content: center; /* Center content horizontally */
+  width: 100%; /* Ensure it takes the full width */
+  margin-top: 5px; /* Add some space above the button */
+}
+
+.back-btn {
+  width: 20%;
+  padding: 5px;
+  background-color: #107fa9;
+  color: white;
+  border: 2px solid #107fa9;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background-color: white;
+  color: #107fa9;
+}
+
+
+
+@media screen and (max-width: 1024px) {
+ .Loginwrap {
+    width: 100%;
+    max-width: 500px;
+    height: 350px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-start; /* Align content at the top */
+    align-items: center;
+    font-weight: 800; 
+    flex-direction: column;
+    padding: 0 20px; /* Padding on the sides */
+    margin-left: 20px;
+    margin-top: 0; /* Remove margin on top */
+    
+    /* Box shadow for fading effect */
+    box-shadow: 0 4px 20px rgba(51, 51, 51, 0.541), 0 0 30px 15px rgba(36, 36, 36, 0);
+  }
+
+  input[type="text"], input[type="password"] {
+    width: 100%; /* Change to 100% to fit the parent */
+    max-width: 300px; /* Ensure it doesn't exceed a certain width */
+    padding: 15px;
+    margin: 0 0 10px 0; 
+    display: inline-block;
+    border: none;
+    background-color: whitesmoke;
+    box-sizing: border-box; /* Include padding and border in width calculation */
+  }
+
+  .imagewrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width to remove left space */
+    height: 280px;
+    max-width: 100%; /* Ensure no extra space around */
+    margin: 0; /* Remove all margins */
+    margin-left: 15px; /* Optional: Adjust as needed */
+    padding: 0; /* Remove padding to avoid spacing */
+    border-radius: 20px;
+    background-color: rgba(44, 44, 44, 0.592);
+  }
+
+  .image-container {
+    position: relative;
+    width: 100%; /* Fill available width */
+    height: 100%; /* Fill available height */
+    max-width: 300px;
+    max-height: 280px; /* Adjust max height to fit the container */
+    overflow: hidden;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: contain; /* Ensures image fits without distortion */
+  }
+
+  .image {
+    width: 100%; /* Full width of the container */
+    height: 280px; /* Match the height of the image container */
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .Loginwrap {
+    width: 100%;
+    max-width: 500px;
+    height: 350px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-start; /* Align content at the top */
+    align-items: center;
+    font-weight: 800; 
+    flex-direction: column;
+    padding: 0 20px; /* Padding on the sides */
+    margin-left: 20px;
+    margin-top: 0; /* Remove margin on top */
+    
+    /* Box shadow for fading effect */
+    box-shadow: 0 4px 20px rgba(51, 51, 51, 0.541), 0 0 30px 15px rgba(36, 36, 36, 0);
+  }
+
+  input[type="text"], input[type="password"] {
+    width: 100%; /* Change to 100% to fit the parent */
+    max-width: 300px; /* Ensure it doesn't exceed a certain width */
+    padding: 15px;
+    margin: 0 0 10px 0; 
+    display: inline-block;
+    border: none;
+    background-color: whitesmoke;
+    box-sizing: border-box; /* Include padding and border in width calculation */
+  }
+
+  .imagewrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width to remove left space */
+    height: 280px;
+    max-width: 100%; /* Ensure no extra space around */
+    margin: 0; /* Remove all margins */
+    margin-left: 15px; /* Optional: Adjust as needed */
+    padding: 0; /* Remove padding to avoid spacing */
+    border-radius: 20px;
+    background-color: rgba(44, 44, 44, 0.592);
+  }
+
+  .image-container {
+    position: relative;
+    width: 100%; /* Fill available width */
+    height: 100%; /* Fill available height */
+    max-width: 300px;
+    max-height: 280px; /* Adjust max height to fit the container */
+    overflow: hidden;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: contain; /* Ensures image fits without distortion */
+  }
+
+  .image {
+    width: 100%; /* Full width of the container */
+    height: 280px; /* Match the height of the image container */
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .Loginwrap {
+    width: 100%;
+    max-width: 500px;
+    height: 350px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-start; /* Align content at the top */
+    align-items: center;
+    font-weight: 800; 
+    flex-direction: column;
+    padding: 0 20px; /* Padding on the sides */
+    margin-left: 20px;
+    margin-top: 0; /* Remove margin on top */
+    
+    /* Box shadow for fading effect */
+    box-shadow: 0 4px 20px rgba(51, 51, 51, 0.541), 0 0 30px 15px rgba(36, 36, 36, 0);
+  }
+
+  input[type="text"], input[type="password"] {
+    width: 100%; /* Change to 100% to fit the parent */
+    max-width: 300px; /* Ensure it doesn't exceed a certain width */
+    padding: 15px;
+    margin: 0 0 10px 0; 
+    display: inline-block;
+    border: none;
+    background-color: whitesmoke;
+    box-sizing: border-box; /* Include padding and border in width calculation */
+  }
+
+  .imagewrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width to remove left space */
+    height: 280px;
+    max-width: 100%; /* Ensure no extra space around */
+    margin: 0; /* Remove all margins */
+    margin-left: 15px; /* Optional: Adjust as needed */
+    padding: 0; /* Remove padding to avoid spacing */
+    border-radius: 20px;
+    background-color: rgba(44, 44, 44, 0.592);
+  }
+
+  .image-container {
+    position: relative;
+    width: 100%; /* Fill available width */
+    height: 100%; /* Fill available height */
+    max-width: 300px;
+    max-height: 280px; /* Adjust max height to fit the container */
+    overflow: hidden;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: contain; /* Ensures image fits without distortion */
+  }
+
+  .image {
+    width: 100%; /* Full width of the container */
+    height: 280px; /* Match the height of the image container */
+  } 
+}
+
+input.invalid {
+  border: 2px solid red;
+  background-color: #ffe6e6;
+}
+
+/* Popup styling */
+.popup {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f44336; /* Red background */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  z-index: 1000;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease, visibility 0s 0.3s; /* Add visibility with delay */
+}
+
+.popup.hidden {
+  opacity: 0;
+  visibility: hidden; /* Hide after opacity transition */
+  pointer-events: none; /* Makes the popup unclickable when hidden */
+}
+

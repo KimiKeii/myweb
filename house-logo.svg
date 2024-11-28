@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 3508 2481" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(4.06586,0,0,4.06586,-1655.48,-3814.08)">
+        <path d="M557.709,1258.16L753.709,1120.16L951.709,1256.16" style="fill:none;stroke:rgb(41,195,252);stroke-width:25.17px;"/>
+        <path d="M647.709,1244.16L647.709,1410.16L1003.71,1410.16L1003.71,1248.16" style="fill:none;stroke:rgb(41,195,252);stroke-width:25.17px;"/>
+        <path d="M737.709,1398.16L737.709,1308.16L801.709,1308.16L801.709,1400.16" style="fill:none;"/>
+        <clipPath id="_clip1">
+            <path d="M737.709,1398.16L737.709,1308.16L801.709,1308.16L801.709,1400.16"/>
+        </clipPath>
+        <g clip-path="url(#_clip1)">
+            <path d="M773.709,1132.16L773.709,1078.16L843.709,1078.16L843.709,1180.16" style="fill:none;stroke:rgb(41,195,252);stroke-width:5.77px;"/>
+        </g>
+        <path d="M737.709,1398.16L737.709,1308.16L801.709,1308.16L801.709,1400.16" style="fill:none;stroke:rgb(41,195,252);stroke-width:25.17px;"/>
+        <path d="M771.709,1131.16L771.709,1079.16L845.709,1079.16L845.709,1173.16" style="fill:none;stroke:rgb(41,195,252);stroke-width:25.17px;"/>
+        <path d="M841.709,1166.16L934.709,1073.16L1106.71,1245.16" style="fill:none;stroke:rgb(41,195,252);stroke-width:25.17px;"/>
+    </g>
+</svg>

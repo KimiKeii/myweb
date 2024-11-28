@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AOS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="profile-section">
+                <img src="Jordie.jpg" alt="Profile Picture">
+                <h3 class="profile-name">Jordie</h3>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle">▼</button>
+                        <a href="index.html" class="logout">
+                            <span class="text-wrapper">
+                                <h5 class="logout-name">Logout</h5>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div id="sidebar" class="sidebar">
+        <div>
+            <img src="LOGO.svg" class="logo" alt="Logo">
+        </div>
+        <nav class="menu">
+            <a href="#dashboard" class="link" onclick="loadContent('dashboard')">
+                <img src="DASHBOARD.svg" alt="dashboard-Icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Dashboard</h5>
+                </span>
+            </a>
+            <br>
+            <a href="#" class="link" onclick="loadContent('tenantInfo')">
+                <img src="TENANTS INFO.svg" alt="tenantInfo-icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Tenant Info</h5>
+                </span>
+            </a>
+            <br>
+            <a href="#" class="link" onclick="loadContent('Transaction')">
+                <img src="TRANSACTION.svg" alt="transaction-icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Transaction</h5>
+                </span>
+            </a>
+            <br>
+            <a href="#contact" class="link" onclick="loadContent('contact')">
+                <img src="CONTACT.svg" alt="contact-icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Contact</h5>
+                </span>
+            </a>
+            <br>
+        </nav>
+    </div>
+
+    
+
+    <div class="content">
+        <!-- The default content will be loaded here via JavaScript -->
+    </div>
+
+    <footer>
+        <p>&copy; 2024 AOS. All rights reserved.</p>
+    </footer>
+
+    <script src="home.js"></script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AOS</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="profile-section">
+                <img src="Emmy.jpg" alt="Profile Picture">
+                <h3 class="profile-name">Emmy</h3>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle">▼</button>
+                        <a href="index.html" class="logout">
+                            <span class="text-wrapper">
+                                <h5 class="logout-name">Logout</h5>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="sidebar" class="sidebar">
+        <div>
+            <img src="LOGO.svg" class="logo" alt="Logo">
+        </div>
+        <nav class="menu">
+            <a href="#" class="link" onclick="loadContent('myproperty')">
+                <img src="DASHBOARD.svg" alt="dashboard-Icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">My Property</h5>
+                </span>
+            </a>
+            <br>
+            <a href="#" class="link" onclick="loadContent('payment')">
+                <img src="TENANTS INFO.svg" alt="tenantInfo-icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Payment</h5>
+                </span>
+            </a>
+            <br>
+            <a href="#" class="link" onclick="loadContent('mydetails')">
+                <img src="TRANSACTION.svg" alt="transaction-icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">My Details</h5>
+                </span>
+            </a>
+            <br>
+            <a href="#" class="link" onclick="loadContent('report',)">
+                <img src="CONTACT.svg" alt="contact-icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Reportt</h5>
+                </span>
+            </a>
+            <br>
+            
+        </nav>
+    </div>
+
+    <div class="content">
+        
+    </div>
+
+    <footer>
+        <p>&copy; 2024 MyBrand. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.link').forEach(link => {
+            link.addEventListener('click', function() {
+                // Remove active class from all links
+                document.querySelectorAll('.link').forEach(item => {
+                    item.classList.remove('active'); // Remove active state
+                    item.querySelector('.text-wrapper').style.width = '0'; // Reset text wrapper width
+                });
+
+                // Add active class to the clicked link
+                this.classList.add('active'); // Set clicked link to active
+                this.querySelector('.text-wrapper').style.width = '210px'; // Expand text wrapper
+            });
+
+            link.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('active')) {
+                    this.querySelector('.text-wrapper').style.width = '210px';
+                }
+            });
+
+            link.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('active')) {
+                    this.querySelector('.text-wrapper').style.width = '0';
+                }
+            });
+        });
+
+        // Optional: Keep the first link active by default
+        document.querySelector('.link').classList.add('active'); 
+        document.querySelector('.link .text-wrapper').style.width = '210px';
+
+
+        // Function to change both content and header title
+        function loadContent(section, headerTitle) {
+            const content = document.querySelector('.content'); // Get content div
+            const header = document.getElementById('header-title'); // Get header title
+
+            // Define different content for each section
+            const sections = {
+                myproperty: '<img src="MyProperty.png" class="myproperty">',
+                payment: '<img src="Payment.png" class="myproperty">',
+                mydetails: '<img src="MyDetails.png" class="myproperty">',
+                report: `
+                <!-- Chat Box Section -->
+                <div class="message-wrap">
+                    <p class="message-name" id="chatName">Owner</p>
+
+                <div class="message-inner">
+                    <div class="chat-box" id="chatBox"></div>
+
+                        <div class="message">
+                            <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
+                            <button id="sendBtn" onclick="sendMessage()">Send</button>
+                        </div>
+                    </div>
+                </div>`,
+            };
+
+            // Update the inner HTML of the content section
+            content.innerHTML = sections[section] || '<p>Content not found.</p>';
+            
+            // Update the header title to match the selected section
+            header.textContent = headerTitle;
+
+            // Debug log to check if the function works
+            console.log(`Header changed to: ${headerTitle}`);
+        }
+
+        // Load default content when the page loads
+        window.onload = function() {
+            loadContent('myproperty') // Load Contract Access by default
+        };
+
+        document.addEventListener("keydown", function(event) {
+    if (event.target.id === "messageInput" && event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();
+    }
+});
+
+// Send message function
+function sendMessage() {
+    const input = document.getElementById("messageInput");
+    const message = input.value.trim();
+    const chatBox = document.getElementById("chatBox");
+
+    if (message !== "") {
+        // Create user message (aligned right)
+        const newMessage = document.createElement("div");
+        newMessage.classList.add("message", "user");
+        newMessage.textContent = message;
+
+        chatBox.appendChild(newMessage);
+
+        // Scroll to the bottom of the chat box
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Simulate friend response (aligned left)
+        setTimeout(() => {
+            const friendMessage = document.createElement("div");
+            friendMessage.classList.add("message", "friend");
+            friendMessage.textContent = `Got your message, ${message}`;
+
+            chatBox.appendChild(friendMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }, 1500); // Simulated delay for friend reply
+
+        // Clear the input field
+        input.value = "";  // This line clears the input field after sending the message
+    }
+}
+    </script>
+</body>
+</html>
