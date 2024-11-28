@@ -359,11 +359,11 @@ function sendMessage() {
         setTimeout(() => {
             const friendMessage = document.createElement("div");
             friendMessage.classList.add("message", "friend");
-            friendMessage.textContent = `Got your message, ${message}`;
+            friendMessage.textContent = `Hello how may I Help you`;
 
             chatBox.appendChild(friendMessage);
             chatBox.scrollTop = chatBox.scrollHeight;
-        }, 1500); // Simulated delay for friend reply
+        }, 600); // Simulated delay for friend reply
 
         // Clear the input field
         input.value = "";  // This line clears the input field after sending the message
