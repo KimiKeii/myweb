@@ -140,6 +140,15 @@ nav {
 }
 
 /* hero styling */
+.hero {
+    background-image: url('bg.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    color: var(--text-color);
+}
 /* carousel1 */
 #carousel1,
 #carousel2,
@@ -163,22 +172,56 @@ nav {
     width: 1080px;
     display: flex;
     padding: 10px 20px;
-    height: 200vh; /* Full screen height */
+    height: 100vh; /* Full screen height */
 }
 
 .apartment-pic{
     position: absolute;
     right: 200px;
-    top: 200px;
+    top: 150px;
     border-radius: 15px;
+    width: 600px;
 }
 
 .picture p{
     position: absolute;
-    top: 150px;
+    top: 100px;
     right: 460px;
     font-size: 30px;
     text-decoration: solid;
+}
+
+/* description style */
+.description{
+    position: absolute;
+    top: 350px;
+    left: 50px;
+    width: 500px;
+    font-size: 19px;
+    background-color: #E0E0E0B2;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.list{
+    position: absolute;
+    left: 100px;
+    top: 200px;
+    list-style-type: disc;
+    width: 420px;
+    font-size: 15px;
+}
+
+.btn-grp{
+    position: absolute;
+    left: 250px;
+    top: 500px;
+}
+
+.rent-btn{
+    width: 100px;
+    height: 40px;
+    border-radius: 20px;
 }
 
 /* Contact Section Styling */
@@ -248,6 +291,7 @@ nav {
     display: flex;
     margin-left: 3px;
 }
+
 
 /* Footer Styling */
 footer {

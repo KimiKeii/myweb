@@ -27,7 +27,7 @@
 
     <div id="sidebar" class="sidebar">
         <div>
-            <img src="LOGO.svg" class="logo" alt="Logo">
+            <a href="index.html"><img src="LOGO.svg" class="logo" alt="Logo"></a>
         </div>
         <nav class="menu">
             <a href="#" class="link" onclick="loadContent('myproperty')">
@@ -54,7 +54,7 @@
             <a href="#" class="link" onclick="loadContent('report',)">
                 <img src="CONTACT.svg" alt="contact-icon" class="icon">
                 <span class="text-wrapper">
-                    <h5 class="icon-name">Reportt</h5>
+                    <h5 class="icon-name">Report</h5>
                 </span>
             </a>
             <br>
@@ -81,12 +81,12 @@
 
                 // Add active class to the clicked link
                 this.classList.add('active'); // Set clicked link to active
-                this.querySelector('.text-wrapper').style.width = '210px'; // Expand text wrapper
+                this.querySelector('.text-wrapper').style.width = '110px'; // Expand text wrapper
             });
 
             link.addEventListener('mouseenter', function() {
                 if (!this.classList.contains('active')) {
-                    this.querySelector('.text-wrapper').style.width = '210px';
+                    this.querySelector('.text-wrapper').style.width = '110px';
                 }
             });
 
@@ -99,7 +99,7 @@
 
         // Optional: Keep the first link active by default
         document.querySelector('.link').classList.add('active'); 
-        document.querySelector('.link .text-wrapper').style.width = '210px';
+        document.querySelector('.link .text-wrapper').style.width = '110px';
 
 
         // Function to change both content and header title

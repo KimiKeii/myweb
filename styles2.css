@@ -11,8 +11,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    /* background-color: white; */
-    background-image: linear-gradient(to right, white, #1f7acf);
+    background-color: #E6F4FF;
 }
 
 /* Header */
@@ -101,11 +100,11 @@ header {
 }
 
 .link:hover {
-    background-color: #ccc; /* Active and hover background color */
+    background-color: white; /* Active and hover background color */
 }
 
 .link.active{
-    background-color: #ccc; /* Active and hover background color */
+    background-color: white; /* Active and hover background color */
 }
 
 .text-wrapper {

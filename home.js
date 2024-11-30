@@ -8,12 +8,12 @@ document.querySelectorAll('.link').forEach(link => {
 
         // Add active class to the clicked link
         this.classList.add('active'); // Set clicked link to active
-        this.querySelector('.text-wrapper').style.width = '210px'; // Expand text wrapper
+        this.querySelector('.text-wrapper').style.width = '110px'; // Expand text wrapper
     });
 
     link.addEventListener('mouseenter', function() {
         if (!this.classList.contains('active')) {
-            this.querySelector('.text-wrapper').style.width = '210px';
+            this.querySelector('.text-wrapper').style.width = '110px';
         }
     });
 
@@ -27,7 +27,7 @@ document.querySelectorAll('.link').forEach(link => {
 
 // Optional: Keep the first link active by default
 document.querySelector('.link').classList.add('active'); 
-document.querySelector('.link .text-wrapper').style.width = '210px';
+document.querySelector('.link .text-wrapper').style.width = '110px';
 
 
 // Function to change both content and header title
@@ -162,159 +162,165 @@ function loadContent(section) {
             </div>
         `,
         contact: `
-            <div class="profiles">
-                <div class="profile-icon"><a onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon2"><a onclick="loadContent('paimon')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon3"><a onclick="loadContent('zhongli')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon4"><a onclick="loadContent('kazuha')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon5"><a onclick="loadContent('ninguang')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon6"><a onclick="loadContent('hutao')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-            </div> 
-            <div class="message-wrap">
-                <div class="message-inner"> 
-                    </div>
-                    </div>
-                    `,
+        <div class="message-wrap">
+            <div class="message-inner"> 
+                <div class="profile-icon-wrap">
+                    <div class="profile-main-icon"><a onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Emanuel</p></a></div>
+                    <div class="profile-main-icon2"><a onclick="loadContent('paimon')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Paimon</p></a></div>
+                    <div class="profile-main-icon3"><a onclick="loadContent('zhongli')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Zhongli</p></a></div>
+                    <div class="profile-main-icon4"><a onclick="loadContent('kazuha')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Kazuha</p></a></div>
+                    <div class="profile-main-icon5"><a onclick="loadContent('ninguang')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Ninguang</p></a></div>
+                    <div class="profile-main-icon6"><a onclick="loadContent('hutao')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Hutao</p></a></div>
+                </div> 
+            </div>
+        </div>
+        `,
         eman: `
-            <div class="profiles">
-                <div class="profile-icon" onclick="loadContent('eman')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon2" onclick="loadContent('paimon')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon3" onclick="loadContent('zhongli')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon4" onclick="loadContent('kazuha')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon5" onclick="loadContent('ninguang')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon6" onclick="loadContent('hutao')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-            </div> 
+            <div class="container-msg">
+                <div class="profiles">
+                    <div class="profile-icon" onclick="loadContent('paimon')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Paimon</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('zhongli')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Zhongli</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('kazuha')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('ninguang')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('hutao')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
+                </div> 
 
-            <!-- Chat Box Section -->
-            <div class="message-wrap">
-                <p class="message-name" id="chatName">Emanuel</p>
+                <!-- Chat Box Section -->
+                <div class="message-wrap">
+                    <p class="message-name" id="chatName">Emanuel</p>
 
-            <div class="message-inner">
-                <div class="chat-box" id="chatBox"></div>
+                <div class="message-inner">
+                    <div class="chat-box" id="chatBox"></div>
 
-                    <div class="message">
-                        <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
-                        <button id="sendBtn" onclick="sendMessage()">Send</button>
+                        <div class="message">
+                            <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
+                            <button id="sendBtn" onclick="sendMessage()">Send</button>
+                        </div>
                     </div>
                 </div>
             </div>
             `,
         paimon: `
-            <div class="profiles">
-                <div class="profile-icon"><a onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon2"><a onclick="loadContent('paimon')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon3"><a onclick="loadContent('zhongli')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon4"><a onclick="loadContent('kazuha')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon5"><a onclick="loadContent('ninguang')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon6"><a onclick="loadContent('hutao')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-            </div> 
+            <div class="container-msg">
+                <div class="profiles">
+                        <div class="profile-icon" onclick="loadContent('eman')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Emanuel</p></a></div>
+                        <div class="profile-icon" onclick="loadContent('zhongli')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Zhongli</p></a></div>
+                        <div class="profile-icon" onclick="loadContent('kazuha')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
+                        <div class="profile-icon" onclick="loadContent('ninguang')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
+                        <div class="profile-icon" onclick="loadContent('hutao')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
+                </div> 
 
-            <!-- Chat Box Section -->
-            <div class="message-wrap">
-                <p class="message-name" id="chatName">Paimon</p>
+                <!-- Chat Box Section -->
+                <div class="message-wrap">
+                    <p class="message-name" id="chatName">Paimon</p>
 
-            <div class="message-inner">
-                <div class="chat-box" id="chatBox"></div>
+                <div class="message-inner">
+                    <div class="chat-box" id="chatBox"></div>
 
-                    <div class="message">
-                        <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
-                        <button id="sendBtn" onclick="sendMessage()">Send</button>
+                        <div class="message">
+                            <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
+                            <button id="sendBtn" onclick="sendMessage()">Send</button>
+                        </div>
                     </div>
                 </div>
             </div>
             `,
         zhongli: `
-            <div class="profiles">
-                <div class="profile-icon"><a onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon2"><a onclick="loadContent('paimon')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon3"><a onclick="loadContent('zhongli')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon4"><a onclick="loadContent('kazuha')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon5"><a onclick="loadContent('ninguang')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon6"><a onclick="loadContent('hutao')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-            </div> 
-            
-            <!-- Chat Box Section -->
-            <div class="message-wrap">
-                <p class="message-name" id="chatName">Zhongli</p>
+            <div class="container-msg">
+                <div class="profiles">
+                    <div class="profile-icon" onclick="loadContent('eman')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Emanuel</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('paimon')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Paimon</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('kazuha')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('ninguang')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('hutao')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
+                </div> 
+                
+                <!-- Chat Box Section -->
+                <div class="message-wrap">
+                    <p class="message-name" id="chatName">Zhongli</p>
 
-            <div class="message-inner">
-                <div class="chat-box" id="chatBox"></div>
+                <div class="message-inner">
+                    <div class="chat-box" id="chatBox"></div>
 
-                    <div class="message">
-                        <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
-                        <button id="sendBtn" onclick="sendMessage()">Send</button>
+                        <div class="message">
+                            <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
+                            <button id="sendBtn" onclick="sendMessage()">Send</button>
+                        </div>
                     </div>
                 </div>
             </div>
             `,
         kazuha: `
-            <div class="profiles">
-                <div class="profile-icon"><a onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon2"><a onclick="loadContent('paimon')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon3"><a onclick="loadContent('zhongli')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon4"><a onclick="loadContent('kazuha')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon5"><a onclick="loadContent('ninguang')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon6"><a onclick="loadContent('hutao')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-            </div> 
-            
-            <!-- Chat Box Section -->
-            <div class="message-wrap">
-                <p class="message-name" id="chatName">Kazuha</p>
-
-            <div class="message-inner">
-                <div class="chat-box" id="chatBox"></div>
-
-                    <div class="message">
-                        <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
-                        <button id="sendBtn" onclick="sendMessage()">Send</button>
+             <div class="container-msg">
+                <div class="profiles">
+                    <div class="profile-icon" onclick="loadContent('eman')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Emanuel</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('paimon')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Paimon</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('zhongli')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Zhongli</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('ninguang')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('hutao')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
+                </div> 
+                
+                <!-- Chat Box Section -->
+                <div class="message-wrap">
+                    <p class="message-name" id="chatName">Kazuha</p>
+    
+                <div class="message-inner">
+                    <div class="chat-box" id="chatBox"></div>
+    
+                        <div class="message">
+                            <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
+                            <button id="sendBtn" onclick="sendMessage()">Send</button>
+                        </div>
                     </div>
                 </div>
             </div>
             `,
-            ninguang: `
-            <div class="profiles">
-                <div class="profile-icon"><a onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon2"><a onclick="loadContent('paimon')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon3"><a onclick="loadContent('zhongli')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon4"><a onclick="loadContent('kazuha')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon5"><a onclick="loadContent('ninguang')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon6"><a onclick="loadContent('hutao')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-            </div> 
-            
-            <!-- Chat Box Section -->
-            <div class="message-wrap">
-                <p class="message-name" id="chatName">Ninguang</p>
+        ninguang: `
+            <div class="container-msg">
+                <div class="profiles">
+                    <div class="profile-icon" onclick="loadContent('eman')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Emanuel</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('paimon')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Paimon</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('zhongli')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Zhongli</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('kazuha')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('hutao')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
+                </div> 
+                
+                <!-- Chat Box Section -->
+                <div class="message-wrap">
+                    <p class="message-name" id="chatName">Ninguang</p>
 
-            <div class="message-inner">
-                <div class="chat-box" id="chatBox"></div>
+                <div class="message-inner">
+                    <div class="chat-box" id="chatBox"></div>
 
-                    <div class="message">
-                        <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
-                        <button id="sendBtn" onclick="sendMessage()">Send</button>
+                        <div class="message">
+                            <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
+                            <button id="sendBtn" onclick="sendMessage()">Send</button>
+                        </div>
                     </div>
                 </div>
             </div>
             `,
-            hutao: `
-            <div class="profiles">
-                <div class="profile-icon"><a onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon2"><a onclick="loadContent('paimon')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon3"><a onclick="loadContent('zhongli')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon4"><a onclick="loadContent('kazuha')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon5"><a onclick="loadContent('ninguang')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-                <div class="profile-icon6"><a onclick="loadContent('hutao')"><img src="Profile2-icon.svg" class="profile-icon-pic"></a></div>
-            </div> 
-            
-            <!-- Chat Box Section -->
-            <div class="message-wrap">
-                <p class="message-name" id="chatName">Hutao</p>
+        hutao: `
+            <div class="container-msg">
+                <div class="profiles">
+                    <div class="profile-icon" onclick="loadContent('eman')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Emanuel</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('paimon')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Paimon</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('zhongli')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Zhongli</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('kazuha')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('ninguang')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
+                </div> 
+                
+                <!-- Chat Box Section -->
+                <div class="message-wrap">
+                    <p class="message-name" id="chatName">Hutao</p>
 
-            <div class="message-inner">
-                <div class="chat-box" id="chatBox"></div>
+                <div class="message-inner">
+                    <div class="chat-box" id="chatBox"></div>
 
-                    <div class="message">
-                        <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
-                        <button id="sendBtn" onclick="sendMessage()">Send</button>
+                        <div class="message">
+                            <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
+                            <button id="sendBtn" onclick="sendMessage()">Send</button>
+                        </div>
                     </div>
                 </div>
             </div>

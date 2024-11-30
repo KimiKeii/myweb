@@ -115,7 +115,7 @@ header {
 }
 
 .link.active .text-wrapper{
-    width: 210px; /* Expand to show text when hovered or active */
+    width: 100px; /* Expand to show text when hovered or active */
 }
 
 .icon-name {
@@ -132,7 +132,7 @@ header {
 }
 
 .link:hover .text-wrapper {
-    width: 210px; /* Expand on hover for any link */
+    width: 100px; /* Expand on hover for any link */
 }
 
 .profile-section {
@@ -305,16 +305,6 @@ footer {
     margin: 5px 0;
     font-size: 20px;
     color: #333;
-}
-
-.save-button {
-    margin-top: 10px;
-    padding: 8px 20px;
-    background-color: #ddd;
-    color: #333;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 .valid-ids-section{
@@ -542,81 +532,120 @@ footer {
     margin: 0 auto; /* Center horizontally */
     border-radius: 50%;
     transform: translateX(-50%);
-  }
+}
 
 /* Contact */
-
-.profile-icon-pic{
+/* Profile-main-icon styles */
+.profile-main-icon-pic{
     background-color: white;
     border-radius: 20px;
+    width: 120px;
 }
 
-.profile-icon{
+.profile-main-icon{
+    position: absolute;
+    left: 100px;
+    top: 50px;
+    text-align: center;
+    color: var(--text-color);
+    font-size: 20px;
+}
+
+.profile-main-icon2{
+    position: absolute;
+    left: 400px;
+    top: 50px;
+    text-align: center;
+    color: var(--text-color);
+    font-size: 20px;
+}
+
+.profile-main-icon3{
+    position: absolute;
+    left: 700px;
+    top: 50px;
+    text-align: center;
+    color: var(--text-color);
+    font-size: 20px;
+}
+
+.profile-main-icon4{
+    position: absolute;
+    left: 100px;
+    top: 250px;
+    text-align: center;
+    color: var(--text-color);
+    font-size: 20px;
+}
+
+.profile-main-icon5{
+    position: absolute;
+    left: 400px;
+    top: 250px;
+    text-align: center;
+    color: var(--text-color);
+    font-size: 20px;
+}
+
+.profile-main-icon6{
+    position: absolute;
+    left: 700px;
+    top: 250px;
+    text-align: center;
+    color: var(--text-color);
+    font-size: 20px;
+}
+
+/* Profile-icon styles */
+/* Container for the entire layout */
+.container-msg {
+    display: grid;
+    grid-template-columns: 40px 1fr; /* Sidebar and main chat section */
+  }
+  
+  /* Profiles Section */
+  .profiles {
     display: flex;
     flex-direction: column;
+    align-items: center;
     position: absolute;
     left: 360px;
-    top: 200px;
-    width: 40px;
-    height: 40px;
-}
-.profile-icon2{
+    top: 180px;
+  }
+  
+  .profile-icon {
     display: flex;
     flex-direction: column;
-    position: absolute;
-    left: 360px;
-    top: 260px;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .profile-icon p{
+    margin-bottom: 20px;
+    color: var(--text-color);
+    font-size: 14px;
+  }
+  
+  .profile-icon-pic {
+    background-color: white;
+    border-radius: 50%;
     width: 40px;
     height: 40px;
-}
-.profile-icon3{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 360px;
-    top: 320px;
-    width: 40px;
-    height: 40px;
-}
-.profile-icon4{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 360px;
-    top: 380px;
-    width: 40px;
-    height: 40px;
-}
-.profile-icon5{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 360px;
-    top: 440px;
-    width: 40px;
-    height: 40px;
-}
-.profile-icon6{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 360px;
-    top: 500px;
-    width: 40px;
-    height: 40px;
-}
+  }
+
 
 
 /* Message Container */
 .message-wrap {
     background-image: radial-gradient(#FFFFFFB2,#558AE17D);
     border-radius: 20px;
-    width: 1004px;
+    width: 980px;
     height: 551px;
     display: grid;
     position: relative;
     align-items: center;
-    left: 37px;
+    left: 62px;
   }
   
   .message-name {
