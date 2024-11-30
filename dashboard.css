@@ -178,10 +178,10 @@ nav {
 .round-pic{
     position:absolute;
     top: 0px;
-    right:-80px;
+    right:-200px;
     border-radius: 20px;
     width: 770px;
-    height: 770px;
+    height: 100%;
    
 }
 

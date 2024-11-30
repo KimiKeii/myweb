@@ -150,11 +150,11 @@ function loadContent(section) {
                             <h4>Eman</h4>
                             <br>
                             <img src="Profile2-icon.svg" class="tracking-icon4-pic">
-                            <div class="money-wrap"><h4 class="money2">- &#8369; 10,000</h4></div> 
+                            <div class="money-wrap"><h4 class="money3">- &#8369; 10,000</h4></div> 
                             <h4>Mona</h4>
                             <br>
                             <img src="Profile2-icon.svg" class="tracking-icon5-pic">
-                            <div class="money-wrap"><h4 class="money2">- &#8369; 10,000</h4></div> 
+                            <div class="money-wrap"><h4 class="money3">- &#8369; 10,000</h4></div> 
                             <h4>Zhongli</h4>
                         </div>
                     </div>
