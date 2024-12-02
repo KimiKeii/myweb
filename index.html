@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AOS</title>
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="category-choice.css">
 </head>
 <body>
     <header>
@@ -121,6 +122,39 @@
                 </div>
             </div>
         </div>
+
+        <div class="categories-choice">
+            <div class="section-choice">
+                <div class="section_container">
+                    <div class="section_col">
+                        <div class="section_col_media">
+                           <img src="condominium.jpg" class="section_col_img" id="clickableImage">
+                        </div>
+                        <div class="section_col_tittle">
+                            <h2>Condominiums</h2>
+                        </div>
+                    </div>
+
+                    <div class="section_col">
+                        <div class="section_col_media">
+                            <img src="Houses.jpg" class="section_col_img" id="clickableImage2">
+                        </div>
+                        <div class="section_col_tittle">
+                            <h2>Houses</h2>
+                        </div>
+                    </div>
+
+                    <div class="section_col">
+                        <div class="section_col_media">
+                            <img src="Apartments.jpg" class="section_col_img" id="clickableImage3">
+                        </div>
+                        <div class="section_col_tittle">
+                            <h2>Apartments</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     
 
@@ -165,6 +199,7 @@
     <footer>
         <p>&copy; 2024 AOS. All rights reserved.</p>
     </footer>
+    <script src="index.js"></script>
     <script>
         const header = document.querySelector("header");
     
@@ -174,6 +209,18 @@
             } else {
                 header.classList.remove("scrolled");
             }
+        });
+
+        document.getElementById("clickableImage").addEventListener("click", function() {
+            window.location.href = "condominium.html"; // Replace with the correct path
+        });
+
+        document.getElementById("clickableImage2").addEventListener("click", function() {
+            window.location.href = "houses.html"; // Replace with the correct path
+        });
+
+        document.getElementById("clickableImage3").addEventListener("click", function() {
+            window.location.href = "apartment.html"; // Replace with the correct path
         });
     </script>
 </body>

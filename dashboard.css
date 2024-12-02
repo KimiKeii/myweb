@@ -185,23 +185,11 @@ nav {
    
 }
 
-.cta {
-    background-color: #ff5733;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-}
-
-.cta:hover {
-    background-color: #ff2e00;
-}
-
 /* About Section Styling */
 .about {
     padding: 50px 20px;
     background-color: #E6F4FF;
+    height: 110vh;
 }
 
 .about-grid {
@@ -236,12 +224,12 @@ nav {
 
 /* Categories Section Styling */
 .categories {
-    background-image: url('categoriesbg.svg');
+    margin-top: 20px;
+    background-image: url('bg2.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    margin: auto;
-    height: 110vh;
+    height: 200vh;
     width: 100%;
     color: var(--text-color);
 }
@@ -249,6 +237,7 @@ nav {
 .categories-content {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 100px;
 }
 
 .categories-content h1 {
@@ -306,9 +295,13 @@ nav {
 /* Contact Section Styling */
 .contact{
     background-color: rgb(212, 228, 244);
+    height: 100vh;
 }
 
 .contact-grid{
+    position: absolute;
+    bottom: -3190px;
+    left: 140px;
     border-bottom: 2px solid #0056b3;
     max-width: 1350px;
     margin: auto;
@@ -321,6 +314,7 @@ nav {
     border-top: 2px solid #0056b3;
     height: 250px;
     width: 290px;
+    margin-right: 200px;
 }
 
 .contact-item h3{
@@ -333,6 +327,7 @@ nav {
     padding: 20px 20px;
     height: 250px;
     width: 290px;
+    margin-right: 200px;
 }
 
 .top-pics{

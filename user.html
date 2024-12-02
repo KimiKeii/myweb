@@ -71,37 +71,6 @@
     </footer>
 
     <script>
-        document.querySelectorAll('.link').forEach(link => {
-            link.addEventListener('click', function() {
-                // Remove active class from all links
-                document.querySelectorAll('.link').forEach(item => {
-                    item.classList.remove('active'); // Remove active state
-                    item.querySelector('.text-wrapper').style.width = '0'; // Reset text wrapper width
-                });
-
-                // Add active class to the clicked link
-                this.classList.add('active'); // Set clicked link to active
-                this.querySelector('.text-wrapper').style.width = '110px'; // Expand text wrapper
-            });
-
-            link.addEventListener('mouseenter', function() {
-                if (!this.classList.contains('active')) {
-                    this.querySelector('.text-wrapper').style.width = '110px';
-                }
-            });
-
-            link.addEventListener('mouseleave', function() {
-                if (!this.classList.contains('active')) {
-                    this.querySelector('.text-wrapper').style.width = '0';
-                }
-            });
-        });
-
-        // Optional: Keep the first link active by default
-        document.querySelector('.link').classList.add('active'); 
-        document.querySelector('.link .text-wrapper').style.width = '110px';
-
-
         // Function to change both content and header title
         function loadContent(section, headerTitle) {
             const content = document.querySelector('.content'); // Get content div
