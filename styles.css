@@ -723,7 +723,7 @@ footer {
     margin-left: 10px;
   }
   
-  button:hover {
+  .message button:hover {
     background-color: #005BB5;
   }
   
