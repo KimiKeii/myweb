@@ -251,10 +251,8 @@ nav {
     flex-wrap: wrap;
 }
 
-
-
 .categories-content h1 {
-    margin-left: 630px;
+    margin-left: 55%;
     font-size: 3rem;
     color: var(--text-color);
 }
