@@ -201,13 +201,6 @@ nav {
     height: 390px;
 }
 
-
-
-
-
-
-
-
 .picture p{
     position: absolute;
     top: 80px;
@@ -290,6 +283,10 @@ nav {
     border: transparent;
 }
 
+.rent-btn:hover{
+    border: 1px solid #1a1a1a;
+}
+
 .tour-btn{
     width: 120px;
     height: 40px;
@@ -297,6 +294,10 @@ nav {
     background-color: #E6F4FF;
     color: var(--text-color);
     border: transparent;
+}
+
+.tour-btn:hover{
+    border: 1px solid #1a1a1a;
 }
 
 /* Contact Section Styling */
