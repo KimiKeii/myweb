@@ -5,13 +5,13 @@
     box-sizing: border-box;
 }
 
+
 body {
     font-family: Arial, sans-serif;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    /* background-color: white; */
-    background-image: linear-gradient(to right, white, #1f7acf);
+    background-color: #E6F4FF;
 }
 
 /* Header */
@@ -92,48 +92,38 @@ header {
     padding: 15px;
     text-decoration: none;
     font-size: 1.1em;
-    background-color: #ddd; /* Default background color */
+    gap: 20px;
+    background-color: white; /* Default background color */
     color: #001F4D; /* Text color */
     border-radius: 20px;
     transition: background-color 0.3s;
     overflow: hidden; /* Prevent overflow when collapsed */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.37);
 }
 
 .link:hover {
-    background-color: #ccc; /* Active and hover background color */
-}
-
-.link.active{
-    background-color: #ccc; /* Active and hover background color */
+    background-color: #81b1fd; /* Active and hover background color */
 }
 
 .text-wrapper {
     overflow: hidden; /* Prevent overflow */
     white-space: nowrap; /* Prevent text from wrapping to a new line */
     text-overflow: ellipsis; /* Show ellipsis (...) when text overflows */
-    width: 0; /* Initially hidden */
+    width: 200px; /* Initially hidden */
     transition: width 0.3s ease-in-out;
 }
 
-.link.active .text-wrapper{
-    width: 210px; /* Expand to show text when hovered or active */
-}
-
 .icon-name {
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
+    width: 100px;
 }
 
-.link.active .icon-name {
-    transform: translateX(0); /* Show icon name when active or hovered */
-}
 
 .link:hover .icon-name{
     transform: translateX(0); /* Show icon name when active or hovered */
 }
 
 .link:hover .text-wrapper {
-    width: 210px; /* Expand on hover for any link */
+    width: 200px; /* Expand on hover for any link */
 }
 
 .profile-section {
@@ -292,7 +282,7 @@ footer {
   .message button {
     position: absolute;
     bottom: 5px;
-    right: 10px;
+    right: 30px;
     width: 50px;
     padding: 10px;
     border: none;

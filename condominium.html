@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AOS</title>
+    <link rel="stylesheet" href="condominium.css">
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <div class="logo">
+                <img src="LOGO.svg" class="Logo">
+            </div>
+            <ul class="nav-links">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#categories">Categories</a>
+                <a href="index.html#contact">Contact</a>
+            </ul>
+            <div class="profile-section">
+                <img src="USER.svg" class="user-icon">
+                <div class="dropdown">
+                    <button class="dropdown-toggle">▼</button>
+                    <div class="dropdown-content">
+                        <a href="login.html" class="login">
+                            <span class="text-wrapper">
+                                <h5 class="login-name">Login</h5>
+                            </span>
+                        </a>
+                        <a href="sign-up.html" class="signup">
+                            <span class="text-wrapper">
+                                <h5 class="signup-name">Signup</h5>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <img src="Condominium.png" class="condo-img">
+    <section id="home" class="hero">
+        <div class="hero-content">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 AOS. All rights reserved.</p>
+    </footer>
+    <script src="index.js"></script>
+    <script>
+        const header = document.querySelector("header");
+    
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        });
+    </script>
+</body>
+</html>

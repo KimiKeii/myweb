@@ -1,0 +1,184 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --text-color: #001F4D; /* Define the variable */
+    --new-color: white;
+    --bg-color: #ffffffdd;
+}
+
+/* Body Styling */
+body {
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #E6F4FF;
+}
+
+/* Header Styling */
+header {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1152px; 
+    color: white;
+    padding: 0px 20px;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* Contracted header on scroll */
+header.scrolled {
+    width: 576px;
+    font-size: 14px;
+    padding: 0px 10px; /* Smaller padding when scrolled */
+    color: #333;
+}
+
+header.scrolled .logo .Logo{
+    width: 80px;
+}
+
+header.scrolled .profile-section img{
+    width: 25px;
+}
+
+
+nav {
+    top: 0;
+    display: flex;
+    width: 1152px;
+    justify-content: space-between;
+    background-color: var(--bg-color);   /* Light background color */
+    padding: 10px 30px;          /* Space inside the navbar */
+    border-radius: 0 0 20px 20px; /* Only the bottom corners are rounded */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.Logo {
+    width: 177.4px;
+    height: 37.61px;
+}
+
+.nav-links {
+    align-items: center;
+    display: flex;
+    gap: 20px;        
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #1a1a1a;    /* Dark text color for links */
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+    color: #0056b3;    /* Hover color */
+}
+
+.profile-section{
+    display: flex;
+}
+
+.profile-section .user-icon{
+    width: 35px;       /* User icon size */
+    border-radius: 50%;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    margin-left: 5px;
+    font-size: 12px;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+/* Position dropdown content below the button */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 70%;           /* Position below the button */
+    left: 0;
+    background-color: var(--bg-color);
+    border-radius: 20px;
+    padding: 10px 0;     /* Adjusts padding for individual items */
+    z-index: 1;
+}
+
+.dropdown-content a {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 10px 15px;
+    display: block;
+    width: 100%;         /* Full width of dropdown */
+}
+
+.dropdown-content a:hover {
+    text-decoration: underline;
+    color: #0056b3;    /* Hover color */
+}
+
+/* Show the dropdown content on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+/* Hero Section Styling */
+.hero {
+    background-image: url('bg.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 90vh;
+    width: 100%;
+    color: var(--text-color);
+}
+
+.hero-content {
+    max-width: 1280px;
+    height: 100vh;
+    color: var(--text-color);
+    border-radius: 20px;
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 200px;
+}
+
+.condo-img{
+    position: absolute;
+    left: 300px;
+    top: 30px;
+    width: 850px;
+}
+
+
+/* Footer Styling */
+footer {
+    height: 70px;
+    background-color: white;
+    color: var(--text-color);
+    padding: 10px 0;
+}
+
+footer p{
+    margin-top: 10px;
+    margin-left: 100px;
+}

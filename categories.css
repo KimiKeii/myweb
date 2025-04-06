@@ -140,6 +140,15 @@ nav {
 }
 
 /* hero styling */
+.hero {
+    background-image: url('bg.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    color: var(--text-color);
+}
 /* carousel1 */
 #carousel1,
 #carousel2,
@@ -163,26 +172,137 @@ nav {
     width: 1080px;
     display: flex;
     padding: 10px 20px;
-    height: 200vh; /* Full screen height */
+    height: 100vh; /* Full screen height */
 }
 
 .apartment-pic{
     position: absolute;
-    right: 200px;
-    top: 200px;
+    left: 750px;
+    top: 130px;
     border-radius: 15px;
+    width: 600px;
+}
+
+.apartment2-pic{
+    position: absolute;
+    left: 790px;
+    top: 130px;
+    border-radius: 15px;
+    width: 540px;
+    height: 390px;
+}
+
+.apartment3-pic{
+    position: absolute;
+    left: 760px;
+    top: 130px;
+    border-radius: 15px;
+    width: 590px;
+    height: 390px;
 }
 
 .picture p{
     position: absolute;
-    top: 150px;
-    right: 460px;
-    font-size: 30px;
-    text-decoration: solid;
+    top: 80px;
+    left: 925px;
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.prop-own{
+    position: absolute;
+    left: 90px;
+    top: 220px;
+    width: 500px;
+    font-size: 20px;
+}
+
+.prop-own h3{
+    position: absolute;
+    top: 0px;
+    left: 40px;
+}
+
+.prop-own p{
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    font-size: 16px;
+}
+
+.profile-icon2{
+    width: 35px;
+}
+
+/* description style */
+.description{
+    position: absolute;
+    top: 300px;
+    left: 90px;
+    width: 500px;
+    font-size: 20px;
+    border-radius: 20px;
+}
+
+.list{
+    position: absolute;
+    left: 90px;
+    top: 120px;
+    list-style-type: disc;
+    width: 750px;
+    font-size: 19px;
+}
+
+.list p{
+    font-size: 18px;
+}
+
+.btn-grp{
+    text-align: center;
+    position: absolute;
+    left: 885px;
+    top: 545px;
+    color: var(--text-color);
+    background-color: #FFFFFF;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rent-btn{
+    width: 120px;
+    height: 40px;
+    border-radius: 15px;
+    background-color: #FFF4E4;
+    color: var(--text-color);
+    margin: 5px 0px 6px 0px;
+    border: transparent;
+}
+
+.rent-btn:hover{
+    border: 1px solid #1a1a1a;
+}
+
+.tour-btn{
+    width: 120px;
+    height: 40px;
+    border-radius: 15px;
+    background-color: #E6F4FF;
+    color: var(--text-color);
+    border: transparent;
+}
+
+.tour-btn:hover{
+    border: 1px solid #1a1a1a;
 }
 
 /* Contact Section Styling */
 .contact{
+    margin-top: 50px;
     background-color: rgb(212, 228, 244);
 }
 
@@ -248,6 +368,7 @@ nav {
     display: flex;
     margin-left: 3px;
 }
+
 
 /* Footer Styling */
 footer {
