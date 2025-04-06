@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AOS</title>
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="category-choice.css">
 </head>
 <body>
     <header>
@@ -38,6 +39,24 @@
             </div>
         </nav>
     </header>
+
+    <div class="floating-head">
+        <img src="CONTACT.svg" class="floating-head-img">
+        <div class="floating-board">
+            <!-- Chat Box Section -->
+                <div class="message-wrap">
+
+                <div class="message-inner">
+                    <div class="chat-box" id="chatBox"></div>
+
+                        <div class="message">
+                            <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
+                            <button id="sendBtn" onclick="sendMessage()">Send</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
 
     <section id="home" class="hero">
         <div class="hero-content">
@@ -121,10 +140,51 @@
                 </div>
             </div>
         </div>
+
+        <div class="categories-choice">
+            <div class="section-choice">
+                <div class="section_container">
+                    <div class="section_col">
+                        <div class="section_col_media">
+                           <img src="condominium.jpg" class="section_col_img" id="clickableImage">
+                        </div>
+                        <div class="section_col_tittle">
+                            <h2>Condominiums</h2>
+                        </div>
+                    </div>
+
+                    <div class="section_col">
+                        <div class="section_col_media">
+                            <img src="Houses.jpg" class="section_col_img" id="clickableImage2">
+                        </div>
+                        <div class="section_col_tittle">
+                            <h2>Houses</h2>
+                        </div>
+                    </div>
+
+                    <div class="section_col">
+                        <div class="section_col_media">
+                            <img src="Apartments.jpg" class="section_col_img" id="clickableImage3">
+                        </div>
+                        <div class="section_col_tittle">
+                            <h2>Apartments</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="map">
+            <img src="maps.svg" alt="">
+        </div>
+
     </section>
     
 
     <section id="contact" class="contact">
+        <div class="review">
+            <img src="revew.png" alt="">
+        </div>
         <div class="contact-grid">
             <div class="contact-item">
                 <h3><img src="LOGOwWords.svg" class="logo-contact"></h3>
@@ -165,7 +225,8 @@
     <footer>
         <p>&copy; 2024 AOS. All rights reserved.</p>
     </footer>
-    <script>
+    <script src="index.js"></script>
+<script>
         const header = document.querySelector("header");
     
         window.addEventListener("scroll", () => {
@@ -175,6 +236,69 @@
                 header.classList.remove("scrolled");
             }
         });
+
+        document.getElementById("clickableImage").addEventListener("click", function() {
+            window.location.href = "condominium.html"; // Replace with the correct path
+        });
+
+        document.getElementById("clickableImage2").addEventListener("click", function() {
+            window.location.href = "houses.html"; // Replace with the correct path
+        });
+
+        document.getElementById("clickableImage3").addEventListener("click", function() {
+            window.location.href = "apartment.html"; // Replace with the correct path
+        });
+
+
+        document.addEventListener("keydown", function(event) {
+    if (event.target.id === "messageInput" && event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();
+    }
+});
+
+        // Send message function
+function sendMessage() {
+    const input = document.getElementById("messageInput");
+    const message = input.value.trim();
+    const chatBox = document.getElementById("chatBox");
+
+    if (message !== "") {
+        // Create user message (aligned right)
+        const newMessage = document.createElement("div");
+        newMessage.classList.add("message", "user");
+        newMessage.textContent = message;
+
+        chatBox.appendChild(newMessage);
+
+        // Scroll to the bottom of the chat box
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        let reply = "";
+        if (message.toLowerCase() === "hi"|| message.toLowerCase() === "hello") {
+            reply = "Hi, How may I help you?";
+        } else if (message.toLowerCase() === "can you help me rent a apartment") {
+            reply = "Sure, just click the categories in the header";
+        } else if (message.toLowerCase() === "thank you") {
+            reply = "Your Welcome";
+        }else {
+            reply = "I'm sorry, I didn't understand that.";
+        }
+
+        // Simulate friend response (aligned left)
+        setTimeout(() => {
+            const friendMessage = document.createElement("div");
+            friendMessage.classList.add("message", "friend");
+            friendMessage.textContent = reply; // Use the reply as the friend's message
+
+            chatBox.appendChild(friendMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }, 600); // Simulated delay for friend reply
+
+        // Clear the input field
+        input.value = "";  // This line clears the input field after sending the message
+    }
+}
     </script>
 </body>
 </html>

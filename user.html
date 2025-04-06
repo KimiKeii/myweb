@@ -27,7 +27,7 @@
 
     <div id="sidebar" class="sidebar">
         <div>
-            <img src="LOGO.svg" class="logo" alt="Logo">
+            <a href="index.html"><img src="LOGO.svg" class="logo" alt="Logo"></a>
         </div>
         <nav class="menu">
             <a href="#" class="link" onclick="loadContent('myproperty')">
@@ -54,7 +54,7 @@
             <a href="#" class="link" onclick="loadContent('report',)">
                 <img src="CONTACT.svg" alt="contact-icon" class="icon">
                 <span class="text-wrapper">
-                    <h5 class="icon-name">Reportt</h5>
+                    <h5 class="icon-name">Report</h5>
                 </span>
             </a>
             <br>
@@ -67,41 +67,10 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 MyBrand. All rights reserved.</p>
+        <p>&copy; 2024 AOS. All rights reserved.</p>
     </footer>
 
     <script>
-        document.querySelectorAll('.link').forEach(link => {
-            link.addEventListener('click', function() {
-                // Remove active class from all links
-                document.querySelectorAll('.link').forEach(item => {
-                    item.classList.remove('active'); // Remove active state
-                    item.querySelector('.text-wrapper').style.width = '0'; // Reset text wrapper width
-                });
-
-                // Add active class to the clicked link
-                this.classList.add('active'); // Set clicked link to active
-                this.querySelector('.text-wrapper').style.width = '210px'; // Expand text wrapper
-            });
-
-            link.addEventListener('mouseenter', function() {
-                if (!this.classList.contains('active')) {
-                    this.querySelector('.text-wrapper').style.width = '210px';
-                }
-            });
-
-            link.addEventListener('mouseleave', function() {
-                if (!this.classList.contains('active')) {
-                    this.querySelector('.text-wrapper').style.width = '0';
-                }
-            });
-        });
-
-        // Optional: Keep the first link active by default
-        document.querySelector('.link').classList.add('active'); 
-        document.querySelector('.link .text-wrapper').style.width = '210px';
-
-
         // Function to change both content and header title
         function loadContent(section, headerTitle) {
             const content = document.querySelector('.content'); // Get content div
@@ -167,15 +136,26 @@ function sendMessage() {
         // Scroll to the bottom of the chat box
         chatBox.scrollTop = chatBox.scrollHeight;
 
+        let reply = "";
+        if (message.toLowerCase() === "hi"|| message.toLowerCase() === "hello") {
+            reply = "Hi, How may I help you?";
+        } else if (message.toLowerCase() === "i want to request for maintenance") {
+            reply = "Sure I will schedule you right away. We will message you for the updates";
+        } else if (message.toLowerCase() === "thank you") {
+            reply = "Your Welcome";
+        }else {
+            reply = "I'm sorry, I didn't understand that.";
+        }
+
         // Simulate friend response (aligned left)
         setTimeout(() => {
             const friendMessage = document.createElement("div");
             friendMessage.classList.add("message", "friend");
-            friendMessage.textContent = `Got your message, ${message}`;
+            friendMessage.textContent = reply; // Use the reply as the friend's message
 
             chatBox.appendChild(friendMessage);
             chatBox.scrollTop = chatBox.scrollHeight;
-        }, 1500); // Simulated delay for friend reply
+        }, 600); // Simulated delay for friend reply
 
         // Clear the input field
         input.value = "";  // This line clears the input field after sending the message
