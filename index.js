@@ -26,3 +26,30 @@ const section = document.querySelector('.section-choice'),
     }
     
     init()
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const floatingHead = document.querySelector(".floating-head");
+        const floatingBoard = document.querySelector(".floating-board");
+    
+        floatingHead.addEventListener("click", function (event) {
+            // Toggle visibility
+            if (floatingBoard.style.display === "none" || floatingBoard.style.display === "") {
+                floatingBoard.style.display = "block";
+            } else {
+                floatingBoard.style.display = "none";
+            }
+            event.stopPropagation(); // Prevent closing on click
+        });
+    
+        floatingBoard.addEventListener("click", function (event) {
+            event.stopPropagation(); // Prevent closing when clicking inside the chatbox
+        });
+    
+        // Close the floating board when clicking outside
+        document.addEventListener("click", function (event) {
+            if (!floatingHead.contains(event.target) && !floatingBoard.contains(event.target)) {
+                floatingBoard.style.display = "none";
+            }
+        });
+    });
+    

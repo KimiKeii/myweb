@@ -329,11 +329,22 @@ function sendMessage() {
         // Scroll to the bottom of the chat box
         chatBox.scrollTop = chatBox.scrollHeight;
 
+        let reply = "";
+        if (message.toLowerCase() === "hi"|| message.toLowerCase() === "hello") {
+            reply = "Hi, How may I help you?";
+        } else if (message.toLowerCase() === "i want to request for maintenance") {
+            reply = "Sure I will schedule you right away. We will message you for the updates";
+        } else if (message.toLowerCase() === "thank you") {
+            reply = "Your Welcome";
+        }else {
+            reply = "I'm sorry, I didn't understand that.";
+        }
+
         // Simulate friend response (aligned left)
         setTimeout(() => {
             const friendMessage = document.createElement("div");
             friendMessage.classList.add("message", "friend");
-            friendMessage.textContent = `Hello how may I Help you`;
+            friendMessage.textContent = reply; // Use the reply as the friend's message
 
             chatBox.appendChild(friendMessage);
             chatBox.scrollTop = chatBox.scrollHeight;

@@ -14,7 +14,7 @@
 /* Body Styling */
 body {
     overflow-x: hidden;
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
     background-color: #E6F4FF;
 }
@@ -229,7 +229,7 @@ nav {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 200vh;
+    height: 300vh;
     width: 100%;
     color: var(--text-color);
 }
@@ -292,15 +292,29 @@ nav {
     transition: filter 0.3s ease-in-out;
 }
 
+.map{
+    margin-left: 130px;
+}
+
 /* Contact Section Styling */
 .contact{
     background-color: rgb(212, 228, 244);
     height: 100vh;
 }
 
+.review{
+    margin-left: 450px;
+    margin-top: 40px;
+}
+
+.review img{
+    margin-top: 25px;
+    width: 600px;
+}
+
 .contact-grid{
     position: absolute;
-    bottom: -3190px;
+    bottom: -4010px;
     left: 140px;
     border-bottom: 2px solid #0056b3;
     max-width: 1350px;
@@ -315,6 +329,7 @@ nav {
     height: 250px;
     width: 290px;
     margin-right: 200px;
+    font-family: Arial, sans-serif;
 }
 
 .contact-item h3{
@@ -376,5 +391,144 @@ footer {
 
 footer p{
     margin-top: 10px;
-    margin-left: 100px;
+    margin-left: 80px; 
 }
+
+
+.floating-head{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 2;
+}
+
+.floating-head-img{
+    margin-top: 13px;
+    margin-left: 10px;
+}
+
+.floating-board{
+    display: none;
+    width: 300px;
+    height: 300px;
+    background-color: white;
+    border-radius: 20px;
+    position: fixed;
+    bottom: 50px;
+    left: 55px;
+    z-index: 1;
+}
+
+.floating-head:hover .floating-board{
+    display: block;
+}
+
+
+.message-wrap {
+    background-image: radial-gradient(#FFFFFFB2,#558AE17D);
+    border-radius: 20px;
+    width: 300px;
+    height: 300px;
+    display: grid;
+    position: relative;
+    align-items: center;
+  }
+  
+  .message-inner {
+    background-color: transparent;
+    border-radius: 20px;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: 10px;
+    overflow-y: auto;
+  }
+  
+  .chat-box {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  
+  .message {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px;
+    max-width: 70%; /* Limit width */
+    margin-bottom: 10px;
+  }
+  
+  .message-input {
+    position: absolute;
+    bottom: 5px;
+    right: 80px;
+    width: 200px;
+    height: 38px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid blue;
+    resize: none;
+  }
+  
+  .message button {
+    position: absolute;
+    bottom: 5px;
+    right: 20px;
+    width: 50px;
+    padding: 10px;
+    border: none;
+    background-color: #0078FF;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  button:hover {
+    background-color: #005BB5;
+  }
+  
+  /* Message Styles */
+  .message.user {
+    background-color: #DCF8C6;
+    align-self: flex-end;
+    border-radius: 20px;
+    word-wrap: break-word;
+    max-width: 75%;
+    padding: 10px;
+  }
+  
+  .message.friend {
+    background-color: #ECECEC;
+    align-self: flex-start;
+    border-radius: 20px;
+    word-wrap: break-word;
+    max-width: 75%;
+    padding: 10px;
+    margin-left: 10px;
+  }
+  
+  /* Scrollbar */
+  .chat-box::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .chat-box::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+  }
+  
+  .chat-box::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
