@@ -17,6 +17,7 @@
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
                 <a href="#categories">Categories</a>
+                <a href="#search">Search</a>
                 <a href="#contact">Contact</a>
             </ul>
             <div class="profile-section">
@@ -174,8 +175,41 @@
             </div>
         </div>
 
-        <div class="map">
-            <img src="maps.svg" alt="">
+        <section id="search" class="searchbar"></section>
+        <div id="search" class="searchbar-content">
+            <div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3856.0992250841945!2d120.23506691534436!3d14.8316119740388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396714fd6c9a49f%3A0xe6a3a15d118bd539!2sSubic%2C%20Zambales!5e0!3m2!1sen!2sph!4v1643779851345!5m2!1sen!2sph"
+                width="100%" height="100%" style="border: 0; border-radius: 20px;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="search">
+                <div class="search-container">
+                <div class="input-group">
+                  <label for="city">City</label>
+                  <select id="city">
+                    <option>SILANG, CAVITE</option>
+                    <option>PORAC, PAMPANGA</option>
+                  </select>
+                </div>
+                
+                <div class="input-group">
+                  <label for="type">Type</label>
+                  <select id="type">
+                    <option>RFO</option>
+                  </select>
+                </div>
+            
+                <div class="input-group range-group">
+                  <label>Min</label>
+                  <span id="min-price" class="price">₱10,000</span>
+                  <label>Max</label>
+                  <input id="min-range" type="range" min="10000" max="30000" value="10000" step="1000">
+                  <span id="max-price" class="price">₱30,000</span>
+                    <input id="max-range" type="range" min="10000" max="30000" value="30000" step="1000">
+                </div>
+            
+                <button class="apply-btn">Apply</button>
+              </div>
+            
+              <script src="search.js"></script></div>
         </div>
 
     </section>
