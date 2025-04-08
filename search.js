@@ -4,12 +4,13 @@ const minPrice = document.getElementById('min-price');
 const maxPrice = document.getElementById('max-price');
 const citySelect = document.getElementById('city');
 const typeSelect = document.getElementById('type');
+const iframeMap = document.querySelector("iframe");
 
-// Example options with price values for demonstration
+// Example options with price values for demonstration, including coordinates for map updates
 const options = [
-  { city: "SILANG, CAVITE", type: "RFO", price: 12000 },
-  { city: "PORAC, PAMPANGA", type: "RFO", price: 25000 },
-  { city: "BIÑAN, LAGUNA", type: "RFO", price: 15000 },
+  { city: "SILANG, CAVITE", type: "RFO", price: 12000, lat: 14.331611, lng: 120.531611 },
+  { city: "PORAC, PAMPANGA", type: "RFO", price: 25000, lat: 15.101611, lng: 120.611611 },
+  { city: "BIÑAN, LAGUNA", type: "RFO", price: 15000, lat: 14.333611, lng: 121.111611 },
 ];
 
 // Function to format price
@@ -74,7 +75,36 @@ function updateOptions(minVal, maxVal) {
     option.textContent = type;
     typeSelect.appendChild(option);
   });
+
+  // Automatically select the first city in the filtered options and show it on the map
+  if (filteredOptions.length > 0) {
+    citySelect.value = filteredOptions[0].city;
+    showCityOnMap(filteredOptions[0]);
+  }
+}
+
+// Function to update map iframe based on the selected city
+function showCityOnMap(city) {
+  const mapUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3856.0992250841945!2d${city.lng}!3d${city.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396714fd6c9a49f%3A0xe6a3a15d118bd539!2s${encodeURIComponent(city.city)}!5e0!3m2!1sen!2sph!4v1643779851345!5m2!1sen!2sph`;
+  iframeMap.src = mapUrl;
 }
 
 // Initialize the options display based on the initial price range
 updateOptions(parseInt(minRange.value), parseInt(maxRange.value));
+
+// Set the initial max range value to 0 when the page loads
+window.addEventListener('load', () => {
+  maxRange.value = 0;
+  maxPrice.textContent = formatPrice(maxRange.value);  // Update the max price display
+  updateOptions(parseInt(minRange.value), parseInt(maxRange.value));
+});
+
+// Add event listener to update the map when a city is selected
+citySelect.addEventListener('change', () => {
+  const selectedCity = citySelect.value;
+  const city = options.find(option => option.city === selectedCity);
+
+  if (city) {
+    showCityOnMap(city);
+  }
+});

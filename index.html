@@ -177,14 +177,15 @@
 
         <section id="search" class="searchbox"></section>
         <div id="search" class="searchbox-content">
-            <div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3856.0992250841945!2d120.23506691534436!3d14.8316119740388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396714fd6c9a49f%3A0xe6a3a15d118bd539!2sSubic%2C%20Zambales!5e0!3m2!1sen!2sph!4v1643779851345!5m2!1sen!2sph"
-                width="100%" height="100%" style="border: 0; border-radius: 20px;" allowfullscreen="" loading="lazy"></iframe>
+            <div class="map">
+                <iframe id="mapIframe" src="https://www.google.com/maps/embed?pb=initial-map-url" 
+                    width="100%" height="100%" style="border: 0; border-radius: 20px;" allowfullscreen="" loading="lazy"></iframe>
             </div>
             <div class="search">
                 <div class="search-container">
                     <div class="input-group left">
                         <label for="city">City</label>
-                        <select id="city">
+                        <select id="city" onchange="showCityOnMap()">
                         </select>
                       </div>
                       
@@ -258,6 +259,7 @@
         <p>&copy; 2024 AOS. All rights reserved.</p>
     </footer>
     <script src="index.js"></script>
+
 <script>
         const header = document.querySelector("header");
     
