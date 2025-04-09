@@ -14,8 +14,8 @@
       <img src="LOGO.svg" class="Logo">
   </div>
   <ul class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
+      <a href="index.html">Home</a>
+      <a href="index.html#about">About</a>
       <a href="#categories">Categories</a>
       <a href="#search">Search</a>
       <a href="#contact">Contact</a>
@@ -134,6 +134,17 @@
 
     // Initial display
     updateDisplay(0);
+
+        const header = document.querySelector("header");
+    
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        });
+
   </script>
 </body>
 </html>

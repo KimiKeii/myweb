@@ -13,7 +13,7 @@
     color: var(--text-color);
     padding: 2rem;
     width: 100%;
-    height: 100vh;
+    height: 112vh;
     overflow: hidden;
 }
 
@@ -27,7 +27,7 @@
     height: calc(90vh - 4rem); /*? viewport hieght - (padding top + padding bottom)*/
     border: 1px solid #21212157;
     overflow: hidden;
-    margin: auto;
+    margin: 200px 0 0 80px;
 }
 
 .section_container{
