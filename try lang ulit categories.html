@@ -40,15 +40,15 @@
   </div>
 </nav>
 </header>
-  <!-- Main Layout -->
-  <section class="p-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+
+<section class="p-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
     <!-- Left Side: House Image and Info -->
     <div class="bg-white rounded-2xl shadow p-6">
       <img id="propertyImage" src="" alt="House Image" class="rounded-xl mb-4" style="height: 580px; width: 900px; object-fit: contain;">
-      <h2 id="propertyLocation" class="text-lg font-bold"></h2>
+      <h2 id="propertyName" class="text-2xl font-bold"></h2>
+      <p id="propertyLocation" class="text-sm text-blue-700 mb-2"></p>
       <p id="propertyType" class="text-sm text-blue-700 mb-2"></p>
-      <p class="text-sm text-gray-700 font-semibold">Nathan Magcamit</p>
-      <p class="text-xs text-gray-500">Property Owner</p>
+      <p id="propertyDescription" class="text-xs text-gray-500 mb-4"></p>
     </div>
 
     <!-- Right Side: Payment Section (All in one div) -->
@@ -84,69 +84,158 @@
 
           <!-- Buttons -->
           <div class="flex flex-col gap-3 w-full">
-            <button class="w-full bg-yellow-100 text-gray-900 py-2 rounded-xl font-bold shadow">Rent</button>
+            <button id="rentButton" class="w-full bg-yellow-100 text-gray-900 py-2 rounded-xl font-bold shadow">Rent</button>
             <button class="w-full bg-blue-100 text-blue-700 py-2 rounded-full text-sm font-semibold shadow">Contact Owner</button>
           </div>
         </div>
       </div>
     </div>
-  </section>
+</section>
 
-  <!-- About Section -->
-  <section class="px-8 py-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
-    <div class="lg:col-span-2">
-      <h3 class="text-xl font-bold text-blue-900 mb-3">About This Place</h3>
-      <p id="propertyDescription" class="text-sm text-gray-700 leading-relaxed"></p>
-    </div>
-    <div>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3856.0992250841945!2d120.23506691534436!3d14.8316119740388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396714fd6c9a49f%3A0xe6a3a15d118bd539!2sSubic%2C%20Zambales!5e0!3m2!1sen!2sph!4v1643779851345!5m2!1sen!2sph" width="100%" height="250" style="border:0; border-radius: 1rem;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
-  </section>
-
-  <!-- JavaScript -->
-  <script>
+<!-- JavaScript -->
+<script>
     const houses = [
-      {
-        name: "Clarksville",
-        image: "carousel6.jpg",
-        location: "House in Subic Bay, Zambales, Philippines",
-        type: "3-Bedroom Unit",
-        description: "Welcome to Clarksville, a beautiful getaway nestled in the picturesque Subic Bay, Zambales. This home blends contemporary style with rustic charm, using stone and wood textures to create a warm, inviting atmosphere. Surrounded by nature, Clarksville is the perfect retreat for those who appreciate both modern luxury and the beauty of the outdoors.",
-        priceRange: "₱15,000 / mo",
-        maintenance: "₱2,000",
-        deposit: "₱15,000",
+      { 
+        id: "house1", 
+        name: "Clarksville", 
+        image: "carousel1.jpg", 
+        location: "House in Subic Bay, Zambales, Philippines", 
+        type: "3-Bedroom Unit", 
+        description: "Welcome to Clarksville, a beautiful getaway nestled in the picturesque Subic Bay, Zambales. This home blends contemporary style with rustic charm, using stone and wood textures to create a warm, inviting atmosphere. Surrounded by nature, Clarksville is the perfect retreat for those who appreciate both modern luxury and the beauty of the outdoors.", 
+        priceRange: "₱15,000 / mo", 
+        maintenance: "₱2,000", 
+        deposit: "₱15,000", 
         total: "₱17,000"
+      },
+      { 
+        id: "house2", 
+        name: "Seaside Retreat", 
+        image: "carousel2.jpg", 
+        location: "Beachfront in La Union, Philippines", 
+        type: "4-Bedroom Villa", 
+        description: "Escape to Seaside Retreat, a stunning beachfront villa offering serene ocean views. Perfect for those who love the ocean breeze, this spacious villa offers luxury amenities combined with the peace of the sea.", 
+        priceRange: "₱20,000 / mo", 
+        maintenance: "₱3,000", 
+        deposit: "₱20,000", 
+        total: "₱23,000"
+      },
+      { 
+        id: "house3", 
+        name: "Mountain View", 
+        image: "carousel3.jpg", 
+        location: "Tagaytay, Cavite, Philippines", 
+        type: "2-Bedroom Bungalow", 
+        description: "Mountain View offers a quiet retreat with a panoramic view of the mountains. Perfect for those seeking peace and a connection with nature, this home is designed with eco-friendly materials and sustainability in mind.", 
+        priceRange: "₱12,000 / mo", 
+        maintenance: "₱1,500", 
+        deposit: "₱12,000", 
+        total: "₱13,500"
+      },
+      { 
+        id: "house4", 
+        name: "City Heights", 
+        image: "carousel4.jpg", 
+        location: "Makati, Metro Manila, Philippines", 
+        type: "Studio Apartment", 
+        description: "City Heights offers a modern living experience in the heart of Makati. This studio apartment is designed for young professionals seeking a convenient and stylish urban lifestyle.", 
+        priceRange: "₱10,000 / mo", 
+        maintenance: "₱1,200", 
+        deposit: "₱10,000", 
+        total: "₱11,200"
+      },
+      { 
+        id: "house5", 
+        name: "Tropical Villa", 
+        image: "carousel5.jpg", 
+        location: "Boracay, Aklan, Philippines", 
+        type: "5-Bedroom Villa", 
+        description: "Tropical Villa offers a luxurious experience in the heart of Boracay, surrounded by stunning beaches and vibrant nightlife. This spacious villa includes all modern amenities and more.", 
+        priceRange: "₱50,000 / mo", 
+        maintenance: "₱5,000", 
+        deposit: "₱50,000", 
+        total: "₱55,000"
+      },
+      { 
+        id: "house6", 
+        name: "Sunset Breeze", 
+        image: "carousel6.jpg", 
+        location: "Davao City, Davao, Philippines", 
+        type: "3-Bedroom Beachfront Home", 
+        description: "Sunset Breeze offers a peaceful escape by the beach, with a stunning view of the sunset each evening. The property is designed for comfort and relaxation.", 
+        priceRange: "₱40,000 / mo", 
+        maintenance: "₱3,500", 
+        deposit: "₱40,000", 
+        total: "₱43,500"
+      },
+      { 
+        id: "house7", 
+        name: "Hilltop Estate", 
+        image: "carousel7.jpg", 
+        location: "Baguio City, Philippines", 
+        type: "4-Bedroom Estate", 
+        description: "Hilltop Estate offers an exclusive retreat in the cool, mountainous air of Baguio City. The property boasts expansive views and luxurious living spaces.", 
+        priceRange: "₱25,000 / mo", 
+        maintenance: "₱3,000", 
+        deposit: "₱25,000", 
+        total: "₱28,000"
+      },
+      { 
+        id: "house8", 
+        name: "Laguna Serenity", 
+        image: "carousel8.jpg", 
+        location: "Laguna, Philippines", 
+        type: "5-Bedroom Modern Home", 
+        description: "Laguna Serenity is a beautiful modern home designed with both luxury and comfort in mind. The property features large windows that offer a view of the serene surroundings.", 
+        priceRange: "₱45,000 / mo", 
+        maintenance: "₱4,000", 
+        deposit: "₱45,000", 
+        total: "₱49,000"
       }
     ];
 
+    // Get the house id from the URL
+    const hash = window.location.hash.substring(1); // Remove the '#' from the hash
+    const houseIndex = houses.findIndex(house => house.id === hash); // Find the house index from the hash
+
+    if (houseIndex !== -1) {
+      updateDisplay(houseIndex);
+    } else {
+      updateDisplay(0); // Default to the first house if no valid hash is present
+    }
+
     function updateDisplay(index) {
       const house = houses[index];
+      if (!house) return; // If no house data is found, stop execution
+
+      // Set image
       document.getElementById("propertyImage").src = house.image;
+
+      // Set property details
+      document.getElementById("propertyName").textContent = house.name;
       document.getElementById("propertyLocation").textContent = house.location;
       document.getElementById("propertyType").textContent = house.type;
       document.getElementById("propertyDescription").textContent = house.description;
-
+      
+      // Set pricing info
       document.getElementById("priceRange").textContent = house.priceRange;
       document.getElementById("maintenanceFee").textContent = house.maintenance;
       document.getElementById("securityDeposit").textContent = house.deposit;
       document.getElementById("totalAmount").textContent = house.total;
     }
 
-    // Initial display
-    updateDisplay(0);
+    // Handle the Rent button click to redirect to rent.html with the current house id
+document.querySelector("button").addEventListener("click", () => {
+  if (houseIndex !== -1) {
+    window.location.href = `rent.html#${houses[houseIndex].id}`;
+  }
+});
 
-        const header = document.querySelector("header");
-    
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-                header.classList.add("scrolled");
-            } else {
-                header.classList.remove("scrolled");
-            }
-        });
+document.getElementById("rentButton").addEventListener("click", () => {
+  if (houseIndex !== -1) {
+    window.location.href = `rent.html#${houses[houseIndex].id}`;
+  }
+});
+</script>
 
-  </script>
 </body>
 </html>
-
-
