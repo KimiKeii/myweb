@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="category-choice.css">
 </head>
 <body>
-    <header>
+    <header> 
         <nav class="nav">
             <div class="logo">
                 <img src="LOGO.svg" class="Logo">
@@ -17,6 +17,7 @@
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
                 <a href="#categories">Categories</a>
+                <a href="#search">Search</a>
                 <a href="#contact">Contact</a>
             </ul>
             <div class="profile-section">
@@ -174,8 +175,40 @@
             </div>
         </div>
 
-        <div class="map">
-            <img src="maps.svg" alt="">
+        <section id="search" class="searchbox"></section>
+        <div id="search" class="searchbox-content">
+            <div class="map">
+                <iframe id="mapIframe" src="https://www.google.com/maps/embed?pb=initial-map-url" 
+                    width="100%" height="100%" style="border: 0; border-radius: 20px;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="search">
+                <div class="search-container">
+                    <div class="input-group left">
+                        <label for="city">City</label>
+                        <select id="city" onchange="showCityOnMap()">
+                        </select>
+                      </div>
+                      
+                      <div class="input-group right">
+                        <label for="type">Type</label>
+                        <select id="type">
+                          <option>RFO</option>
+                        </select>
+                      </div>
+                      
+            
+                <div class="range-group">
+                  <label>Min</label>
+                  <span id="min-price" class="price">₱10,000</span>
+                  <input id="min-range" type="range" min="10000" max="30000" value="10000" step="1000">
+                  <label>Max</label>
+                  <span id="max-price" class="price">₱30,000</span>
+                    <input id="max-range" type="range" min="10000" max="30000" value="30000" step="1000">
+                </div>
+            
+                <button class="search-btn">Search</button>
+              </div>
+              <script src="search.js"></script></div>
         </div>
 
     </section>
@@ -226,6 +259,7 @@
         <p>&copy; 2024 AOS. All rights reserved.</p>
     </footer>
     <script src="index.js"></script>
+
 <script>
         const header = document.querySelector("header");
     

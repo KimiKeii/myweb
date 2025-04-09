@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarksville Rental</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-50 font-[Inter]">
+    <!-- Header -->
+    <header class="bg-white shadow p-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <img src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="logo" class="h-6">
+            <h1 class="text-xl font-bold text-blue-600">AOS</h1>
+        </div>
+        <nav class="space-x-6 text-sm font-semibold text-gray-700">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Categories</a>
+            <a href="#">Contact</a>
+            <img src="https://img.icons8.com/ios-filled/24/000000/user.png" alt="user" class="inline h-5">
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <section class="p-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <!-- Left Card -->
+        <div class="bg-white rounded-2xl shadow p-4">
+            <img src="https://via.placeholder.com/400x250.png?text=House+Image" class="rounded-xl mb-4">
+            <h2 class="text-lg font-bold">House In Subic Bay, Zambales, Philippines</h2>
+            <p class="text-sm text-blue-700 mb-2">3-Bedroom Unit</p>
+            <p class="text-sm text-gray-700 font-semibold">Emanuel Manaloto</p>
+            <p class="text-xs text-gray-500">Property Owner</p>
+        </div>
+
+        <!-- Right Pricing Info -->
+        <div class="bg-white rounded-2xl shadow p-6">
+            <h1 class="text-4xl font-bold text-blue-900 mb-4">Clarksville</h1>
+            <div class="text-lg font-semibold mb-2">₱15,000/ mo</div>
+            <div class="text-sm text-gray-700">
+                <p>Maintenance Fee: <span class="float-right">₱2000</span></p>
+                <p>Security Deposit: <span class="float-right">₱15,000</span></p>
+            </div>
+            <div class="border-t border-gray-200 my-3"></div>
+            <p class="text-md font-bold">TOTAL <span class="float-right">₱17,000</span></p>
+            <button class="w-full mt-4 bg-yellow-100 text-gray-900 py-2 rounded-lg font-semibold">Rent</button>
+            <button class="w-full mt-2 bg-blue-100 text-blue-700 py-2 rounded-lg text-sm">Contact Owner</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="px-8 py-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+            <h3 class="text-xl font-bold text-blue-900 mb-3">About This Place</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">
+                Welcome to Clarksville, a beautiful getaway nestled in the picturesque Subic Bay, Zambales. This home blends contemporary style with rustic charm,
+                using stone and wood textures to create a warm, inviting atmosphere. Surrounded by nature, Townville North is the perfect retreat for those who
+                appreciate both modern luxury and the beauty of the outdoors.
+            </p>
+        </div>
+        <!-- Map Placeholder -->
+        <div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3856.0992250841945!2d120.23506691534436!3d14.8316119740388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396714fd6c9a49f%3A0xe6a3a15d118bd539!2sSubic%2C%20Zambales!5e0!3m2!1sen!2sph!4v1643779851345!5m2!1sen!2sph"
+                width="100%" height="250" style="border:0; border-radius: 1rem;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+</body>
+</html>
