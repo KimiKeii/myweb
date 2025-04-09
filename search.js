@@ -92,10 +92,10 @@ function showCityOnMap(city) {
   iframeMap.src = mapUrl;
 }
 
-// Function to load the world map as the default view when no options match
+// Function to load the Philippines map as the default view when no options match
 function loadWorldMap() {
-  const worldMapUrl = "https://www.google.com/maps/embed?pb=!1m0!4v1540217599261";
-  iframeMap.src = worldMapUrl;
+  const philippinesMapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25185870.727101218!2d115.54645584059567!3d12.745616659639073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f6!3m3!1m2!1s0x33a98d03e38eb9e1%3A0x5e82a796f0b7c4f0!2sPhilippines!5e0!3m2!1sen!2sph!4v1712653370606!5m2!1sen!2sph";
+  iframeMap.src = philippinesMapUrl;
 }
 
 // Initialize the options display based on the initial price range
