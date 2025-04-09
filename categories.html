@@ -1,366 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AOS</title>
-    <link rel="stylesheet" href="categories.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Houses</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <header>
-        <nav class="nav">
-            <div class="logo">
-                <a href="index.html"><img src="LOGO.svg" class="Logo"></a>
-            </div>
-            <ul class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="index.html#about">About</a>
-            </ul>
-            <div class="profile-section">
-                <img src="USER.svg" class="user-icon">
-                <div class="dropdown">
-                    <button class="dropdown-toggle">▼</button>
-                    <div class="dropdown-content">
-                        <a href="login.html" class="login">
-                            <span class="text-wrapper">
-                                <h5 class="login-name">Login</h5>
-                            </span>
-                        </a>
-                        <a href="sign-up.html" class="signup">
-                            <span class="text-wrapper">
-                                <h5 class="signup-name">Signup</h5>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
+<body class="bg-blue-50 font-[Inter]">
+<header><nav class="nav">
+  <div class="logo">
+      <a href="index.html"><img src="LOGO.svg" class="Logo"></a>
+  </div>
+  <ul class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#categories">Categories</a>
+      <a href="index.html#search">Search</a>
+      <a href="index.html#contact">Contact</a>
+  </ul>
+  <div class="profile-section">
+      <img src="USER.svg" class="user-icon">
+      <div class="dropdown">
+          <button class="dropdown-toggle">▼</button>
+          <div class="dropdown-content">
+              <a href="login.html" class="login">
+                  <span class="text-wrapper">
+                      <h5 class="login-name">Login</h5>
+                  </span>
+              </a>
+              <a href="sign-up.html" class="signup">
+                  <span class="text-wrapper">
+                      <h5 class="signup-name">Signup</h5>
+                  </span>
+              </a>
+          </div>
+      </div>
+  </div>
+</nav>
+</header>
 
-    <section id="home" class="hero">
-        <div class="carousel1" id="carousel1">
-           <div class="picture">
-                <p>Greenview Field</p>
-                <img src="carousel1.jpg" class="apartment-pic">
-           </div>
-           <div class="list">
-                <h2>House in Pampanga, Philippines</h2>
-                <p>3-Bedroom unit</p>
-           </div>
-           <div class="prop-own">
-                <img src="profile-icon2.svg" class="profile-icon2">
-                <h3>Nathan Magcamit</h3>
-                <p>Property Owner</p>
-           </div>
-           <div class="description">
-            <h3>About this place</h3>
-            <p>Welcome to Greenview Fields, a peaceful escape located 
-                in the heart of Pampanga. This beautifully designed 
-                home combines modern elegance with rustic elements, 
-                offering a stylish and cozy living space. The thoughtful 
-                use of wood and stone textures enhances the home’s inviting 
-                ambiance, making Townville North the perfect retreat for 
-                relaxation and comfort.
-            </p>
-           </div>
-           <div class="btn-grp">
-            <p>&#8369 15,000 - &#8369 20,000</p>
-            <p>Maintenance Fee: &#8369 2,000</p>
-            <p>Security Deposit(1Month): &#8369 15,000</p>
-            <a href="sign-up.html"><button class="rent-btn">Rent</button></a>
-            <button class="tour-btn">Book A Tour</button>
-           </div>
+<section class="p-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+    <!-- Left Side: House Image and Info -->
+    <div class="bg-white rounded-2xl shadow p-6">
+      <img id="propertyImage" src="" alt="House Image" class="rounded-xl mb-4" style="height: 580px; width: 900px; object-fit: contain;">
+      <h2 id="propertyName" class="text-2xl font-bold"></h2>
+      <p id="propertyLocation" class="text-sm text-blue-700 mb-2"></p>
+      <p id="propertyType" class="text-sm text-blue-700 mb-2"></p>
+      <p id="propertyDescription" class="text-xs text-gray-500 mb-4"></p>
+    </div>
+
+    <!-- Right Side: Payment Section (All in one div) -->
+    <div class="mt-48">
+      <div class="bg-white rounded-2xl shadow-lg px-6 py-4 w-full max-w-sm mx-auto">
+        <!-- Entire Payment Section -->
+        <div class="flex flex-col items-center">
+          <!-- Price Box -->
+          <div class="bg-white shadow-md rounded-xl px-4 py-3 text-center mb-4 w-full">
+            <div id="priceRange" class="text-lg font-semibold text-gray-800">₱0 / mo</div>
+          </div>
+
+          <!-- Fee Info -->
+          <div class="text-sm text-gray-700 space-y-1 mb-4 w-full">
+            <div class="flex justify-between">
+              <span>Maintenance Fee:</span>
+              <span id="maintenanceFee">₱0</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Security Deposit:</span>
+              <span id="securityDeposit">₱0</span>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <hr class="my-2 border-gray-200 w-full">
+
+          <!-- Total -->
+          <div class="text-base font-bold flex justify-between text-gray-800 mb-4 w-full">
+            <span>TOTAL</span>
+            <span id="totalAmount">₱0</span>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex flex-col gap-3 w-full">
+            <button id="rentButton" class="w-full bg-yellow-100 text-gray-900 py-2 rounded-xl font-bold shadow">Rent</button>
+            <button class="w-full bg-blue-100 text-blue-700 py-2 rounded-full text-sm font-semibold shadow">Contact Owner</button>
+          </div>
         </div>
+      </div>
+    </div>
+</section>
 
-        <div class="carousel2" id="carousel2">
-            <div class="picture">
-                 <p>Rockwell View</p>
-                 <img src="carousel2.jpg" class="apartment2-pic">
-            </div>
-            <div class="list">
-                <h2>House in Cebu City, Cebu, Philippines</h2>
-                <p>3-Bedroom unit</p>
-           </div>
-           <div class="prop-own">
-                <img src="profile-icon2.svg" class="profile-icon2">
-                <h3>Nathan Magcamit</h3>
-                <p>Property Owner</p>
-           </div>
-            <div class="description">
-                <h3>About this place</h3>
-             <p>Welcome to Rockwell View, a contemporary haven situated 
-                in the vibrant city of Cebu. This modern home exudes 
-                sophistication with its elegant design, showcasing a 
-                perfect fusion of wood and stone textures. With its 
-                inviting atmosphere and thoughtful layout, Townville 
-                North offers a stylish and comfortable living space ideal 
-                for those seeking both convenience and tranquility.
-             </p>
-            </div>
-            <div class="btn-grp">
-                <p>&#8369 20,000 - &#8369 30,000</p>
-                <p>Maintenance Fee: &#8369 2,000</p>
-                <p>Security Deposit(1Month): &#8369 15,000</p>
-                <a href="sign-up.html"><button class="rent-btn">Rent</button></a>
-                <button class="tour-btn">Book A Tour</button>
-            </div>
-         </div>
+<!-- JavaScript -->
+<script>
+    const houses = [
+      { 
+        id: "house1", 
+        name: "Clarksville", 
+        image: "carousel1.jpg", 
+        location: "House in Subic Bay, Zambales, Philippines", 
+        type: "3-Bedroom Unit", 
+        description: "Welcome to Clarksville, a beautiful getaway nestled in the picturesque Subic Bay, Zambales. This home blends contemporary style with rustic charm, using stone and wood textures to create a warm, inviting atmosphere. Surrounded by nature, Clarksville is the perfect retreat for those who appreciate both modern luxury and the beauty of the outdoors.", 
+        priceRange: "₱15,000 / mo", 
+        maintenance: "₱2,000", 
+        deposit: "₱15,000", 
+        total: "₱17,000"
+      },
+      { 
+        id: "house2", 
+        name: "Seaside Retreat", 
+        image: "carousel2.jpg", 
+        location: "Beachfront in La Union, Philippines", 
+        type: "4-Bedroom Villa", 
+        description: "Escape to Seaside Retreat, a stunning beachfront villa offering serene ocean views. Perfect for those who love the ocean breeze, this spacious villa offers luxury amenities combined with the peace of the sea.", 
+        priceRange: "₱20,000 / mo", 
+        maintenance: "₱3,000", 
+        deposit: "₱20,000", 
+        total: "₱23,000"
+      },
+      { 
+        id: "house3", 
+        name: "Mountain View", 
+        image: "carousel3.jpg", 
+        location: "Tagaytay, Cavite, Philippines", 
+        type: "2-Bedroom Bungalow", 
+        description: "Mountain View offers a quiet retreat with a panoramic view of the mountains. Perfect for those seeking peace and a connection with nature, this home is designed with eco-friendly materials and sustainability in mind.", 
+        priceRange: "₱12,000 / mo", 
+        maintenance: "₱1,500", 
+        deposit: "₱12,000", 
+        total: "₱13,500"
+      },
+      { 
+        id: "house4", 
+        name: "City Heights", 
+        image: "carousel4.jpg", 
+        location: "Makati, Metro Manila, Philippines", 
+        type: "Studio Apartment", 
+        description: "City Heights offers a modern living experience in the heart of Makati. This studio apartment is designed for young professionals seeking a convenient and stylish urban lifestyle.", 
+        priceRange: "₱10,000 / mo", 
+        maintenance: "₱1,200", 
+        deposit: "₱10,000", 
+        total: "₱11,200"
+      },
+      { 
+        id: "house5", 
+        name: "Tropical Villa", 
+        image: "carousel5.jpg", 
+        location: "Boracay, Aklan, Philippines", 
+        type: "5-Bedroom Villa", 
+        description: "Tropical Villa offers a luxurious experience in the heart of Boracay, surrounded by stunning beaches and vibrant nightlife. This spacious villa includes all modern amenities and more.", 
+        priceRange: "₱50,000 / mo", 
+        maintenance: "₱5,000", 
+        deposit: "₱35,000", 
+        total: "₱40,000"
+      },
+      { 
+        id: "house6", 
+        name: "Sunset Breeze", 
+        image: "carousel6.jpg", 
+        location: "Davao City, Davao, Philippines", 
+        type: "3-Bedroom Beachfront Home", 
+        description: "Sunset Breeze offers a peaceful escape by the beach, with a stunning view of the sunset each evening. The property is designed for comfort and relaxation.", 
+        priceRange: "₱40,000 / mo", 
+        maintenance: "₱3,500", 
+        deposit: "₱26,000", 
+        total: "₱29,500"
+      },
+      { 
+        id: "house7", 
+        name: "Hilltop Estate", 
+        image: "carousel7.jpg", 
+        location: "Baguio City, BENGUET, Philippines", 
+        type: "4-Bedroom Estate", 
+        description: "Hilltop Estate offers an exclusive retreat in the cool, mountainous air of Baguio City. The property boasts expansive views and luxurious living spaces.", 
+        priceRange: "₱25,000 / mo", 
+        maintenance: "₱3,000", 
+        deposit: "₱25,000", 
+        total: "₱28,000"
+      },
+      { 
+        id: "house8", 
+        name: "Laguna Serenity", 
+        image: "carousel8.jpg", 
+        location: "Biñan, Laguna, Philippines", 
+        type: "5-Bedroom Modern Home", 
+        description: "Laguna Serenity is a beautiful modern home designed with both luxury and comfort in mind. The property features large windows that offer a view of the serene surroundings.", 
+        priceRange: "₱45,000 / mo", 
+        maintenance: "₱4,000", 
+        deposit: "₱25,000", 
+        total: "₱29,000"
+      }
+    ];
 
-        <div class="carousel3" id="carousel3">
-            <div class="picture">
-                 <p>Eastwoods Ville</p>
-                 <img src="carousel3.jpg" class="apartment3-pic">
-            </div>
-            <div class="list">
-                <h2>House in Biñan, Laguna, Philippines</h2>
-                <p>2-Bedroom unit</p>
-            </div>
-            <div class="prop-own">
-                <img src="profile-icon2.svg" class="profile-icon2">
-                <h3>Nathan Magcamit</h3>
-                <p>Property Owner</p>
-            </div>
-            <div class="description">
-                <h3>About this place</h3>
-             <p>Welcome to Eastwoods Ville, a charming retreat located 
-                in the heart of Biñan, Laguna. This stylish home offers 
-                the perfect blend of modern sophistication and rustic 
-                elegance, featuring warm lighting and creative use of 
-                stone and wood textures that radiate timeless charm.
-             </p>
-            </div>
-            <div class="btn-grp">
-                <p>&#8369 20,000 - &#8369 30,000</p>
-                <p>Maintenance Fee: &#8369 2,000</p>
-                <p>Security Deposit(1Month): &#8369 15,000</p>
-                <a href="sign-up.html"><button class="rent-btn">Rent</button></a>
-                <button class="tour-btn">Book A Tour</button>
-            </div>
-        </div>
+    // Get the house id from the URL
+    const hash = window.location.hash.substring(1); // Remove the '#' from the hash
+    const houseIndex = houses.findIndex(house => house.id === hash); // Find the house index from the hash
 
-        <div class="carousel4" id="carousel4">
-            <div class="picture">
-                 <p>Townville North</p>
-                 <img src="carousel4.jpg" class="apartment-pic">
-            </div>
-            <div class="list">
-                <h2>House in Tagaytay, Cavite, Philippines</h2>
-                <p>3-Bedroom unit</p>
-            </div>
-            <div class="prop-own">
-                <img src="profile-icon2.svg" class="profile-icon2">
-                <h3>Nathan Magcamit</h3>
-                <p>Property Owner</p>
-            </div>
-            <div class="description">
-                <h3>About this place</h3>
-             <p>Welcome to Townville North, a serene escape nestled 
-                in the cool climate of Tagaytay, Cavite. This stylish 
-                home combines modern elegance with rustic charm, 
-                featuring warm lighting and a harmonious blend of stone 
-                and wood elements. Whether you're enjoying the picturesque 
-                views of Taal Volcano or relaxing in the comfort of your 
-                home, Townville North offers a peaceful retreat with all 
-                the comforts of home.
-             </p>
-            </div>
-            <div class="btn-grp">
-                <p>&#8369 20,000 - &#8369 30,000</p>
-                <p>Maintenance Fee: &#8369 2,000</p>
-                <p>Security Deposit(1Month): &#8369 15,000</p>
-                <a href="sign-up.html"><button class="rent-btn">Rent</button></a>
-                <button class="tour-btn">Book A Tour</button>
-            </div>
-        </div>
+    if (houseIndex !== -1) {
+      updateDisplay(houseIndex);
+    } else {
+      updateDisplay(0); // Default to the first house if no valid hash is present
+    }
 
-        <div class="carousel5" id="carousel5">
-            <div class="picture">
-                 <p>Oaklands</p>
-                 <img src="carousel5.jpg" class="apartment3-pic">
-            </div>
-            <div class="list">
-                <h2>House in Davao City, Davao del Sur, Philippines</h2>
-                <p>3-Bedroom unit</p>
-            </div>
-            <div class="prop-own">
-                <img src="profile-icon2.svg" class="profile-icon2">
-                <h3>Nathan Magcamit</h3>
-                <p>Property Owner</p>
-            </div>
-            <div class="description">
-                <h3>About this place</h3>
-             <p>Welcome to Oaklands, a cozy sanctuary located in the 
-                thriving city of Davao. This stylish home combines modern 
-                design with rustic accents, including warm lighting and 
-                natural stone and wood finishes. Townville North offers a 
-                serene environment with easy access to the city’s 
-                attractions, making it the perfect home for those seeking 
-                a balance of urban and peaceful living.
-             </p>
-            </div>
-            <div class="btn-grp">
-                <p>&#8369 20,000 - &#8369 30,000</p>
-                <p>Maintenance Fee: &#8369 2,000</p>
-                <p>Security Deposit(1Month): &#8369 15,000</p>
-                <a href="sign-up.html"><button class="rent-btn">Rent</button></a>
-                <button class="tour-btn">Book A Tour</button>
-            </div>
-        </div>
+    function updateDisplay(index) {
+      const house = houses[index];
+      if (!house) return; // If no house data is found, stop execution
 
-        <div class="carousel6" id="carousel6">
-            <div class="picture">
-                 <p>Clarksville </p>
-                 <img src="carousel6.jpg" class="apartment3-pic">
-            </div>
-            <div class="list">
-                <h2>House in Subic Bay, Zambales, Philippines</h2>
-                <p>3-Bedroom unit</p>
-            </div>
-            <div class="prop-own">
-                <img src="profile-icon2.svg" class="profile-icon2">
-                <h3>Nathan Magcamit</h3>
-                <p>Property Owner</p>
-            </div>
-            <div class="description">
-                <h3>About this place</h3>
-             <p>Welcome to Clarksville, a beautiful getaway nestled 
-                in the picturesque Subic Bay, Zambales. This home blends 
-                contemporary style with rustic charm, using stone and wood 
-                textures to create a warm, inviting atmosphere. Surrounded 
-                by nature, Townville North is the perfect retreat for those 
-                who appreciate both modern luxury and the beauty of the 
-                outdoors.
-             </p>
-            </div>
-            <div class="btn-grp">
-                <p>&#8369 20,000 - &#8369 30,000</p>
-                <p>Maintenance Fee: &#8369 2,000</p>
-                <p>Security Deposit(1Month): &#8369 15,000</p>
-                <a href="sign-up.html"><button class="rent-btn">Rent</button></a>
-                <button class="tour-btn">Book A Tour</button>
-            </div>
-        </div>
+      // Set image
+      document.getElementById("propertyImage").src = house.image;
 
-        <div class="carousel7" id="carousel7">
-            <div class="picture">
-                 <p>Highfields </p>
-                 <img src="carousel7.jpg" class="apartment3-pic">
-            </div>
-            <div class="list">
-                <h2>House in Batangas City, Batangas, Philippines</h2>
-                <p>3-Bedroom unit</p>
-            </div>
-            <div class="prop-own">
-                <img src="profile-icon2.svg" class="profile-icon2">
-                <h3>Nathan Magcamit</h3>
-                <p>Property Owner</p>
-            </div>
-            <div class="description">
-                <h3>About this place</h3>
-             <p>Welcome to Highfields, a charming home nestled 
-                in the scenic city of Batangas. This stylish abode features 
-                a perfect blend of modern design and rustic elegance, with 
-                warm lighting and natural stone and wood finishes that 
-                create a welcoming atmosphere. Townville North offers a 
-                serene environment, making it the ideal place for both rest 
-                and recreation.
-             </p>
-            </div>
-            <div class="btn-grp">
-                <p>&#8369 20,000 - &#8369 30,000</p>
-                <p>Maintenance Fee: &#8369 2,000</p>
-                <p>Security Deposit(1Month): &#8369 15,000</p>
-                <a href="sign-up.html"><button class="rent-btn">Rent</button></a>
-                <button class="tour-btn">Book A Tour</button>
-            </div>
-        </div>
+      // Set property details
+      document.getElementById("propertyName").textContent = house.name;
+      document.getElementById("propertyLocation").textContent = house.location;
+      document.getElementById("propertyType").textContent = house.type;
+      document.getElementById("propertyDescription").textContent = house.description;
+      
+      // Set pricing info
+      document.getElementById("priceRange").textContent = house.priceRange;
+      document.getElementById("maintenanceFee").textContent = house.maintenance;
+      document.getElementById("securityDeposit").textContent = house.deposit;
+      document.getElementById("totalAmount").textContent = house.total;
+    }
 
-        <div class="carousel8" id="carousel8">
-            <div class="picture">
-                 <p>Brookside West</p>
-                 <img src="carousel8.jpg" class="apartment3-pic">
-            </div>
-            <div class="list">
-                <h2>House in Quezon City, Metro Manila, Philippines</h2>
-                <p>3-Bedroom unit</p>
-            </div>
-            <div class="prop-own">
-                <img src="profile-icon2.svg" class="profile-icon2">
-                <h3>Nathan Magcamit</h3>
-                <p>Property Owner</p>
-            </div>
-            <div class="description">
-                <h3>About this place</h3>
-             <p>Welcome to Brookside west, a contemporary oasis located 
-                in the bustling heart of Quezon City. This home exudes 
-                modern sophistication with its thoughtful design, featuring 
-                warm lighting and the perfect mix of stone and wood 
-                elements. Townville North offers a peaceful retreat from 
-                the city’s fast-paced lifestyle, providing comfort and 
-                convenience for those seeking a stylish and relaxing home.
-             </p>
-            </div>
-            <div class="btn-grp">
-                <p>&#8369 20,000 - &#8369 30,000</p>
-                <p>Maintenance Fee: &#8369 2,000</p>
-                <p>Security Deposit(1Month): &#8369 15,000</p>
-                <a href="sign-up.html"><button class="rent-btn">Rent</button></a>
-                <button class="tour-btn">Book A Tour</button>
-            </div>
-        </div>
-    </section>
+    // Handle the Rent button click to redirect to rent.html with the current house id
+document.querySelector("button").addEventListener("click", () => {
+  if (houseIndex !== -1) {
+    window.location.href = `rent.html#${houses[houseIndex].id}`;
+  }
+});
 
-    <section id="contact" class="contact">
-        <div class="contact-grid">
-            <div class="contact-item">
-                <h3><img src="LOGOwWords.svg" class="logo-contact"></h3>
-                <p>Arrange, Organize, and simplify
-                    Apartment life</p>
-            </div>
-            <div class="contact-item2">
-                <h3>Trending</h3>
-                <div class="top-pics">
-                    <img src="top-pick1.jpg" class="top-pic"><p>3 Bedrooms / 2 bathroom Condo
-                        Quezon City</p>
-                </div>
-                <div class="top-pics">
-                    <img src="top-pick2.jpg" class="top-pic"><p>2 Bedroom / 1 Bathroom apartment
-                        Alabang</p>
-                </div>
-            </div>
-            <div class="contact-item3">
-                <h3>Contact Us</h3>
-                <div class="icons-social">
-                    <div class="icon-social"><img src="icon4.svg" class="icon-pic">
-                    <p>aosapartment</p>
-                    </div>
-                    <div class="icon-social"><img src="icon3.svg" class="icon-pic">
-                    <p>@aosapartment</p>
-                    </div>
-                    <div class="icon-social"><img src="icon2.svg" class="icon-pic">
-                    <p>09212044720</p>
-                    </div>
-                    <div class="icon-social2"><img src="icon1.svg" class="icon-pic">
-                    <p>aoscontact@gmail.com</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+document.getElementById("rentButton").addEventListener("click", () => {
+  if (houseIndex !== -1) {
+    window.location.href = `rent.html#${houses[houseIndex].id}`;
+  }
+});
+</script>
 
-    <footer>
-        <p>&copy; 2024 AOS. All rights reserved.</p>
-    </footer>
-    <script>
-        const header = document.querySelector("header");
-    
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-                header.classList.add("scrolled");
-            } else {
-                header.classList.remove("scrolled");
-            }
-        });
-    </script>
 </body>
 </html>

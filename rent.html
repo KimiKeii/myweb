@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rent Property</title>
+  <link rel="stylesheet" href="dashboard.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-50 font-[Inter]">
+    <header><nav class="nav">
+        <div class="logo">
+      <a href="index.html"><img src="LOGO.svg" class="Logo"></a>
+        </div>
+        <ul class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#categories">Categories</a>
+            <a href="index.html#search">Search</a>
+            <a href="index.html#contact">Contact</a>
+        </ul>
+        <div class="profile-section">
+            <img src="USER.svg" class="user-icon">
+            <div class="dropdown">
+                <button class="dropdown-toggle">▼</button>
+                <div class="dropdown-content">
+                    <a href="login.html" class="login">
+                        <span class="text-wrapper">
+                            <h5 class="login-name">Login</h5>
+                        </span>
+                    </a>
+                    <a href="sign-up.html" class="signup">
+                        <span class="text-wrapper">
+                            <h5 class="signup-name">Signup</h5>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+      </nav>
+      </header>
+<section class="p-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start font-[Inter] "> <!-- Added mt-24 to add margin-top -->
+  <!-- Left: Payment & Guest Info -->
+  <div class="bg-white rounded-2xl shadow-lg p-5 w-full max-w-md mx-auto lg:mx-0">
+    <h3 class="text-base font-semibold text-gray-800 mb-4">Choose your payment option</h3>
+    <div class="space-y-3 mb-5">
+      <label class="flex items-center space-x-2">
+        <input type="radio" name="paymentOption" checked class="accent-green-600"/>
+        <span class="text-sm">Pay on 12 May 2025 <span class="text-green-600 font-semibold">(Risk Free!)</span></span>
+      </label>
+      <label class="flex items-center space-x-2">
+        <input type="radio" name="paymentOption" class="accent-blue-600"/>
+        <span class="text-sm">Pay now</span>
+      </label>
+    </div>
+
+    <h3 class="text-base font-semibold text-gray-800 mb-3">Who's the lead guest?</h3>
+    <form class="space-y-3">
+      <input type="text" placeholder="First Name" class="w-full border rounded-xl px-4 py-2 focus:outline-blue-400"/>
+      <input type="text" placeholder="Last Name" class="w-full border rounded-xl px-4 py-2 focus:outline-blue-400"/>
+      <div>
+        <input type="email" placeholder="Email" class="w-full border rounded-xl px-4 py-2 focus:outline-blue-400"/>
+      </div>
+      <input type="text" placeholder="Phone number (optional)" class="w-full border rounded-xl px-4 py-2 focus:outline-blue-400"/>
+      <input type="text" placeholder="Country/region of residence" class="w-full border rounded-xl px-4 py-2 focus:outline-blue-400" value="Philippines"/>
+    </form>
+
+    <div class="mt-5 space-y-2">
+      <button class="w-full bg-yellow-100 hover:bg-yellow-200 text-gray-800 py-2 rounded-xl font-semibold shadow" onclick="window.location.href='login.html'">Rent Now</button> <!-- Added onclick for Rent Now -->
+      <button class="w-full bg-blue-100 hover:bg-blue-200 text-blue-800 py-2 rounded-xl text-sm font-medium shadow" onclick="window.location.href='login.html'">Contact Owner</button> <!-- Added onclick for Contact Owner -->
+    </div>
+  </div>
+
+  <!-- Right: Property Details -->
+  <div class="bg-white rounded-2xl shadow p-6">
+    <img id="propertyImage" src="" alt="House Image" class="rounded-xl mb-4 w-full h-[400px] object-cover"/>
+    <h2 id="propertyName" class="text-2xl font-bold mb-1"></h2>
+    <div id="starRating" class="mb-2 text-yellow-500"></div> <!-- Star rating -->
+    <p id="propertyLocation" class="text-sm text-blue-600 mb-1"></p>
+    <p id="propertyType" class="text-sm text-blue-600 mb-1"></p>
+    <p id="propertyDescription" class="text-sm text-gray-500 mb-4"></p>
+    <p class="text-sm text-gray-500 font-semibold">Owner: <span id="propertyOwner">Nathan Magcamit</span></p>
+  </div>
+</section>
+
+<script>
+    const houses = [
+  { 
+    id: "house1", 
+    name: "Clarksville", 
+    image: "carousel1.jpg", 
+    location: "House in Subic Bay, Zambales, Philippines", 
+    type: "3-Bedroom Unit", 
+    description: "Welcome to Clarksville, a beautiful getaway nestled in the picturesque Subic Bay, Zambales. This home blends contemporary style with rustic charm, using stone and wood textures to create a warm, inviting atmosphere. Surrounded by nature, Clarksville is the perfect retreat for those who appreciate both modern luxury and the beauty of the outdoors.", 
+    priceRange: "₱15,000 / mo", 
+    maintenance: "₱2,000", 
+    deposit: "₱15,000", 
+    total: "₱17,000",
+    contactName: "Earl",  
+    contactLastName: "Espinosa",  
+    contactPhone: "123456789",  
+    contactEmail: "espinosa.earl@email.com", 
+    rating: (Math.random() * 2 + 3).toFixed(1) // Random rating between 3.0 and 5.0
+  },
+  { 
+    id: "house2", 
+    name: "Seaside Retreat", 
+    image: "carousel2.jpg", 
+    location: "Beachfront in La Union, Philippines", 
+    type: "4-Bedroom Villa", 
+    description: "Escape to Seaside Retreat, a stunning beachfront villa offering serene ocean views. Perfect for those who love the ocean breeze, this spacious villa offers luxury amenities combined with the peace of the sea.", 
+    priceRange: "₱20,000 / mo", 
+    maintenance: "₱3,000", 
+    deposit: "₱20,000", 
+    total: "₱23,000",
+    contactName: "Earl",  
+    contactLastName: "Espinosa",  
+    contactPhone: "123456789",  
+    contactEmail: "espinosa.earl@email.com", 
+    rating: (Math.random() * 2 + 3).toFixed(1) // Random rating between 3.0 and 5.0
+  },
+  { 
+    id: "house3", 
+    name: "Mountain View", 
+    image: "carousel3.jpg", 
+    location: "Tagaytay, Cavite, Philippines", 
+    type: "2-Bedroom Bungalow", 
+    description: "Mountain View offers a quiet retreat with a panoramic view of the mountains. Perfect for those seeking peace and a connection with nature, this home is designed with eco-friendly materials and sustainability in mind.", 
+    priceRange: "₱12,000 / mo", 
+    maintenance: "₱1,500", 
+    deposit: "₱12,000", 
+    total: "₱13,500",
+    contactName: "Earl",  
+    contactLastName: "Espinosa",  
+    contactPhone: "123456789",  
+    contactEmail: "espinosa.earl@email.com", 
+    rating: (Math.random() * 2 + 3).toFixed(1) // Random rating between 3.0 and 5.0
+  },
+  { 
+    id: "house4", 
+    name: "City Heights", 
+    image: "carousel4.jpg", 
+    location: "Makati, Metro Manila, Philippines", 
+    type: "Studio Apartment", 
+    description: "City Heights offers a modern living experience in the heart of Makati. This studio apartment is designed for young professionals seeking a convenient and stylish urban lifestyle.", 
+    priceRange: "₱10,000 / mo", 
+    maintenance: "₱1,200", 
+    deposit: "₱10,000", 
+    total: "₱11,200",
+    contactName: "Earl",  
+    contactLastName: "Espinosa",  
+    contactPhone: "123456789",  
+    contactEmail: "espinosa.earl@email.com", 
+    rating: (Math.random() * 2 + 3).toFixed(1) // Random rating between 3.0 and 5.0
+  },
+  { 
+    id: "house5", 
+    name: "Tropical Villa", 
+    image: "carousel5.jpg", 
+    location: "Boracay, Aklan, Philippines", 
+    type: "5-Bedroom Villa", 
+    description: "Tropical Villa offers a luxurious experience in the heart of Boracay, surrounded by stunning beaches and vibrant nightlife. This spacious villa includes all modern amenities and more.", 
+    priceRange: "₱50,000 / mo", 
+    maintenance: "₱5,000", 
+    deposit: "₱50,000", 
+    total: "₱55,000",
+    contactName: "Earl",  
+    contactLastName: "Espinosa",  
+    contactPhone: "123456789",  
+    contactEmail: "espinosa.earl@email.com", 
+    rating: (Math.random() * 2 + 3).toFixed(1) // Random rating between 3.0 and 5.0
+  },
+  { 
+    id: "house6", 
+    name: "Sunset Breeze", 
+    image: "carousel6.jpg", 
+    location: "Davao City, Davao, Philippines", 
+    type: "3-Bedroom Beachfront Home", 
+    description: "Sunset Breeze offers a peaceful escape by the beach, with a stunning view of the sunset each evening. The property is designed for comfort and relaxation.", 
+    priceRange: "₱40,000 / mo", 
+    maintenance: "₱3,500", 
+    deposit: "₱40,000", 
+    total: "₱43,500",
+    contactName: "Earl",  
+    contactLastName: "Espinosa",  
+    contactPhone: "123456789",  
+    contactEmail: "espinosa.earl@email.com", 
+    rating: (Math.random() * 2 + 3).toFixed(1) // Random rating between 3.0 and 5.0
+  },
+  { 
+    id: "house7", 
+    name: "Hilltop Estate", 
+    image: "carousel7.jpg", 
+    location: "Baguio City, Philippines", 
+    type: "4-Bedroom Estate", 
+    description: "Hilltop Estate offers an exclusive retreat in the cool, mountainous air of Baguio City. The property boasts expansive views and luxurious living spaces.", 
+    priceRange: "₱25,000 / mo", 
+    maintenance: "₱3,000", 
+    deposit: "₱25,000", 
+    total: "₱28,000",
+    contactName: "Earl",  
+    contactLastName: "Espinosa",  
+    contactPhone: "123456789",  
+    contactEmail: "espinosa.earl@email.com", 
+    rating: (Math.random() * 2 + 3).toFixed(1) // Random rating between 3.0 and 5.0
+  },
+  { 
+    id: "house8", 
+    name: "Laguna Serenity", 
+    image: "carousel8.jpg", 
+    location: "Laguna, Philippines", 
+    type: "5-Bedroom Modern Home", 
+    description: "Laguna Serenity is a beautiful modern home designed with both luxury and comfort in mind. The property features large windows that offer a view of the serene surroundings.", 
+    priceRange: "₱45,000 / mo", 
+    maintenance: "₱4,000", 
+    deposit: "₱45,000", 
+    total: "₱49,000",
+    contactName: "Earl",  
+    contactLastName: "Espinosa",  
+    contactPhone: "123456789",  
+    contactEmail: "espinosa.earl@email.com", 
+    rating: (Math.random() * 2 + 3).toFixed(1) // Random rating between 3.0 and 5.0
+  }
+];
+
+
+  // Get the house ID from the URL hash
+  const hash = window.location.hash.substring(1); // Remove the '#' from the hash
+
+  // Find the house that matches the ID from the URL
+  const houseIndex = houses.findIndex(house => house.id === hash);
+
+  // If the house is found, update the display
+  if (houseIndex !== -1) {
+    updateDisplay(houseIndex);
+  } else {
+    updateDisplay(0); // Default to the first house if no valid house ID is found
+  }
+
+  function updateDisplay(index) {
+    const house = houses[index];
+    if (!house) return;
+
+    document.getElementById("propertyImage").src = house.image;
+    document.getElementById("propertyName").textContent = house.name;
+    document.getElementById("propertyLocation").textContent = house.location;
+    document.getElementById("propertyType").textContent = house.type;
+    document.getElementById("propertyDescription").textContent = house.description;
+
+    // Update the star rating
+    const starRating = document.getElementById("starRating");
+    starRating.innerHTML = getStarRating(house.rating);
+
+    // Owner (hardcoded as Nathan Magcamit)
+    document.getElementById("propertyOwner").textContent = "Nathan Magcamit";
+  }
+
+  // Function to generate star rating
+  function getStarRating(rating) {
+    const fullStars = Math.floor(rating);
+    const halfStars = (rating % 1 >= 0.5) ? 1 : 0;
+    const emptyStars = 5 - fullStars - halfStars;
+
+    return `
+      ${"★".repeat(fullStars)}
+      ${"☆".repeat(halfStars)}
+      ${"☆".repeat(emptyStars)}
+    `;
+  }
+</script>
+
+</body>
+</html>
