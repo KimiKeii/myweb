@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Subscription Plans</title>
+  <link rel="stylesheet" href="subscription.css" />
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="logo">
+        <img src="LOGO.svg" class="Logo" alt="Logo" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#search">Search</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="profile-section">
+        <img src="USER.svg" class="user-icon" alt="User Icon" />
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="subscription-container">
+      <h1>Choose Your Subscription Plan</h1>
+      <div class="plans">
+        <div class="plan">
+          <h1>Monthly</h1>
+          <h2>bronze</h2>
+          <p class="price">P149 / month</p>
+          <button class="pay-btn">Pay Now</button>
+        </div>
+
+        <div class="plan">
+          <h1>Quarterly</h1>
+          <h2>Silver</h2>
+          <p class="price">P249 / 3 months</p>
+          <button class="pay-btn">Pay Now</button>
+        </div>
+
+        <div class="plan">
+          <h1>Yearly</h1>
+          <h2>Gold</h2>
+          <p class="price">P449 / year</p>
+          <button class="pay-btn">Pay Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Payment Modal -->
+  <div id="paymentModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close" style="cursor:pointer;">&times;</span>
+      <h2>Select Payment Method</h2>
+      <div class="payment-option">
+        <!-- No Card button, only Gcash as default -->
+        <button id="gcashBtn" class="option-btn active">Gcash</button>
+      </div>
+
+      <!-- Gcash payment inputs -->
+      <div id="gcashForm" class="payment-form" style="display:flex; flex-direction: column; gap: 8px;">
+        <input type="text" name="gcashnumber" autocomplete="off" placeholder="Gcash Number" required />
+        <input type="text" name="otp" autocomplete="off" placeholder="Enter OTP" required />
+        <button id="gcashPayBtn" type="button">Pay</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success popup -->
+  <div id="successPopup" class="success-popup" style="display:none;">
+    <div class="success-content">
+      <span id="successClose" class="success-close">&times;</span>
+      <p id="successMessage"></p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const payButtons = document.querySelectorAll('.pay-btn');
+      const paymentModal = document.getElementById('paymentModal');
+      const closeModal = paymentModal.querySelector('.close');
+      const gcashBtn = document.getElementById('gcashBtn');
+      const gcashForm = document.getElementById('gcashForm');
+      const successPopup = document.getElementById('successPopup');
+      const successClose = document.getElementById('successClose');
+      const successMessage = document.getElementById('successMessage');
+
+      // Open modal on any pay button click
+      payButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          paymentModal.style.display = 'block';
+          // Gcash is selected by default
+          gcashBtn.classList.add('active');
+          gcashForm.style.display = 'flex';
+        });
+      });
+
+      // Close modal
+      closeModal.addEventListener('click', () => {
+        paymentModal.style.display = 'none';
+      });
+
+      // Click outside modal closes it
+      window.addEventListener('click', (e) => {
+        if (e.target === paymentModal) {
+          paymentModal.style.display = 'none';
+        }
+      });
+
+      // Gcash button is always active, no toggle needed here
+
+      // Gcash Pay button click
+      document.getElementById('gcashPayBtn').addEventListener('click', () => {
+        paymentModal.style.display = 'none';
+        successMessage.textContent = 'Payment successful via Gcash!';
+        successPopup.style.display = 'block';
+
+        // Redirect to index.html after 3 seconds
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 3000);
+      });
+
+      // Close success popup manually (optional)
+      successClose.addEventListener('click', () => {
+        successPopup.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>
