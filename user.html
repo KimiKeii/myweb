@@ -85,51 +85,54 @@
             // Define different content for each section
             const sections = {
                 myproperty: '<img src="MyProperty.png" class="myproperty">',
-                payment: '<img src="Payment.png" class="myproperty">',
+                payment: `
+                    <img src="Payment.png" class="myproperty"> 
+                    <div class="pay-here"><a href="" class="paybtn">Pay Here<a></div>
+                    `,
                 mydetails: `
-                <div class="card">
-                    <!-- Left Column -->
-                    <div class="profile">
-                    <section>
-                        <div class="profile-icon">
-                        <img class="tenant-image" src="Emmy.jpg">    
+                    <div class="card">
+                        <!-- Left Column -->
+                        <div class="profile">
+                        <section>
+                            <div class="profile-icon">
+                            <img class="tenant-image" src="Emmy.jpg">    
+                            </div>
+                        </section>
+                        <section class="profile-info">
+                            <div class="section-title">Tenant Information</div>
+                            <p><strong>Name:</strong> Emmy</p>
+                            <p><strong>Date of Birth:</strong> May 10, 2000</p>
+                            <p><strong>Contact Information:</strong> 01234567891</p>
+                            <p><strong>Email:</strong> juandelacruz@gmail.com</p>
+                            <p><strong>Emergency Contact:</strong> 09212044729</p>
+                            <p><strong>Moved In:</strong> June 1, 2023</p>
+                        </section>
                         </div>
-                    </section>
-                    <section class="profile-info">
-                        <div class="section-title">Tenant Information</div>
-                        <p><strong>Name:</strong> Emmy</p>
-                        <p><strong>Date of Birth:</strong> May 10, 2000</p>
-                        <p><strong>Contact Information:</strong> 01234567891</p>
-                        <p><strong>Email:</strong> juandelacruz@gmail.com</p>
-                        <p><strong>Emergency Contact:</strong> 09212044729</p>
-                        <p><strong>Moved In:</strong> June 1, 2023</p>
-                    </section>
+
+                        <!-- Right Column -->
+                        <div>
+                        <section class="docs">
+                            <div class="section-title">Documents</div>
+
+                            <p><strong>View/Upload Contract</strong></p>
+                            <a href="#">Upload contract with signature</a>
+
+                            <p><strong>Tenant ID Proof (PDF):</strong></p>
+                            <a href="#">View/Download Tenant ID Proof</a>
+
+                            <p><strong>SMDC Rules & Regulations (PDF):</strong></p>
+                            <a href="#">View/Download Rules & Regulations</a>
+                        </section>
+
+                        <section class="utilities">
+                            <div class="section-title">Utilities Provider</div>
+                            <p><strong>Water Provider:</strong> PrimeWater</p>
+                            <p><strong>Electricity Provider:</strong> Meralco</p>
+                            <p><strong>Internet Provider:</strong> PLDT</p>
+                        </section>
+                        </div>
+
                     </div>
-
-                    <!-- Right Column -->
-                    <div>
-                    <section class="docs">
-                        <div class="section-title">Documents</div>
-
-                        <p><strong>View/Upload Contract</strong></p>
-                        <a href="#">Upload contract with signature</a>
-
-                        <p><strong>Tenant ID Proof (PDF):</strong></p>
-                        <a href="#">View/Download Tenant ID Proof</a>
-
-                        <p><strong>SMDC Rules & Regulations (PDF):</strong></p>
-                        <a href="#">View/Download Rules & Regulations</a>
-                    </section>
-
-                    <section class="utilities">
-                        <div class="section-title">Utilities Provider</div>
-                        <p><strong>Water Provider:</strong> PrimeWater</p>
-                        <p><strong>Electricity Provider:</strong> Meralco</p>
-                        <p><strong>Internet Provider:</strong> PLDT</p>
-                    </section>
-                    </div>
-
-                </div>
                 `,
                 contract:`
                 <div class="container" id="leaseContent">

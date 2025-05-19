@@ -439,3 +439,17 @@ button#downloadBtn:hover {
     strong {
       color: #00254d;
     }
+
+    .pay-here{
+        width: 100px;
+        height: 50px;
+        border-radius: 50%;
+        position: fixed;
+        bottom: 80px;
+        left: 542px;
+        z-index: 2;
+    }
+
+    .paybtn{
+        color: #426B1F;
+    }

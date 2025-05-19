@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment Options</title>
+  <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+  <form class="payment-form" onsubmit="showReceipt(event)">
+    <h2>Secure Payment</h2>
+
+    <div class="option-group">
+      <label>Choose Payment Method:</label>
+      <label><input type="radio" name="paymentMethod" value="card" onclick="toggleForms('cardForm')" required /> Credit/Debit Card</label>
+      <label><input type="radio" name="paymentMethod" value="bank" onclick="toggleForms('bankForm')" /> Bank Transfer</label>
+      <label><input type="radio" name="paymentMethod" value="ewallet" onclick="toggleForms('ewalletForm')" /> E-Wallet</label>
+    </div>
+
+    <div id="cardForm" class="method-form">
+      <label>Card Number</label>
+      <input type="text" name="cardNumber" placeholder="1234 5678 9012 3456" />
+      <label>Expiry Date</label>
+      <input type="text" name="expiry" placeholder="MM/YY" />
+      <label>CVV</label>
+      <input type="text" name="cvv" placeholder="123" />
+    </div>
+
+    <div id="bankForm" class="method-form">
+      <label>Account Name</label>
+      <input type="text" name="accountName" placeholder="John Doe" />
+      <label>Account Number</label>
+      <input type="text" name="accountNumber" placeholder="1234567890" />
+      <label>Bank Name</label>
+      <input type="text" name="bankName" placeholder="ABC Bank" />
+    </div>
+
+    <div id="ewalletForm" class="method-form">
+      <label>E-Wallet Number</label>
+      <input type="text" name="ewalletNumber" placeholder="09XXXXXXXXX" />
+      <label>Provider</label>
+      <input type="text" name="provider" placeholder="Gcash, Maya, etc." />
+    </div>
+
+    <div class="option-group">
+      <label><input type="checkbox" name="autopay" /> Enable Auto-Pay to avoid late fees</label>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit">Submit Payment</button>
+    </div>
+
+    <a class="history-link" href="#">View Full Payment History</a>
+  </form>
+
+  <!-- Receipt Modal -->
+  <div id="receiptModal" class="modal">
+    <div class="modal-content">
+      <span onclick="closeReceipt()" class="close">&times;</span>
+      <h2>Payment Receipt</h2>
+      <div id="receiptDetails"></div>
+    </div>
+  </div>
+
+  <script>
+    function toggleForms(activeFormId) {
+      const forms = ['cardForm', 'bankForm', 'ewalletForm'];
+      forms.forEach(id => {
+        document.getElementById(id).classList.remove('active');
+      });
+      document.getElementById(activeFormId).classList.add('active');
+    }
+
+    function showReceipt(event) {
+      event.preventDefault();
+      const method = document.querySelector('input[name="paymentMethod"]:checked')?.value;
+      const autopay = document.querySelector('input[name="autopay"]').checked ? "Enabled" : "Disabled";
+      const now = new Date();
+      const date = now.toLocaleDateString();
+      const time = now.toLocaleTimeString();
+
+      let details = `<p><strong>Date:</strong> ${date}</p><p><strong>Time:</strong> ${time}</p><p><strong>Auto-Pay:</strong> ${autopay}</p>`;
+
+      if (method === 'card') {
+        const card = document.querySelector('input[name="cardNumber"]').value;
+        const expiry = document.querySelector('input[name="expiry"]').value;
+        details += `<p><strong>Method:</strong> Credit/Debit Card</p><p><strong>Card:</strong> ${card}</p><p><strong>Expiry:</strong> ${expiry}</p><p><strong>Amount:</strong> ₱149.00</p>`;
+      } else if (method === 'bank') {
+        const name = document.querySelector('input[name="accountName"]').value;
+        const acc = document.querySelector('input[name="accountNumber"]').value;
+        const bank = document.querySelector('input[name="bankName"]').value;
+        details += `<p><strong>Method:</strong> Bank Transfer</p><p><strong>Name:</strong> ${name}</p><p><strong>Account No.:</strong> ${acc}</p><p><strong>Bank:</strong> ${bank}</p><p><strong>Amount:</strong> ₱249.00</p>`;
+      } else if (method === 'ewallet') {
+        const number = document.querySelector('input[name="ewalletNumber"]').value;
+        const provider = document.querySelector('input[name="provider"]').value;
+        details += `<p><strong>Method:</strong> E-Wallet</p><p><strong>Number:</strong> ${number}</p><p><strong>Provider:</strong> ${provider}</p><p><strong>Amount:</strong> ₱449.00</p>`;
+      }
+
+      document.getElementById('receiptDetails').innerHTML = details;
+      document.getElementById('receiptModal').style.display = 'block';
+    }
+
+    function closeReceipt() {
+      document.getElementById('receiptModal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('receiptModal');
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
