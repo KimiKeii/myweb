@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GCash QR Payment</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .qr-wrapper {
+      display: flex;
+      justify-content: center;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pay Rent via GCash</h1>
+  <p>Scan the QR code to pay to <strong>09567761982</strong></p>
+  <div class="qr-wrapper">
+    <div id="qrcode"></div>
+  </div>
+  <p class="text-sm text-gray-500">Amount to Pay:</p>
+  <p id="gcash-amount" class="text-lg font-bold text-green-600">₱0.00</p>
+  
+  <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300">
+    Confirm Booking
+  </button>
+
+  <script>
+     // Get the total amount from sessionStorage
+  const totalAmount = sessionStorage.getItem('totalPayment') || 0;
+
+// Display it beside the QR code
+const amountDisplay = document.getElementById('gcash-amount');
+amountDisplay.textContent = `₱${parseFloat(totalAmount).toFixed(2)}`;
+
+    const phoneNumber = "09567761982";
+    const amount = 3500;
+
+    const qrData = `https://gcash.app/pay?number=${phoneNumber}&amount=${amount}`;
+
+    new QRCode(document.getElementById("qrcode"), {
+      text: qrData,
+      width: 200,
+      height: 200
+    });
+  </script>
+</body>
+</html>
