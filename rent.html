@@ -40,48 +40,108 @@
         </div>
       </nav>
       </header>
-<section class="p-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start font-[Inter] "> 
-  <div class="mt-24 bg-white rounded-2xl shadow-lg p-5 w-full max-w-md lg:ml-36 ">
-    <h3 class="text-base font-semibold text-gray-800 mb-4">Choose your payment option</h3>
-    <div class="space-y-3 mb-5">
-      <label class="flex items-center space-x-2">
-        <input type="radio" name="paymentOption" checked class="accent-green-600"/>
-        <span class="text-sm">Pay on 12 May 2025 <span class="text-green-600 font-semibold">(Risk Free!)</span></span>
-      </label>
-      <label class="flex items-center space-x-2">
-        <input type="radio" name="paymentOption" class="accent-blue-600"/>
-        <span class="text-sm">Pay now</span>
-      </label>
-    </div>
 
-    <h3 class="text-base font-semibold text-gray-800 mb-3">Who's the lead guest?</h3>
-    <form class="space-y-3">
+<section class="p-6 lg:p-24 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start font-[Inter]">
+  <!-- Left: Payment & Guest Info -->
+  <div class="bg-white rounded-2xl shadow-lg p-5 w-full">
+    <h3 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+  Choose your payment option
+  <span class="relative group cursor-pointer text-gray-400 text-sm">
+    &#9432;
+    <span class="absolute w-48 bg-gray-700 text-white text-xs rounded px-2 py-1 left-full ml-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition whitespace-normal z-10">
+      Choose to pay now via GCash or pay upon arrival at the property.
+    </span>
+  </span>
+</h3>
+
+
+    <!-- Payment Options -->
+    <label class="flex items-center space-x-2 mb-2">
+      <input type="radio" name="paymentOption" id="payOnArrival" value="arrival" checked class="accent-green-600"/>
+      <span class="text-sm">Pay upon arrival <span class="text-green-600 font-semibold">(Risk Free!)</span></span>
+    </label>
+
+    <label class="flex items-center space-x-2 mb-4">
+      <input type="radio" name="paymentOption" id="payNow" value="gcash" class="accent-blue-600"/>
+      <span class="text-sm">Pay now</span>
+      <img src="gcashicon.svg" alt="GCash" class="w-5 h-5" />
+    </label>
+
+    <!-- Form -->
+    <form id="rentForm" class="space-y-3 mb-5">
+      <!-- Rent form inputs go here -->
+    </form>
+
+    <h3 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+  Contact Details
+  <span class="relative group cursor-pointer text-gray-400 text-sm">
+    &#9432;
+    <span class="absolute w-48 bg-gray-700 text-white text-xs rounded px-2 py-1 left-full ml-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition whitespace-normal z-10">
+      We’ll use this info to confirm your booking and send updates.
+    </span>
+  </span>
+</h3>
+
+    <form class="space-y-3 mb-5">
       <input type="text" placeholder="First Name" class="w-full border rounded-xl px-4 py-2 focus:outline-blue-400"/>
       <input type="text" placeholder="Last Name" class="w-full border rounded-xl px-4 py-2 focus:outline-blue-400"/>
       <div>
-        <input type="email" placeholder="Email" class="w-full border rounded-xl px-4 py-2 focus:outline-blue-400"/>
+        <input type="email" id="emailInput" placeholder="Email" class="w-full border rounded-xl px-4 py-2 focus:outline-blue-400"/>
+        <p id="emailError" class="text-xs text-red-500 mt-1 hidden">Please enter a valid email address.</p>
       </div>
       <input type="text" placeholder="Phone number (optional)" class="w-full border rounded-xl px-4 py-2 focus:outline-blue-400"/>
-      <input type="text" placeholder="Country/region of residence" class="w-full border rounded-xl px-4 py-2 focus:outline-blue-400" value="Philippines"/>
+      <input type="text" placeholder="Country/region of residence" class="w-full border rounded-xl px-4 py-2 focus:outline-blue-400"/>
     </form>
 
-    <div class="mt-5 space-y-2">
-      <button class="w-full bg-yellow-100 hover:bg-yellow-200 text-gray-800 py-2 rounded-xl font-semibold shadow" onclick="window.location.href='login.html'">Rent Now</button> <!-- Added onclick for Rent Now -->
-      <button class="w-full bg-blue-100 hover:bg-blue-200 text-blue-800 py-2 rounded-xl text-sm font-medium shadow" onclick="window.location.href='login.html'">Contact Owner</button> <!-- Added onclick for Contact Owner -->
+    <h3 class="text-md font-semibold mb-2 flex items-center gap-2">
+  Select Rent Duration
+  <span class="relative group cursor-pointer text-gray-400 text-sm">
+    &#9432;
+    <span class="absolute w-48 bg-gray-700 text-white text-xs rounded px-2 py-1 left-full ml-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition whitespace-normal z-10">
+      Choose your rental period to check availability and price.
+    </span>
+  </span>
+</h3>
+
+    <div class="space-y-4 mb-5">
+      <div>
+        <label for="rentStart" class="block text-sm text-gray-600 mb-1">Start Date</label>
+        <input type="date" id="rentStart" class="w-full border rounded-xl px-4 py-2 focus:outline-blue-400 text-sm"/>
+      </div>
+      <div>
+        <label for="rentEnd" class="block text-sm text-gray-600 mb-1">End Date</label>
+        <input type="date" id="rentEnd" class="w-full border rounded-xl px-4 py-2 focus:outline-blue-400 text-sm"/>
+      </div>
+    </div>
+    <div id="monthly"></div>
+    <div id="maintenance"></div>
+
+    <h3 id="total" class="text-md font-semibold mb-2 flex items-center gap-2"></h3>
+
+    <div class="space-y-2">
+      <button id="rentNowBtn" type="button" class="w-full bg-yellow-100 hover:bg-yellow-200 text-gray-800 py-2 rounded-xl font-semibold shadow">
+        Rent Now
+      </button>
+      <button type="button" class="w-full bg-blue-100 hover:bg-blue-200 text-blue-800 py-2 rounded-xl text-sm font-medium shadow">
+        Contact Owner
+      </button>
     </div>
   </div>
 
   <!-- Right: Property Details -->
-  <div class="mt-8 bg-white rounded-2xl shadow p-6">
-    <img id="propertyImage" src="" alt="House Image" class="rounded-xl mb-4 w-full h-[370px] object-cover"/>
+  <div class="bg-white rounded-2xl shadow p-6 w-full">
+    <img id="propertyImage" src="" alt="House Image" class="rounded-xl mb-4 w-full h-[400px] object-cover"/>
     <h2 id="propertyName" class="text-2xl font-bold mb-1"></h2>
-    <div id="starRating" class="mb-2 text-yellow-500"></div> <!-- Star rating -->
+    <div id="starRating" class="mb-2 text-yellow-500"></div>
     <p id="propertyLocation" class="text-sm text-blue-600 mb-1"></p>
     <p id="propertyType" class="text-sm text-blue-600 mb-1"></p>
     <p id="propertyDescription" class="text-sm text-gray-500 mb-4"></p>
-    <p class="text-sm text-gray-500 font-semibold">Owner: <span id="propertyOwner">Nathan Magcamit</span></p>
+    <p class="text-sm text-gray-500 font-semibold">
+      Owner: <span id="propertyOwner">Nathan Magcamit</span>
+    </p>
   </div>
 </section>
+
 
 <script>
     const houses = [
@@ -96,11 +156,13 @@
     maintenance: "₱2,000", 
     deposit: "₱15,000", 
     total: "₱17,000",
+    priceValue: 15000,
+    maintenanceValue: 2000,
     contactName: "Earl",  
     contactLastName: "Espinosa",  
     contactPhone: "123456789",  
     contactEmail: "espinosa.earl@email.com", 
-    rating: (Math.random() * 2 + 3).toFixed(1) // Random rating between 3.0 and 5.0
+    rating: (Math.random() * 2 + 3).toFixed(1)
   },
   { 
     id: "house2", 
@@ -113,11 +175,13 @@
     maintenance: "₱3,000", 
     deposit: "₱20,000", 
     total: "₱23,000",
+    priceValue: 20000,
+    maintenanceValue: 3000,
     contactName: "Earl",  
     contactLastName: "Espinosa",  
     contactPhone: "123456789",  
     contactEmail: "espinosa.earl@email.com", 
-    rating: (Math.random() * 2 + 3).toFixed(1) // Random rating between 3.0 and 5.0
+    rating: (Math.random() * 2 + 3).toFixed(1)
   },
   { 
     id: "house3", 
@@ -130,11 +194,13 @@
     maintenance: "₱1,500", 
     deposit: "₱12,000", 
     total: "₱13,500",
+    priceValue: 12000,
+    maintenanceValue: 1500,
     contactName: "Earl",  
     contactLastName: "Espinosa",  
     contactPhone: "123456789",  
     contactEmail: "espinosa.earl@email.com", 
-    rating: (Math.random() * 2 + 3).toFixed(1) // Random rating between 3.0 and 5.0
+    rating: (Math.random() * 2 + 3).toFixed(1)
   },
   { 
     id: "house4", 
@@ -147,11 +213,13 @@
     maintenance: "₱1,200", 
     deposit: "₱10,000", 
     total: "₱11,200",
+    priceValue: 10000,
+    maintenanceValue: 1200,
     contactName: "Earl",  
     contactLastName: "Espinosa",  
     contactPhone: "123456789",  
     contactEmail: "espinosa.earl@email.com", 
-    rating: (Math.random() * 2 + 3).toFixed(1) // Random rating between 3.0 and 5.0
+    rating: (Math.random() * 2 + 3).toFixed(1)
   },
   { 
     id: "house5", 
@@ -164,11 +232,13 @@
     maintenance: "₱5,000", 
     deposit: "₱50,000", 
     total: "₱55,000",
+    priceValue: 50000,
+    maintenanceValue: 5000,
     contactName: "Earl",  
     contactLastName: "Espinosa",  
     contactPhone: "123456789",  
     contactEmail: "espinosa.earl@email.com", 
-    rating: (Math.random() * 2 + 3).toFixed(1) // Random rating between 3.0 and 5.0
+    rating: (Math.random() * 2 + 3).toFixed(1)
   },
   { 
     id: "house6", 
@@ -181,11 +251,13 @@
     maintenance: "₱3,500", 
     deposit: "₱40,000", 
     total: "₱43,500",
+    priceValue: 40000,
+    maintenanceValue: 3500,
     contactName: "Earl",  
     contactLastName: "Espinosa",  
     contactPhone: "123456789",  
     contactEmail: "espinosa.earl@email.com", 
-    rating: (Math.random() * 2 + 3).toFixed(1) // Random rating between 3.0 and 5.0
+    rating: (Math.random() * 2 + 3).toFixed(1)
   },
   { 
     id: "house7", 
@@ -198,11 +270,13 @@
     maintenance: "₱3,000", 
     deposit: "₱25,000", 
     total: "₱28,000",
+    priceValue: 25000,
+    maintenanceValue: 3000,
     contactName: "Earl",  
     contactLastName: "Espinosa",  
     contactPhone: "123456789",  
     contactEmail: "espinosa.earl@email.com", 
-    rating: (Math.random() * 2 + 3).toFixed(1) // Random rating between 3.0 and 5.0
+    rating: (Math.random() * 2 + 3).toFixed(1)
   },
   { 
     id: "house8", 
@@ -215,11 +289,13 @@
     maintenance: "₱4,000", 
     deposit: "₱45,000", 
     total: "₱49,000",
+    priceValue: 45000,
+    maintenanceValue: 4000,
     contactName: "Earl",  
     contactLastName: "Espinosa",  
     contactPhone: "123456789",  
     contactEmail: "espinosa.earl@email.com", 
-    rating: (Math.random() * 2 + 3).toFixed(1) // Random rating between 3.0 and 5.0
+    rating: (Math.random() * 2 + 3).toFixed(1)
   }
 ];
 
@@ -241,33 +317,100 @@
     const house = houses[index];
     if (!house) return;
 
-    document.getElementById("propertyImage").src = house.image;
+    document.getElementById("propertyImage").src = house.image || 'default.jpg';
     document.getElementById("propertyName").textContent = house.name;
     document.getElementById("propertyLocation").textContent = house.location;
     document.getElementById("propertyType").textContent = house.type;
     document.getElementById("propertyDescription").textContent = house.description;
+
+    document.getElementById("monthly").textContent = 'Monthly Fee: ' + house.priceRange;
+    document.getElementById("maintenance").textContent = 'Maintenance Fee: ' + house.maintenance;
+    const totalValue = house.priceValue + house.maintenanceValue;
+
+// Display formatted total
+document.getElementById("total").textContent = 
+  'Total: ₱' + totalValue.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }) + ' / mo';
+
+// Save total for use in other page (like GCash)
+sessionStorage.setItem('totalPayment', totalValue);
+
 
     // Update the star rating
     const starRating = document.getElementById("starRating");
     starRating.innerHTML = getStarRating(house.rating);
 
     // Owner (hardcoded as Nathan Magcamit)
-    document.getElementById("propertyOwner").textContent = "Nathan Magcamit";
+    document.getElementById("propertyOwner").textContent = `${house.contactName} ${house.contactLastName}`;
+
   }
 
   // Function to generate star rating
   function getStarRating(rating) {
-    const fullStars = Math.floor(rating);
-    const halfStars = (rating % 1 >= 0.5) ? 1 : 0;
-    const emptyStars = 5 - fullStars - halfStars;
+  const fullStars = Math.floor(rating);
+  const halfStar = (rating % 1 >= 0.5) ? 1 : 0;
+  const emptyStars = 5 - fullStars - halfStar;
 
-    return `
-      ${"★".repeat(fullStars)}
-      ${"☆".repeat(halfStars)}
-      ${"☆".repeat(emptyStars)}
-    `;
+  let stars = "★".repeat(fullStars);
+  if (halfStar) stars += "⯨"; // Using a half-star symbol, can replace with a better one or icon
+  stars += "☆".repeat(emptyStars);
+  return stars;
+}
+
+  const emailInput = document.getElementById('emailInput');
+  const emailError = document.getElementById('emailError');
+
+  // Simple email regex pattern
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
-</script>
 
-</body>
+  // Validate on input
+  emailInput.addEventListener('input', () => {
+    if(emailInput.value === '' || isValidEmail(emailInput.value)) {
+      emailError.style.display = 'none';
+      emailInput.classList.remove('border-red-500');
+      emailInput.classList.add('border-green-500');
+    } else {
+      emailError.style.display = 'block';
+      emailInput.classList.add('border-red-500');
+      emailInput.classList.remove('border-green-500');
+    }
+  });
+
+  // Optional: Validate on form submit to prevent submission if invalid
+  const form = document.getElementById('rentForm');
+  form.addEventListener('submit', (e) => {
+    if (!isValidEmail(emailInput.value)) {
+      e.preventDefault();
+      emailError.style.display = 'block';
+      emailInput.focus();
+    }
+  });
+
+// NEW CODE
+// grab elements
+const rentNowBtn = document.getElementById('rentNowBtn');
+const payNowRadio = document.getElementById('payNow');
+const rentForm = document.getElementById('rentForm');
+
+if (rentNowBtn && payNowRadio && rentForm) {
+  rentNowBtn.addEventListener('click', e => {
+    if (payNowRadio.checked) {
+      // Redirect to GCash payment page
+      const hash = window.location.hash;
+      window.location.href = `gcash.html${hash}`;
+    } else {
+      // Submit the form
+      rentForm.submit();
+    }
+  });
+}
+
+
+
+</script>
+  </body>
 </html>

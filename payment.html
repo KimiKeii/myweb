@@ -35,6 +35,7 @@
       <input type="text" name="bankName" placeholder="ABC Bank" />
     </div>
 
+    <!-- E-Wallet Form is kept for fallback but not used with redirect -->
     <div id="ewalletForm" class="method-form">
       <label>E-Wallet Number</label>
       <input type="text" name="ewalletNumber" placeholder="09XXXXXXXXX" />
@@ -57,8 +58,17 @@
   <div id="receiptModal" class="modal">
     <div class="modal-content">
       <span onclick="closeReceipt()" class="close">&times;</span>
-      <h2>Payment Receipt</h2>
+      <h2>Official Payment Receipt</h2>
       <div id="receiptDetails"></div>
+      <p class="footer-note">This is a system-generated receipt. For inquiries, contact billing@company.com</p>
+    </div>
+  </div>
+
+  <!-- Small Error Popup -->
+  <div id="errorPopup" class="modal small-modal">
+    <div class="modal-content">
+      <span onclick="closeErrorPopup()" class="close">&times;</span>
+      <p id="errorMsg"></p>
     </div>
   </div>
 
@@ -68,32 +78,94 @@
       forms.forEach(id => {
         document.getElementById(id).classList.remove('active');
       });
+
+      // Instant redirect for ewallet
+      if (activeFormId === 'ewalletForm') {
+        window.location.href = "gcash.html";
+        return;
+      }
+
       document.getElementById(activeFormId).classList.add('active');
     }
 
     function showReceipt(event) {
       event.preventDefault();
+
       const method = document.querySelector('input[name="paymentMethod"]:checked')?.value;
+      if (!method) {
+        showErrorPopup('Please choose a payment method.');
+        return;
+      }
+
+      let missingFields = [];
+      if (method === 'card') {
+        const card = document.querySelector('input[name="cardNumber"]').value.trim();
+        const expiry = document.querySelector('input[name="expiry"]').value.trim();
+        const cvv = document.querySelector('input[name="cvv"]').value.trim();
+        if (!card) missingFields.push('Card Number');
+        if (!expiry) missingFields.push('Expiry Date');
+        if (!cvv) missingFields.push('CVV');
+      } else if (method === 'bank') {
+        const name = document.querySelector('input[name="accountName"]').value.trim();
+        const acc = document.querySelector('input[name="accountNumber"]').value.trim();
+        const bank = document.querySelector('input[name="bankName"]').value.trim();
+        if (!name) missingFields.push('Account Name');
+        if (!acc) missingFields.push('Account Number');
+        if (!bank) missingFields.push('Bank Name');
+      } else if (method === 'ewallet') {
+        const number = document.querySelector('input[name="ewalletNumber"]').value.trim();
+        const provider = document.querySelector('input[name="provider"]').value.trim();
+        if (!number) missingFields.push('E-Wallet Number');
+        if (!provider) missingFields.push('Provider');
+      }
+
+      if (missingFields.length > 0) {
+        showErrorPopup(`Fill up the following: ${missingFields.join(', ')}`);
+        return;
+      }
+
       const autopay = document.querySelector('input[name="autopay"]').checked ? "Enabled" : "Disabled";
       const now = new Date();
       const date = now.toLocaleDateString();
       const time = now.toLocaleTimeString();
+      const receiptId = Math.floor(100000 + Math.random() * 900000);
 
-      let details = `<p><strong>Date:</strong> ${date}</p><p><strong>Time:</strong> ${time}</p><p><strong>Auto-Pay:</strong> ${autopay}</p>`;
+      let details = `
+        <p><strong>Receipt No:</strong> #${receiptId}</p>
+        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Time:</strong> ${time}</p>
+        <p><strong>Auto-Pay:</strong> ${autopay}</p>
+      `;
 
       if (method === 'card') {
-        const card = document.querySelector('input[name="cardNumber"]').value;
-        const expiry = document.querySelector('input[name="expiry"]').value;
-        details += `<p><strong>Method:</strong> Credit/Debit Card</p><p><strong>Card:</strong> ${card}</p><p><strong>Expiry:</strong> ${expiry}</p><p><strong>Amount:</strong> ₱149.00</p>`;
+        const card = document.querySelector('input[name="cardNumber"]').value.trim();
+        const expiry = document.querySelector('input[name="expiry"]').value.trim();
+        details += `
+          <p><strong>Method:</strong> Credit/Debit Card</p>
+          <p><strong>Card:</strong> ${card}</p>
+          <p><strong>Expiry:</strong> ${expiry}</p>
+          <p><strong>Amount:</strong> ₱149.00</p>
+        `;
       } else if (method === 'bank') {
-        const name = document.querySelector('input[name="accountName"]').value;
-        const acc = document.querySelector('input[name="accountNumber"]').value;
-        const bank = document.querySelector('input[name="bankName"]').value;
-        details += `<p><strong>Method:</strong> Bank Transfer</p><p><strong>Name:</strong> ${name}</p><p><strong>Account No.:</strong> ${acc}</p><p><strong>Bank:</strong> ${bank}</p><p><strong>Amount:</strong> ₱249.00</p>`;
+        const name = document.querySelector('input[name="accountName"]').value.trim();
+        const acc = document.querySelector('input[name="accountNumber"]').value.trim();
+        const bank = document.querySelector('input[name="bankName"]').value.trim();
+        details += `
+          <p><strong>Method:</strong> Bank Transfer</p>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Account No.:</strong> ${acc}</p>
+          <p><strong>Bank:</strong> ${bank}</p>
+          <p><strong>Amount:</strong> ₱249.00</p>
+        `;
       } else if (method === 'ewallet') {
-        const number = document.querySelector('input[name="ewalletNumber"]').value;
-        const provider = document.querySelector('input[name="provider"]').value;
-        details += `<p><strong>Method:</strong> E-Wallet</p><p><strong>Number:</strong> ${number}</p><p><strong>Provider:</strong> ${provider}</p><p><strong>Amount:</strong> ₱449.00</p>`;
+        const number = document.querySelector('input[name="ewalletNumber"]').value.trim();
+        const provider = document.querySelector('input[name="provider"]').value.trim();
+        details += `
+          <p><strong>Method:</strong> E-Wallet</p>
+          <p><strong>Number:</strong> ${number}</p>
+          <p><strong>Provider:</strong> ${provider}</p>
+          <p><strong>Amount:</strong> ₱449.00</p>
+        `;
       }
 
       document.getElementById('receiptDetails').innerHTML = details;
@@ -104,10 +176,29 @@
       document.getElementById('receiptModal').style.display = 'none';
     }
 
+    let errorTimeout;
+    function showErrorPopup(message) {
+      clearTimeout(errorTimeout);
+      const popup = document.getElementById('errorPopup');
+      document.getElementById('errorMsg').textContent = message;
+      popup.style.display = 'block';
+      errorTimeout = setTimeout(() => {
+        popup.style.display = 'none';
+      }, 3000);
+    }
+    function closeErrorPopup() {
+      clearTimeout(errorTimeout);
+      document.getElementById('errorPopup').style.display = 'none';
+    }
+
     window.onclick = function(event) {
-      const modal = document.getElementById('receiptModal');
-      if (event.target == modal) {
-        modal.style.display = "none";
+      const receiptModal = document.getElementById('receiptModal');
+      const errorPopup = document.getElementById('errorPopup');
+      if (event.target == receiptModal) {
+        receiptModal.style.display = "none";
+      }
+      if (event.target == errorPopup) {
+        errorPopup.style.display = "none";
       }
     }
   </script>

@@ -17,7 +17,6 @@ body {
 /* Header */
 header {
     background-color: transparent;
-    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -191,7 +190,7 @@ header {
 .content {
     width: 840px;
     margin-left: 350px;  /* Adjusted to account for the width of the sidebar */
-    margin-top: 100px;    /* Added margin to prevent content from going under the fixed header */
+    margin-top: 50px;    /* Added margin to prevent content from going under the fixed header */
     padding: 20px;
     background-color: #E0E0E0B2;
     border-radius: 20px;
