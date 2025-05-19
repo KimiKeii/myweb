@@ -385,3 +385,8 @@ button:hover {
         padding: 20px;
     }
 }
+
+.qr{
+    width: 300px;
+    margin-left: 40px;
+}

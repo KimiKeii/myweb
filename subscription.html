@@ -64,8 +64,9 @@
 
       <!-- Gcash payment inputs -->
       <div id="gcashForm" class="payment-form" style="display:flex; flex-direction: column; gap: 8px;">
-        <input type="text" name="gcashnumber" autocomplete="off" placeholder="Gcash Number" required />
-        <input type="text" name="otp" autocomplete="off" placeholder="Enter OTP" required />
+        <div class="qr-container">
+          <img src="gqr.jpeg" class="qr">
+        </div>
         <button id="gcashPayBtn" type="button">Pay</button>
       </div>
     </div>
