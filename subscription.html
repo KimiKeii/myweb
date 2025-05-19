@@ -46,7 +46,7 @@
           <h1>Yearly</h1>
           <h2>Gold</h2>
           <p class="price">P449 / year</p>
-          <button class="pay-btn">Pay Now</button>
+          <button class="pay-btn" id="pay-btn">Pay Now</button>
         </div>
       </div>
     </div>
@@ -82,56 +82,60 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const payButtons = document.querySelectorAll('.pay-btn');
-      const paymentModal = document.getElementById('paymentModal');
-      const closeModal = paymentModal.querySelector('.close');
-      const gcashBtn = document.getElementById('gcashBtn');
-      const gcashForm = document.getElementById('gcashForm');
-      const successPopup = document.getElementById('successPopup');
-      const successClose = document.getElementById('successClose');
-      const successMessage = document.getElementById('successMessage');
+    const payButtons = document.querySelectorAll('.pay-btn');
+    const paymentModal = document.getElementById('paymentModal');
+    const closeModal = paymentModal.querySelector('.close');
+    const gcashBtn = document.getElementById('gcashBtn');
+    const gcashForm = document.getElementById('gcashForm');
+    const successPopup = document.getElementById('successPopup');
+    const successClose = document.getElementById('successClose');
+    const successMessage = document.getElementById('successMessage');
 
-      // Open modal on any pay button click
-      payButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          paymentModal.style.display = 'block';
-          // Gcash is selected by default
-          gcashBtn.classList.add('active');
-          gcashForm.style.display = 'flex';
-        });
-      });
+    let modalTimeout, redirectTimeout;
 
-      // Close modal
-      closeModal.addEventListener('click', () => {
-        paymentModal.style.display = 'none';
-      });
+    // Open modal on any pay button click
+    payButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        paymentModal.style.display = 'block';
+        gcashBtn.classList.add('active');
+        gcashForm.style.display = 'flex';
 
-      // Click outside modal closes it
-      window.addEventListener('click', (e) => {
-        if (e.target === paymentModal) {
+        // Set a 10-second timer to close the modal and show the success popup
+        modalTimeout = setTimeout(() => {
           paymentModal.style.display = 'none';
-        }
-      });
+          successMessage.textContent = 'Payment successful via Gcash!';
+          successPopup.style.display = 'block';
 
-      // Gcash button is always active, no toggle needed here
-
-      // Gcash Pay button click
-      document.getElementById('gcashPayBtn').addEventListener('click', () => {
-        paymentModal.style.display = 'none';
-        successMessage.textContent = 'Payment successful via Gcash!';
-        successPopup.style.display = 'block';
-
-        // Redirect to index.html after 3 seconds
-        setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 3000);
-      });
-
-      // Close success popup manually (optional)
-      successClose.addEventListener('click', () => {
-        successPopup.style.display = 'none';
+          // After 6 seconds, redirect to index.html
+          redirectTimeout = setTimeout(() => {
+            window.location.href = 'index.html';
+          },3000);
+        }, 6000); // 10 seconds
       });
     });
+
+    // Close modal manually (also clears the timeout)
+    closeModal.addEventListener('click', () => {
+      paymentModal.style.display = 'none';
+      clearTimeout(modalTimeout);
+    });
+
+    // Click outside modal to close
+    window.addEventListener('click', (e) => {
+      if (e.target === paymentModal) {
+        paymentModal.style.display = 'none';
+        clearTimeout(modalTimeout);
+      }
+    });
+
+    // Close success popup manually
+    successClose.addEventListener('click', () => {
+      successPopup.style.display = 'none';
+      clearTimeout(redirectTimeout);
+    });
+  });
+</script>
+
   </script>
 </body>
 </html>
