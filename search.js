@@ -8,9 +8,16 @@ const iframeMap = document.querySelector("iframe");
 
 // Example options with price values for demonstration, including coordinates for map updates
 const options = [
-  { city: "SILANG, CAVITE", type: "RFO", price: 12000, lat: 14.331611, lng: 120.531611 },
-  { city: "BIÑAN, LAGUNA", type: "RFO", price: 15000, lat: 14.333611, lng: 121.111611 },
-  { city: "PORAC, PAMPANGA", type: "RFO", price: 25000, lat: 15.101611, lng: 120.611611 },
+  { city: "MAKATI, METRO MANILA", type: "RFO", price: 11200},
+  { city: "SILANG, CAVITE", type: "RFO", price: 12000},
+  { city: "TAGAYTAY, CAVITE", type: "RFO", price: 13500},
+  { city: "SUBIC, ZAMBALES", type: "RFO", price: 17000},
+  { city: "NAGUILIAN, LA UNiON", type: "RFO", price: 23000},
+  { city: "PORAC, PAMPANGA", type: "RFO", price: 25000},
+  { city: "BAGIO, BANGUET", type: "RFO", price: 28000},
+  { city: "BIÑAN, LAGUNA", type: "RFO", price: 29000},
+  { city: "DAVAO, DAVAO", type: "RFO", price: 29500},
+  { city: "BORACAY, AKLAN", type: "RFO", price: 40000},
 ];
 
 // Function to format price
