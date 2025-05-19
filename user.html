@@ -51,6 +51,13 @@
                 </span>
             </a>
             <br>
+            <a href="#" class="link" onclick="loadContent('contract')">
+                <img src="TRANSACTION.svg" alt="transaction-icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Contract</h5>
+                </span>
+            </a>
+            <br>
             <a href="#" class="link" onclick="loadContent('report',)">
                 <img src="CONTACT.svg" alt="contact-icon" class="icon">
                 <span class="text-wrapper">
@@ -69,7 +76,6 @@
     <footer>
         <p>&copy; 2024 AOS. All rights reserved.</p>
     </footer>
-
     <script>
         // Function to change both content and header title
         function loadContent(section, headerTitle) {
@@ -80,7 +86,110 @@
             const sections = {
                 myproperty: '<img src="MyProperty.png" class="myproperty">',
                 payment: '<img src="Payment.png" class="myproperty">',
-                mydetails: '<img src="MyDetails.png" class="myproperty">',
+                mydetails: `
+                <div class="card">
+                    <!-- Left Column -->
+                    <div class="profile">
+                    <section>
+                        <div class="profile-icon">
+                        <img class="tenant-image" src="Emmy.jpg">    
+                        </div>
+                    </section>
+                    <section class="profile-info">
+                        <div class="section-title">Tenant Information</div>
+                        <p><strong>Name:</strong> Emmy</p>
+                        <p><strong>Date of Birth:</strong> May 10, 2000</p>
+                        <p><strong>Contact Information:</strong> 01234567891</p>
+                        <p><strong>Email:</strong> juandelacruz@gmail.com</p>
+                        <p><strong>Emergency Contact:</strong> 09212044729</p>
+                        <p><strong>Moved In:</strong> June 1, 2023</p>
+                    </section>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div>
+                    <section class="docs">
+                        <div class="section-title">Documents</div>
+                        <p><strong>Tenant ID Proof (PDF):</strong></p>
+                        <a href="#">View/Download Tenant ID Proof</a>
+
+                        <p><strong>SMDC Rules & Regulations (PDF):</strong></p>
+                        <a href="#">View/Download Rules & Regulations</a>
+                    </section>
+
+                    <section class="utilities">
+                        <div class="section-title">Utilities Provider</div>
+                        <p><strong>Water Provider:</strong> PrimeWater</p>
+                        <p><strong>Electricity Provider:</strong> Meralco</p>
+                        <p><strong>Internet Provider:</strong> PLDT</p>
+                    </section>
+                    </div>
+
+                </div>
+                `,
+                contract:`
+                <div class="container" id="leaseContent">
+                    <h1>RESIDENTIAL LEASE AGREEMENT</h1>
+
+                    <h2>1. PARTIES.</h2>
+                    <p>
+                    This Residential Lease Agreement (“Agreement”) made on May 23, 2023 is between:<br>
+                    Landlord Name: Jordan Ronsairo<br>
+                    with a mailing address of: jordan.ronsairo@gmail.com 
+                    <br>AND<br>
+                    Tenant Name(s): Emanuel Manaloto 
+                    </p>
+
+                    <h2>2. PROPERTY.</h2>
+                    <p>
+                    The Landlord agrees to lease the described property to the Tenant:<br>
+                    Address:  Unit 1820, Tower 1, Sun Residences<br>
+                    España Boulevard corner Mayon Street<br>
+                    Barangay Lourdes, Quezon City<br>
+                    Metro Manila, Luzon<br>
+                    Philippines
+                    <br><br>
+                    Residence Type:<br>
+                    <input type="checkbox" checked> Single-family<br>
+                    <input type="checkbox"> Apartment<br>
+                    <input type="checkbox"> Condominium<br>
+                    <input type="checkbox"> Other: <input type="text" class="short">
+                    </p>
+
+                    <h2>3. TERM.</h2>
+                    <p>
+                    The Agreement shall begin on May 29, 2023 and end on May 29, 2024.
+                    </p>
+
+                    <h2>4. RENT.</h2>
+                    <p>
+                    The Tenant shall pay the Landlord in equal monthly installments of ₱25,000 (“Rent”). 
+                    The Rent shall be due on the 5th of every month and paid under the following instructions:<br>
+                    Payment must be made via GCash to the number 09171234567 under the name Jordan Ronsairo. 
+                    Please include the unit number and month covered in the message or reference field (e.g., “Unit 1820 – July Rent”). 
+                    A screenshot of the payment confirmation must be sent to rentpayments@example.com after each transaction.
+                    </p>
+
+                    <h2>5. SECURITY DEPOSIT.</h2>
+                    <p>
+                    The Tenant (check one):<br>
+                    <input type="checkbox" checked> Shall deposit with the Landlord the sum of ₱5,000 
+                    as security for any damage caused to the Premises during the Term. 
+                    Such deposit shall be returned to the Tenant, less any itemized deductions, within 7 days after the end of the Term.<br><br>
+                    <input type="checkbox"> Shall NOT be required to pay a security deposit.
+                    </p>
+
+                    <h2>6. SIGNATURES.</h2>
+                    <p>
+                    Landlord Signature: <input type="text" class="long"> Date: <input type="text" class="short"><br>
+                    Printed Name: <input type="text" class="long"><br><br>
+                    Tenant Signature: <input type="text" class="long"> Date: <input type="text" class="short"><br>
+                    Printed Name: <input type="text" class="long">
+                    </p>
+
+                    <button id="downloadBtn">Download as PDF</button>
+                </div>
+                `,
                 report: `
                 <!-- Chat Box Section -->
                 <div class="message-wrap">
