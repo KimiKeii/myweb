@@ -202,7 +202,7 @@ function loadContent(section) {
                     <div class="profile-icon" onclick="loadContent('ninguang')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
                     <div class="profile-icon" onclick="loadContent('hutao')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
                 </div> 
-                
+
                 <!-- Chat Box Section -->
                 <div class="message-wrap">
                     <p class="message-name" id="chatName">Zhongli</p>
@@ -219,7 +219,7 @@ function loadContent(section) {
             </div>
             `,
         kazuha: `
-             <div class="container-msg">
+            <div class="container-msg">
                 <div class="profiles">
                     <div class="profile-icon" onclick="loadContent('eman')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Emanuel</p></a></div>
                     <div class="profile-icon" onclick="loadContent('paimon')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Paimon</p></a></div>
@@ -227,14 +227,14 @@ function loadContent(section) {
                     <div class="profile-icon" onclick="loadContent('ninguang')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
                     <div class="profile-icon" onclick="loadContent('hutao')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
                 </div> 
-                
+
                 <!-- Chat Box Section -->
                 <div class="message-wrap">
                     <p class="message-name" id="chatName">Kazuha</p>
-    
+
                 <div class="message-inner">
                     <div class="chat-box" id="chatBox"></div>
-    
+
                         <div class="message">
                             <textarea type="text" class="message-input" id="messageInput" placeholder="Type a message..."></textarea>
                             <button id="sendBtn" onclick="sendMessage()">Send</button>
@@ -252,7 +252,7 @@ function loadContent(section) {
                     <div class="profile-icon" onclick="loadContent('kazuha')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
                     <div class="profile-icon" onclick="loadContent('hutao')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
                 </div> 
-                
+
                 <!-- Chat Box Section -->
                 <div class="message-wrap">
                     <p class="message-name" id="chatName">Ninguang</p>
@@ -277,7 +277,7 @@ function loadContent(section) {
                     <div class="profile-icon" onclick="loadContent('kazuha')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
                     <div class="profile-icon" onclick="loadContent('ninguang')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
                 </div> 
-                
+
                 <!-- Chat Box Section -->
                 <div class="message-wrap">
                     <p class="message-name" id="chatName">Hutao</p>
@@ -292,67 +292,77 @@ function loadContent(section) {
                     </div>
                 </div>
             </div>
-            `,
+            `
     };
 
-    // Update the inner HTML of the content section
-    content.innerHTML = sections[section] || '<p>Content not found.</p>';
-}
+    // Load the HTML content for the chosen section
+    content.innerHTML = sections[section] || '';
 
-// Load default content when the page loads
-window.onload = function() {
-    loadContent('dashboard'); // Load Unit Management by default
-};
-
-
-document.addEventListener("keydown", function(event) {
-    if (event.target.id === "messageInput" && event.key === "Enter") {
-        event.preventDefault();
-        sendMessage();
-    }
-});
-
-// Send message function
-function sendMessage() {
-    const input = document.getElementById("messageInput");
-    const message = input.value.trim();
-    const chatBox = document.getElementById("chatBox");
-
-    if (message !== "") {
-        // Create user message (aligned right)
-        const newMessage = document.createElement("div");
-        newMessage.classList.add("message", "user");
-        newMessage.textContent = message;
-
-        chatBox.appendChild(newMessage);
-
-        // Scroll to the bottom of the chat box
-        chatBox.scrollTop = chatBox.scrollHeight;
-
-        let reply = "";
-        if (message.toLowerCase() === "hi"|| message.toLowerCase() === "hello") {
-            reply = "Hi, How may I help you?";
-        } else if (message.toLowerCase() === "i want to request for maintenance") {
-            reply = "Sure I will schedule you right away. We will message you for the updates";
-        } else if (message.toLowerCase() === "thank you") {
-            reply = "Your Welcome";
-        }else {
-            reply = "I'm sorry, I didn't understand that.";
+    // Update the header title according to section
+    const headerTitle = document.querySelector('.header-title');
+    if (headerTitle) {
+        switch (section) {
+            case 'dashboard':
+                headerTitle.textContent = "Dashboard";
+                break;
+            case 'tenantInfo':
+                headerTitle.textContent = "Tenant Info";
+                break;
+            case 'Transaction':
+                headerTitle.textContent = "Transaction";
+                break;
+            case 'contact':
+                headerTitle.textContent = "Contact";
+                break;
+            case 'eman':
+                headerTitle.textContent = "Chat with Emanuel";
+                break;
+            case 'paimon':
+                headerTitle.textContent = "Chat with Paimon";
+                break;
+            case 'zhongli':
+                headerTitle.textContent = "Chat with Zhongli";
+                break;
+            case 'kazuha':
+                headerTitle.textContent = "Chat with Kazuha";
+                break;
+            case 'ninguang':
+                headerTitle.textContent = "Chat with Ninguang";
+                break;
+            case 'hutao':
+                headerTitle.textContent = "Chat with Hutao";
+                break;
+            default:
+                headerTitle.textContent = "";
         }
-
-        // Simulate friend response (aligned left)
-        setTimeout(() => {
-            const friendMessage = document.createElement("div");
-            friendMessage.classList.add("message", "friend");
-            friendMessage.textContent = reply; // Use the reply as the friend's message
-
-            chatBox.appendChild(friendMessage);
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }, 600); // Simulated delay for friend reply
-
-        // Clear the input field
-        input.value = "";  // This line clears the input field after sending the message
     }
+
+    // Clear message input and chat box if they exist
+    const messageInput = document.getElementById('messageInput');
+    if (messageInput) messageInput.value = '';
+    const chatBox = document.getElementById('chatBox');
+    if (chatBox) chatBox.innerHTML = '';
 }
 
-  
+// Function to send message in chat
+function sendMessage() {
+    const messageInput = document.getElementById('messageInput');
+    const chatBox = document.getElementById('chatBox');
+
+    if (!messageInput || !chatBox) return;
+
+    const message = messageInput.value.trim();
+    if (message === '') return;
+
+    // Append message to chat box
+    const messageElem = document.createElement('div');
+    messageElem.className = 'chat-message';
+    messageElem.textContent = message;
+    chatBox.appendChild(messageElem);
+
+    // Clear input after sending
+    messageInput.value = '';
+    
+    // Scroll to bottom of chat box
+    chatBox.scrollTop = chatBox.scrollHeight;
+}

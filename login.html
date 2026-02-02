@@ -6,84 +6,6 @@
   <title>Log in</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="login.css">
-  <script>
-    function login() {
-      var username = document.getElementById("username").value;
-      var password = document.getElementById("password").value;
-      var usernameField = document.getElementById("username");
-      var passwordField = document.getElementById("password");
-      var popup = document.getElementById("popup");
-      
-      // Clear any previous invalid styling
-      document.getElementById("username").classList.remove("invalid");
-      document.getElementById("password").classList.remove("invalid");
-      
-      // Hide the popup initially
-      popup.classList.add("hidden");
-      
-      if (username === "jordie" && password === "jordanpogi") {
-        window.location.href = "home.html";
-      } else if (username === "emmy" && password === "emmypogi") {
-            window.location.href = "user.html";
-          } else if ((username === "jordie" || username === "emmy") && password !== "jordanpogi" && password !== "emmy123") {
-            // Incorrect password
-            document.getElementById("password").classList.add("invalid");
-            popup.innerText = "Invalid password. Please try again.";
-            popup.classList.remove("hidden");
-            setTimeout(() => {
-              popup.classList.add("hidden"); // Hide the popup after 3 seconds
-            }, 3000); // Change the timeout duration if needed
-            
-            // Move focus to the password field
-            passwordField.focus();
-          } else {
-            // Invalid credentials
-            document.getElementById("username").classList.add("invalid");
-            document.getElementById("password").classList.add("invalid");
-            popup.innerText = "Invalid credentials. Please try again.";
-            popup.classList.remove("hidden");
-            setTimeout(() => {
-              popup.classList.add("hidden"); // Hide the popup after 3 seconds
-            }, 3000); // Change the timeout duration if needed
-            
-            // Move focus to the username field
-            usernameField.focus();
-          }
-        }
-        
-        document.addEventListener("DOMContentLoaded", function() {
-            var usernameField = document.getElementById("username");
-            var passwordField = document.getElementById("password");
-
-        usernameField.addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                passwordField.focus();
-            }
-        });
-
-        passwordField.addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                document.querySelector(".login-btn").click();
-            }
-        });
-
-
-        
-
-        // Add event listeners to clear the invalid class when typing
-        usernameField.addEventListener("input", function() {
-            this.classList.remove("invalid");
-            popup.classList.add("hidden"); // Hide the popup when typing
-        });
-
-        passwordField.addEventListener("input", function() {
-            this.classList.remove("invalid");
-            popup.classList.add("hidden"); // Hide the popup when typing
-        });
-    });
-  </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
@@ -123,5 +45,6 @@
             </div>
         </div>
     </div>
+    <script src="login.js"></script>
 </body>
 </html>

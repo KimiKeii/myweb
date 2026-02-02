@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Equations Solver - Adjoint Method</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 1000px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+
+        .size-selector {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        select {
+            padding: 10px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 200px;
+            cursor: pointer;
+            background: white;
+        }
+
+        .matrix-container {
+            margin-bottom: 30px;
+        }
+
+        .matrix-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .matrix-grid {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .matrix-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        input[type="number"] {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 80px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .equals {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.2em;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .solve-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            flex: 1;
+        }
+
+        .solve-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .clear-btn {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .clear-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .result {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .solution {
+            font-size: 1.1em;
+            color: #333;
+            line-height: 1.8;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .steps-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #667eea;
+        }
+
+        .step {
+            margin-bottom: 25px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .matrix-display {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .matrix-wrapper {
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .bracket-left, .bracket-right {
+            font-size: 1em;
+            font-weight: bold;
+            display: flex;
+            align-items: stretch;
+            position: relative;
+            padding: 0 8px;
+        }
+
+        .bracket-left::before, .bracket-right::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #000;
+        }
+
+        .bracket-left::before {
+            left: 8px;
+            border-left: 3px solid #000;
+            border-top: 3px solid #000;
+            border-bottom: 3px solid #000;
+            border-right: none;
+            width: 10px;
+            background: transparent;
+        }
+
+        .bracket-right::before {
+            right: 8px;
+            border-right: 3px solid #000;
+            border-top: 3px solid #000;
+            border-bottom: 3px solid #000;
+            border-left: none;
+            width: 10px;
+            background: transparent;
+        }
+
+        .matrix-content {
+            display: table;
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        .matrix-content tr {
+            display: table-row;
+        }
+
+        .matrix-content td {
+            padding: 10px 18px;
+            text-align: center;
+            min-width: 70px;
+            display: table-cell;
+        }
+
+        .error {
+            background: #fff5f5;
+            border-left: 4px solid #e53e3e;
+            color: #c53030;
+        }
+
+        .error h3 {
+            color: #e53e3e;
+        }
+
+        .formula {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .det-calc {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .cofactor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .cofactor-item {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Linear Equations Solver</h1>
+        <p class="subtitle">Inverse of Matrix Using Adjoint Method</p>
+
+        <div class="size-selector">
+            <label for="systemSize">Number of equations:</label>
+            <select id="systemSize" onchange="generateMatrix()">
+                <option value="2">2 equations</option>
+                <option value="3" selected>3 equations</option>
+            </select>
+        </div>
+
+        <div class="matrix-container">
+            <div class="matrix-title">Enter coefficients for system [A]{X} = {B}:</div>
+            <div id="matrixInputs"></div>
+        </div>
+
+        <div class="button-group">
+            <button class="solve-btn" onclick="solveSystem()">Solve System</button>
+            <button class="clear-btn" onclick="clearInputs()">Clear</button>
+        </div>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function generateMatrix() {
+            const n = parseInt(document.getElementById('systemSize').value);
+            const container = document.getElementById('matrixInputs');
+            container.innerHTML = '';
+
+            for (let i = 0; i < n; i++) {
+                const row = document.createElement('div');
+                row.className = 'matrix-row';
+
+                for (let j = 0; j < n; j++) {
+                    const input = document.createElement('input');
+                    input.type = 'number';
+                    input.step = 'any';
+                    input.id = `a${i}${j}`;
+                    input.placeholder = '0';
+                    row.appendChild(input);
+                }
+
+                const equals = document.createElement('span');
+                equals.className = 'equals';
+                equals.textContent = '=';
+                row.appendChild(equals);
+
+                const bInput = document.createElement('input');
+                bInput.type = 'number';
+                bInput.step = 'any';
+                bInput.id = `b${i}`;
+                bInput.placeholder = '0';
+                row.appendChild(bInput);
+
+                container.appendChild(row);
+            }
+        }
+
+        function getMatrixValues() {
+            const n = parseInt(document.getElementById('systemSize').value);
+            const A = [];
+            const b = [];
+
+            for (let i = 0; i < n; i++) {
+                A[i] = [];
+                for (let j = 0; j < n; j++) {
+                    const val = parseFloat(document.getElementById(`a${i}${j}`).value) || 0;
+                    A[i][j] = val;
+                }
+                b[i] = parseFloat(document.getElementById(`b${i}`).value) || 0;
+            }
+
+            return { A, b };
+        }
+
+        function determinant2x2(m) {
+            return m[0][0] * m[1][1] - m[0][1] * m[1][0];
+        }
+
+        function determinant3x3(m) {
+            // Using diagonal/basket method as shown in lesson
+            const pos = m[0][0]*m[1][1]*m[2][2] + m[0][1]*m[1][2]*m[2][0] + m[0][2]*m[1][0]*m[2][1];
+            const neg = m[0][2]*m[1][1]*m[2][0] + m[0][0]*m[1][2]*m[2][1] + m[0][1]*m[1][0]*m[2][2];
+            return pos - neg;
+        }
+
+        function determinant(matrix) {
+            const n = matrix.length;
+            if (n === 2) return determinant2x2(matrix);
+            if (n === 3) return determinant3x3(matrix);
+            return 0;
+        }
+
+        function getMinor(matrix, row, col) {
+            const n = matrix.length;
+            const minor = [];
+            for (let i = 0; i < n; i++) {
+                if (i === row) continue;
+                const newRow = [];
+                for (let j = 0; j < n; j++) {
+                    if (j === col) continue;
+                    newRow.push(matrix[i][j]);
+                }
+                minor.push(newRow);
+            }
+            return minor;
+        }
+
+        function cofactor(matrix, row, col) {
+            const minor = getMinor(matrix, row, col);
+            const sign = ((row + col) % 2 === 0) ? 1 : -1;
+            return sign * determinant(minor);
+        }
+
+        function cofactorMatrix(matrix) {
+            const n = matrix.length;
+            const cof = [];
+            for (let i = 0; i < n; i++) {
+                cof[i] = [];
+                for (let j = 0; j < n; j++) {
+                    cof[i][j] = cofactor(matrix, i, j);
+                }
+            }
+            return cof;
+        }
+
+        function transpose(matrix) {
+            const n = matrix.length;
+            const trans = [];
+            for (let i = 0; i < n; i++) {
+                trans[i] = [];
+                for (let j = 0; j < n; j++) {
+                    trans[i][j] = matrix[j][i];
+                }
+            }
+            return trans;
+        }
+
+        function adjoint(matrix) {
+            return transpose(cofactorMatrix(matrix));
+        }
+
+        function matrixInverse(matrix, det) {
+            const adj = adjoint(matrix);
+            const n = matrix.length;
+            const inv = [];
+            for (let i = 0; i < n; i++) {
+                inv[i] = [];
+                for (let j = 0; j < n; j++) {
+                    inv[i][j] = adj[i][j] / det;
+                }
+            }
+            return inv;
+        }
+
+        function multiplyMatrixVector(matrix, vector) {
+            const n = matrix.length;
+            const result = [];
+            for (let i = 0; i < n; i++) {
+                result[i] = 0;
+                for (let j = 0; j < n; j++) {
+                    result[i] += matrix[i][j] * vector[j];
+                }
+            }
+            return result;
+        }
+
+        function gcd(a, b) {
+            a = Math.abs(a);
+            b = Math.abs(b);
+            while (b !== 0) {
+                let t = b;
+                b = a % b;
+                a = t;
+            }
+            return a;
+        }
+
+        function toFraction(decimal) {
+            if (decimal === 0) return '0';
+            if (Number.isInteger(decimal)) return decimal.toString();
+            
+            const tolerance = 1.0E-10;
+            let sign = decimal < 0 ? '-' : '';
+            decimal = Math.abs(decimal);
+            
+            let numerator = 1;
+            let denominator = 1;
+            let bestNum = 1;
+            let bestDen = 1;
+            let minError = Math.abs(decimal - 1);
+            
+            for (let den = 1; den <= 10000; den++) {
+                let num = Math.round(decimal * den);
+                let error = Math.abs(decimal - num / den);
+                
+                if (error < minError) {
+                    minError = error;
+                    bestNum = num;
+                    bestDen = den;
+                    
+                    if (error < tolerance) break;
+                }
+            }
+            
+            const divisor = gcd(bestNum, bestDen);
+            numerator = bestNum / divisor;
+            denominator = bestDen / divisor;
+            
+            if (denominator === 1) return sign + numerator;
+            return sign + numerator + '/' + denominator;
+        }
+
+        function matrixToHTML(matrix, title) {
+            let html = `<div class="step"><div class="step-title">${title}</div><div class="matrix-display">`;
+            html += '<div class="matrix-wrapper">';
+            html += '<div class="bracket-left"></div>';
+            html += '<table class="matrix-content">';
+            for (let i = 0; i < matrix.length; i++) {
+                html += '<tr>';
+                for (let j = 0; j < matrix[i].length; j++) {
+                    html += `<td>${toFraction(matrix[i][j])}</td>`;
+                }
+                html += '</tr>';
+            }
+            html += '</table>';
+            html += '<div class="bracket-right"></div>';
+            html += '</div></div></div>';
+            return html;
+        }
+
+        function getDeterminantCalculation(A) {
+            const n = A.length;
+            if (n === 3) {
+                const pos = `(${toFraction(A[0][0])})(${toFraction(A[1][1])})(${toFraction(A[2][2])}) + (${toFraction(A[0][1])})(${toFraction(A[1][2])})(${toFraction(A[2][0])}) + (${toFraction(A[0][2])})(${toFraction(A[1][0])})(${toFraction(A[2][1])})`;
+                const neg = `(${toFraction(A[0][2])})(${toFraction(A[1][1])})(${toFraction(A[2][0])}) + (${toFraction(A[0][0])})(${toFraction(A[1][2])})(${toFraction(A[2][1])}) + (${toFraction(A[0][1])})(${toFraction(A[1][0])})(${toFraction(A[2][2])})`;
+                const posVal = A[0][0]*A[1][1]*A[2][2] + A[0][1]*A[1][2]*A[2][0] + A[0][2]*A[1][0]*A[2][1];
+                const negVal = A[0][2]*A[1][1]*A[2][0] + A[0][0]*A[1][2]*A[2][1] + A[0][1]*A[1][0]*A[2][2];
+                return `|A| = [${pos}] - [${neg}]<br>|A| = [${toFraction(posVal)}] - [${toFraction(negVal)}] = ${toFraction(posVal - negVal)}`;
+            } else if (n === 2) {
+                return `|A| = (${toFraction(A[0][0])})(${toFraction(A[1][1])}) - (${toFraction(A[0][1])})(${toFraction(A[1][0])}) = ${toFraction(determinant(A))}`;
+            }
+            return '';
+        }
+
+        function solveSystem() {
+            const { A, b } = getMatrixValues();
+            const result = document.getElementById('result');
+
+            try {
+                const det = determinant(A);
+                
+                if (Math.abs(det) < 1e-10) {
+                    result.className = 'result error show';
+                    result.innerHTML = `
+                        <h3>No Unique Solution</h3>
+                        <p>The determinant is zero. The matrix is singular and has no inverse.</p>
+                    `;
+                    return;
+                }
+
+                const cofMat = cofactorMatrix(A);
+                const adj = adjoint(A);
+                const inv = matrixInverse(A, det);
+                const solution = multiplyMatrixVector(inv, b);
+
+                result.className = 'result show';
+                let html = '<h3>Solution Using Matrix Inverse (Adjoint Method):</h3>';
+                html += '<div class="solution">';
+                solution.forEach((val, i) => {
+                    html += `<strong>x<sub>${i + 1}</sub> = ${toFraction(val)}</strong><br>`;
+                });
+                html += '</div>';
+
+                html += '<div class="steps-section">';
+                html += '<div class="formula">{X} = [A]<sup>-1</sup> {B}</div>';
+                html += '<div class="formula">[A]<sup>-1</sup> = (1/|A|) × adj(A)</div>';
+                
+                html += `<div class="step">`;
+                html += `<div class="step-title">Step 1: Calculate Determinant |A| (Diagonal/Basket Method)</div>`;
+                html += `<div class="det-calc">${getDeterminantCalculation(A)}<br><strong>|A| = ${toFraction(det)}</strong></div>`;
+                html += `</div>`;
+                
+                html += matrixToHTML(cofMat, 'Step 2: Calculate Cofactor Matrix');
+                
+                html += matrixToHTML(adj, 'Step 3: Calculate Adjoint Matrix (Transpose of Cofactor Matrix)');
+                
+                html += matrixToHTML(inv, `Step 4: Calculate Inverse Matrix [A]<sup>-1</sup> = (1/${toFraction(det)}) × adj(A)`);
+                
+                html += `<div class="step">`;
+                html += `<div class="step-title">Step 5: Multiply [A]<sup>-1</sup> × {B} to get solution {X}</div>`;
+                html += '<p><strong>{X} = [A]<sup>-1</sup> {B}</strong></p>';
+                html += '<div class="det-calc">';
+                
+                const n = A.length;
+                const vars = ['x', 'y', 'z', 'w'];
+                
+                for (let i = 0; i < n; i++) {
+                    let calc = `${vars[i]} = `;
+                    let terms = [];
+                    for (let j = 0; j < n; j++) {
+                        const coef = toFraction(inv[i][j]);
+                        const bVal = toFraction(b[j]);
+                        terms.push(`(${coef})(${bVal})`);
+                    }
+                    calc += terms.join(' + ');
+                    
+                    let numCalc = '';
+                    let numTerms = [];
+                    for (let j = 0; j < n; j++) {
+                        numTerms.push(toFraction(inv[i][j] * b[j]));
+                    }
+                    numCalc = numTerms.join(' + ');
+                    
+                    calc += `<br>${vars[i]} = ${numCalc}`;
+                    calc += `<br><strong>${vars[i]} = ${toFraction(solution[i])}</strong><br><br>`;
+                    html += calc;
+                }
+                
+                html += '</div>';
+                html += '</div>';
+                
+                html += '</div>';
+
+                result.innerHTML = html;
+            } catch (error) {
+                result.className = 'result error show';
+                result.innerHTML = `
+                    <h3>Error</h3>
+                    <p>An error occurred while solving the system. Please check your inputs.</p>
+                `;
+            }
+        }
+
+        function clearInputs() {
+            const n = parseInt(document.getElementById('systemSize').value);
+            for (let i = 0; i < n; i++) {
+                for (let j = 0; j < n; j++) {
+                    document.getElementById(`a${i}${j}`).value = '';
+                }
+                document.getElementById(`b${i}`).value = '';
+            }
+            document.getElementById('result').className = 'result';
+        }
+
+        generateMatrix();
+    </script>
+</body>
+</html>
