@@ -14,7 +14,7 @@ const options = [
   { city: "SUBIC, ZAMBALES", type: "RFO", price: 17000},
   { city: "NAGUILIAN, LA UNiON", type: "RFO", price: 23000},
   { city: "PORAC, PAMPANGA", type: "RFO", price: 25000},
-  { city: "BAGIO, BANGUET", type: "RFO", price: 28000},
+  { city: "BAGUIO, BANGUET", type: "RFO", price: 28000},
   { city: "BIÑAN, LAGUNA", type: "RFO", price: 29000},
   { city: "DAVAO, DAVAO", type: "RFO", price: 29500},
   { city: "BORACAY, AKLAN", type: "RFO", price: 40000},
