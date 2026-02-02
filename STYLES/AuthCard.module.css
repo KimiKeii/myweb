@@ -1,0 +1,81 @@
+.card {
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  padding: 2.5rem 2rem;
+  max-width: 800px;
+  width: 100%;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.transparenCard {
+  background: #ffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1.5rem 0 0 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  padding: 3.54rem 2rem;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.title {
+  color: #1e40af;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #172121;
+  font-size:1rem;
+  font-weight: 480;
+  margin-bottom: .5rem;
+}
+
+.input {
+  border: 1px solid #dbeafe;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  outline: solid 1px #5bc0be;   
+  transition: border 0.2s;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.input:focus {
+  border-color: #2563eb;
+}
+
+.button {
+  background-color: #1e40af;
+  color: #ffff;
+  align-items: center;
+  border-radius: 2rem;
+  padding: 0.75rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem; 
+}
+
+
+.link {
+  color: #3b82f6;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.switch {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.97rem;
+}
