@@ -10,11 +10,11 @@
     <header>
         <div class="header-content">
             <div class="profile-section">
-                <img src="Jordie.jpg" alt="Profile Picture">
-                <h3 class="user-name">Jordie</h3>
+                <img src="USER.svg" alt="Profile Picture">
+                <h3 class="profile-name">User</h3>
                     <div class="dropdown">
                         <button class="dropdown-toggle">▼</button>
-                        <a href="index.html" class="logout">
+                        <a href="javascript:void(0);" class="logout" onclick="logout()">
                             <span class="text-wrapper">
                                 <h5 class="logout-name">Logout</h5>
                             </span>
@@ -30,31 +30,38 @@
             <a href="index.html"><img src="LOGO.svg" class="logo" alt="Logo"></a>
         </div>
         <nav class="menu">
-            <a href="#dashboard" class="link" onclick="loadContent('dashboard')">
+            <a href="javascript:void(0);" class="link" onclick="loadContent('dashboard'); return false;">
                 <img src="DASHBOARD.svg" alt="dashboard-Icon" class="icon">
                 <span class="text-wrapper">
                     <h5 class="icon-name">Dashboard</h5>
                 </span>
             </a>
             <br>
-            <a href="#" class="link" onclick="loadContent('tenantInfo')">
+            <a href="javascript:void(0);" class="link" onclick="loadContent('tenantInfo'); return false;">
                 <img src="TENANTS INFO.svg" alt="tenantInfo-icon" class="icon">
                 <span class="text-wrapper">
                     <h5 class="icon-name">Tenant Info</h5>
                 </span>
             </a>
             <br>
-            <a href="#" class="link" onclick="loadContent('Transaction')">
+            <a href="javascript:void(0);" class="link" onclick="loadContent('Transaction'); return false;">
                 <img src="TRANSACTION.svg" alt="transaction-icon" class="icon">
                 <span class="text-wrapper">
                     <h5 class="icon-name">Transaction</h5>
                 </span>
             </a>
             <br>
-            <a href="#contact" class="link" onclick="loadContent('contact')">
+            <a href="javascript:void(0);" class="link" onclick="loadContent('contact'); return false;">
                 <img src="CONTACT.svg" alt="contact-icon" class="icon">
                 <span class="text-wrapper">
                     <h5 class="icon-name">Contact</h5>
+                </span>
+            </a>
+            <br>
+            <a href="javascript:void(0);" class="link" onclick="loadContent('profileSettings'); return false;">
+                <img src="USER.svg" alt="profile-icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Profile Settings</h5>
                 </span>
             </a>
             <br>
@@ -72,6 +79,3 @@
     <script src="home.js"></script>
 </body>
 </html>
-
-
-

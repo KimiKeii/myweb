@@ -4,8 +4,79 @@
   <meta charset="UTF-8" />
   <title>Subscription Plans</title>
   <link rel="stylesheet" href="subscription.css" />
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <style>
+    /* Popup styles */
+    #popup {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #f8d7da;
+      color: #721c24;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: 1px solid #f5c6cb;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    #popup.hidden {
+      display: none;
+      opacity: 0;
+    }
+
+    #popup.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    #popup.info {
+      background: #d1ecf1;
+      color: #0c5460;
+      border: 1px solid #bee5eb;
+    }
+
+    /* User Info Form in Modal */
+    .user-info-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .user-info-form input {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .user-info-form input:focus {
+      outline: none;
+      border-color: #4CAF50;
+    }
+
+    .qr-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .qr {
+      max-width: 250px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
+  <!-- Popup Element -->
+  <div id="popup" class="hidden"></div>
+
   <header>
     <nav class="nav">
       <div class="logo">
@@ -30,23 +101,23 @@
       <div class="plans">
         <div class="plan">
           <h1>Monthly</h1>
-          <h2>bronze</h2>
-          <p class="price">P149 / month</p>
-          <button class="pay-btn">Pay Now</button>
+          <h2>Bronze</h2>
+          <p class="price">₱149 / month</p>
+          <button class="pay-btn" data-plan="Bronze" data-price="149" data-duration="1 Month">Pay Now</button>
         </div>
 
         <div class="plan">
           <h1>Quarterly</h1>
           <h2>Silver</h2>
-          <p class="price">P249 / 3 months</p>
-          <button class="pay-btn">Pay Now</button>
+          <p class="price">₱249 / 3 months</p>
+          <button class="pay-btn" data-plan="Silver" data-price="249" data-duration="3 Months">Pay Now</button>
         </div>
 
         <div class="plan">
           <h1>Yearly</h1>
           <h2>Gold</h2>
-          <p class="price">P449 / year</p>
-          <button class="pay-btn">Pay Now</button>
+          <p class="price">₱449 / year</p>
+          <button class="pay-btn" data-plan="Gold" data-price="449" data-duration="1 Year">Pay Now</button>
         </div>
       </div>
     </div>
@@ -56,18 +127,29 @@
   <div id="paymentModal" class="modal" style="display:none;">
     <div class="modal-content">
       <span class="close" style="cursor:pointer;">&times;</span>
-      <h2>Select Payment Method</h2>
+      <h2>Subscribe to <span id="selectedPlan"></span> Plan</h2>
+      
+      <!-- User Information Form -->
+      <form id="userInfoForm" class="user-info-form">
+        <input type="text" id="firstName" placeholder="First Name" required />
+        <input type="text" id="lastName" placeholder="Last Name" required />
+        <input type="email" id="email" placeholder="Email Address" required />
+        <input type="tel" id="phone" placeholder="Phone Number (optional)" />
+      </form>
+
       <div class="payment-option">
-        <!-- No Card button, only Gcash as default -->
-        <button id="gcashBtn" class="option-btn active">Gcash</button>
+        <button id="gcashBtn" class="option-btn active">GCash</button>
       </div>
 
-      <!-- Gcash payment inputs -->
+      <!-- Gcash payment -->
       <div id="gcashForm" class="payment-form" style="display:flex; flex-direction: column; gap: 8px;">
         <div class="qr-container">
-          <img src="gqr.jpeg" class="qr">
+          <img src="gqr.jpeg" class="qr" alt="GCash QR Code">
         </div>
-        <button id="gcashPayBtn" type="button">Pay</button>
+        <p style="text-align: center; font-size: 14px; color: #666;">
+          Scan QR code to pay <strong>₱<span id="planPrice"></span></strong> to <strong>09567761982</strong>
+        </p>
+        <button id="gcashPayBtn" type="button">Confirm Payment</button>
       </div>
     </div>
   </div>
@@ -80,60 +162,166 @@
     </div>
   </div>
 
-  <script>
+  <script type="text/javascript">
+    // Initialize EmailJS
+    (function(){
+      emailjs.init("npgdAYNuGmeph_8ae");
+    })();
+
+    // Popup function
+    const popup = document.getElementById('popup');
+    
+    function showPopup(message, type = 'error') {
+      popup.innerText = message;
+      popup.className = '';
+      if (type === 'success') {
+        popup.classList.add('success');
+      } else if (type === 'info') {
+        popup.classList.add('info');
+      }
+      popup.classList.remove('hidden');
+      setTimeout(() => popup.classList.add('hidden'), 3000);
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
-    const payButtons = document.querySelectorAll('.pay-btn');
-    const paymentModal = document.getElementById('paymentModal');
-    const closeModal = paymentModal.querySelector('.close');
-    const gcashBtn = document.getElementById('gcashBtn');
-    const gcashForm = document.getElementById('gcashForm');
-    const successPopup = document.getElementById('successPopup');
-    const successClose = document.getElementById('successClose');
-    const successMessage = document.getElementById('successMessage');
+      const payButtons = document.querySelectorAll('.pay-btn');
+      const paymentModal = document.getElementById('paymentModal');
+      const closeModal = paymentModal.querySelector('.close');
+      const gcashPayBtn = document.getElementById('gcashPayBtn');
+      const successPopup = document.getElementById('successPopup');
+      const successClose = document.getElementById('successClose');
+      const successMessage = document.getElementById('successMessage');
+      
+      let selectedPlanData = {};
 
-    let modalTimeout, redirectTimeout;
+      // Email validation
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
 
-    // Open modal on any pay button click
-    payButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        paymentModal.style.display = 'block';
-        gcashBtn.classList.add('active');
-        gcashForm.style.display = 'flex';
+      // Open modal on any pay button click
+      payButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const planName = btn.getAttribute('data-plan');
+          const planPrice = btn.getAttribute('data-price');
+          const planDuration = btn.getAttribute('data-duration');
+          
+          selectedPlanData = {
+            plan: planName,
+            price: planPrice,
+            duration: planDuration
+          };
 
-        // Set a 10-second timer to close the modal and show the success popup
-        modalTimeout = setTimeout(() => {
+          document.getElementById('selectedPlan').textContent = planName;
+          document.getElementById('planPrice').textContent = planPrice;
+          
+          paymentModal.style.display = 'block';
+        });
+      });
+
+      // Close modal manually
+      closeModal.addEventListener('click', () => {
+        paymentModal.style.display = 'none';
+      });
+
+      // Click outside modal to close
+      window.addEventListener('click', (e) => {
+        if (e.target === paymentModal) {
           paymentModal.style.display = 'none';
-          successMessage.textContent = 'Payment successful via Gcash!';
-          successPopup.style.display = 'block';
+        }
+      });
 
-          // After 6 seconds, redirect to index.html
-          redirectTimeout = setTimeout(() => {
-            window.location.href = 'index.html';
-          },3000);
-        }, 6000); // 10 seconds
+      // Confirm Payment and Send Email
+      gcashPayBtn.addEventListener('click', () => {
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+
+        // Validate inputs
+        if (!firstName || !lastName || !email) {
+          showPopup('Please fill in all required fields.');
+          return;
+        }
+
+        if (!isValidEmail(email)) {
+          showPopup('Please enter a valid email address.');
+          return;
+        }
+
+        // Show loading
+        showPopup('Processing payment...', 'info');
+
+        // Get current date and time
+        const paymentDate = new Date().toLocaleString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+
+        // Calculate subscription end date
+        const startDate = new Date();
+        let endDate = new Date();
+        
+        if (selectedPlanData.plan === 'Bronze') {
+          endDate.setMonth(endDate.getMonth() + 1);
+        } else if (selectedPlanData.plan === 'Silver') {
+          endDate.setMonth(endDate.getMonth() + 3);
+        } else if (selectedPlanData.plan === 'Gold') {
+          endDate.setFullYear(endDate.getFullYear() + 1);
+        }
+
+        const formattedEndDate = endDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+
+        // Template parameters for EmailJS
+        const templateParams = {
+          to_email: 'earl.joshua.espinosa20@gmail.com',
+          customer_email: email,
+          customer_name: `${firstName} ${lastName}`,
+          plan_name: selectedPlanData.plan,
+          plan_price: `₱${selectedPlanData.price}`,
+          plan_duration: selectedPlanData.duration,
+          payment_date: paymentDate,
+          subscription_end: formattedEndDate,
+          phone: phone || 'Not provided'
+        };
+
+        // Send email using EmailJS
+        emailjs.send('service_qiybx23', 'template_xdxi9e6', templateParams)
+          .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            
+            // Close modal
+            paymentModal.style.display = 'none';
+            
+            // Show success popup
+            showPopup('🎉 Subscription successful! Receipt sent to your email.', 'success');
+            
+            // Redirect after 3 seconds
+            setTimeout(() => {
+              window.location.href = 'index.html';
+            }, 3000);
+          }, function(error) {
+            console.log('FAILED...', error);
+            showPopup('Payment confirmed but failed to send receipt. Please contact support.', 'info');
+            
+            setTimeout(() => {
+              window.location.href = 'index.html';
+            }, 3000);
+          });
+      });
+
+      // Close success popup manually
+      successClose.addEventListener('click', () => {
+        successPopup.style.display = 'none';
       });
     });
-
-    // Close modal manually (also clears the timeout)
-    closeModal.addEventListener('click', () => {
-      paymentModal.style.display = 'none';
-      clearTimeout(modalTimeout);
-    });
-
-    // Click outside modal to close
-    window.addEventListener('click', (e) => {
-      if (e.target === paymentModal) {
-        paymentModal.style.display = 'none';
-        clearTimeout(modalTimeout);
-      }
-    });
-
-    // Close success popup manually
-    successClose.addEventListener('click', () => {
-      successPopup.style.display = 'none';
-      clearTimeout(redirectTimeout);
-    });
-  });
   </script>
 </body>
 </html>

@@ -4,12 +4,52 @@
   <title>GCash QR Payment</title>
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <body class="min-h-screen bg-gray-900 bg-center bg-cover flex items-center justify-center" style="background-image: url('apartmentbg.jpg');">
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <style>
+    /* Popup styles */
+    #popup {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #f8d7da;
+      color: #721c24;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: 1px solid #f5c6cb;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    #popup.hidden {
+      display: none;
+      opacity: 0;
+    }
+
+    #popup.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    #popup.info {
+      background: #d1ecf1;
+      color: #0c5460;
+      border: 1px solid #bee5eb;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-900 bg-center bg-cover flex items-center justify-center" style="background-image: url('apartmentbg.jpg');">
+
+  <!-- Popup Element -->
+  <div id="popup" class="hidden"></div>
 
   <!-- Background dark overlay -->
   <div class="absolute inset-0 bg-black/50"></div>
 
-  <!-- Bright foreground box, separated from dark overlay -->
+  <!-- Bright foreground box -->
   <div class="relative z-10 bg-white shadow-2xl rounded-xl p-8 max-w-md w-full text-center mx-4">
     <h1 class="text-2xl font-bold text-gray-800 mb-2">Pay Rent via GCash</h1>
     <p class="text-sm text-gray-600 mb-4">Scan the QR code to pay to <strong>09567761982</strong></p>
@@ -21,17 +61,39 @@
     <p class="text-sm text-gray-500">Amount to Pay:</p>
     <p id="gcash-amount" class="text-xl font-bold text-green-600 mb-6">₱0.00</p>
 
-<!-- Your confirm button -->
-<button id="confirmBtn"
-  class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300">
-  Confirm Payment
-</button>
+    <button id="confirmBtn"
+      class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300">
+      Confirm Payment
+    </button>
   </div>
 
+<script type="text/javascript">
+  // Initialize EmailJS with your Public Key
+  (function(){
+    emailjs.init("npgdAYNuGmeph_8ae");
+  })();
 
-<script>
+  // Popup function
+  const popup = document.getElementById('popup');
+  
+  function showPopup(message, type = 'error') {
+    popup.innerText = message;
+    popup.className = '';
+    if (type === 'success') {
+      popup.classList.add('success');
+    } else if (type === 'info') {
+      popup.classList.add('info');
+    }
+    popup.classList.remove('hidden');
+    setTimeout(() => popup.classList.add('hidden'), 3000);
+  }
+
   window.addEventListener('DOMContentLoaded', () => {
     const phoneNumber = "09567761982";
+
+    // Get booking data from sessionStorage
+    const bookingDataStr = sessionStorage.getItem('bookingData');
+    const bookingData = bookingDataStr ? JSON.parse(bookingDataStr) : null;
 
     // Safely retrieve and parse the total payment
     const storedAmount = sessionStorage.getItem('totalPayment');
@@ -39,16 +101,18 @@
 
     if (storedAmount && !isNaN(storedAmount)) {
       amount = parseFloat(storedAmount);
+    } else {
+      showPopup('No payment amount found. Please return to the property page.');
     }
 
     // Display the formatted amount
     const amountDisplay = document.getElementById('gcash-amount');
-    amountDisplay.textContent = `₱${amount.toLocaleString(undefined, {
+    amountDisplay.textContent = `P${amount.toLocaleString(undefined, {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
     })}`;
 
-    // Generate QR code with GCash payment link
+    // Generate QR code
     const qrData = `https://gcash.app/pay?number=${phoneNumber}&amount=${amount.toFixed(2)}`;
 
     new QRCode(document.getElementById("qrcode"), {
@@ -57,21 +121,71 @@
       height: 200
     });
 
-    // Add click event listener for confirm booking button
+    // Send Email Receipt Function
+    function sendEmailReceipt() {
+      if (!bookingData) {
+        showPopup('Booking data not found. Please complete the booking form.');
+        return;
+      }
+
+      // Get current date and time
+      const paymentDate = new Date().toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+
+      // Template parameters for EmailJS
+      const templateParams = {
+        to_email: 'earl.joshua.espinosa20@gmail.com',
+        customer_email: bookingData.email,
+        customer_name: `${bookingData.firstName} ${bookingData.lastName}`,
+        property_name: bookingData.propertyName,
+        property_location: bookingData.propertyLocation,
+        property_type: bookingData.propertyType,
+        rent_start: bookingData.rentStart,
+        rent_end: bookingData.rentEnd,
+        monthly_fee: `P${bookingData.monthlyFee.toLocaleString()}`,
+        maintenance_fee: `P${bookingData.maintenanceFee.toLocaleString()}`,
+        total_amount: `P${bookingData.totalAmount.toLocaleString()}`,
+        payment_method: bookingData.paymentMethod,
+        payment_date: paymentDate,
+        phone: bookingData.phone || 'Not provided',
+        country: bookingData.country
+      };
+
+      // Show loading state
+      showPopup('Sending receipt...', 'info');
+
+      // Send email using EmailJS
+      emailjs.send('service_qiybx23', 'template_k7fzfia', templateParams)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          showPopup('Payment confirmed! Receipt sent to your email.', 'success');
+          
+          // Redirect after 3 seconds
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 3000);
+        }, function(error) {
+          console.log('FAILED...', error);
+          showPopup('Payment confirmed but failed to send receipt. Please contact support.', 'info');
+          
+          // Still redirect after error
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 3000);
+        });
+    }
+
+    // Confirm button click handler
     document.getElementById('confirmBtn').addEventListener('click', () => {
-      const emailInput = document.getElementById('emailInput');
-      const email = emailInput ? emailInput.value.trim() : '';
-
-      alert(`🎉 Booking Confirmed! Thank you for your payment.\nA receipt will be sent to: ${email} (email sending is currently disabled).`);
-
-      // Redirect to index.html after alert is dismissed
-      window.location.href = 'index.html';
+      sendEmailReceipt();
     });
   });
 </script>
-
-
-
 
 </body>
 </html>

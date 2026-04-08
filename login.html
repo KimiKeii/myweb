@@ -1,50 +1,180 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Log in</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="login.css">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* ... Keeping all your existing styles ... */
+
+        /* Adding styles for the error popup */
+        #popup {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 1px solid #f5c6cb;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .hidden { display: none; opacity: 0; }
+        
+        /* Error state for inputs */
+        .input.invalid {
+            border: 2px solid #dc3545 !important;
+            outline: none;
+        }
+
+        /* [Existing styles continue...] */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; }
+        .card { background: white; border-radius: 1.5rem; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); padding: 2.5rem 2rem; max-width: 800px; width: 100%; margin: 2rem auto; display: flex; flex-direction: column; gap: 1.25rem; }
+        .transparenCard { background: #ffff; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 1.5rem 0 0 1.5rem; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); padding: 3.54rem 2rem; max-width: 400px; width: 100%; display: flex; flex-direction: column; gap: 1.25rem; }
+        .input { border: 1px solid #dbeafe; border-radius: 0.75rem; padding: 0.75rem 1rem; font-size: 1rem; outline: solid 1px #5bc0be; transition: border 0.2s; width: 100%; margin-bottom: 0.5rem; }
+        .button { background-color: #1e40af; color: #ffff; border-radius: 2rem; padding: 0.75rem 0; font-size: 1.1rem; font-weight: 600; cursor: pointer; width: 100%; margin-top: 1rem; border: none; }
+        .login-container { min-height: 100vh; background-image: url('bg-loginpic.jpg'); background-color: rgba(17, 21, 67, 0.5); background-blend-mode: multiply; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
+        .cards-wrapper { display: flex; align-items: stretch; justify-content: flex-start; }
+        .logo-container img { height: 60px; margin-bottom: 1rem; }
+        .image-card { flex: 1; display: flex; min-height: 100%; position: relative; border-radius: 0 2rem 2rem 0; overflow: hidden; }
+        .image-card img.background-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .dark-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.2); }
+        .content-overlay { position: relative; z-index: 10; display: flex; justify-content: flex-end; padding: 1rem; width: 100%; margin-left: 19rem; }
+        .content-overlay img { height: 80px; }
+        .link { color: #3b82f6; text-decoration: underline; cursor: pointer; font-size: 0.95rem; }
+        .switch { text-align: center; margin-top: 1rem; font-size: 0.97rem; }
+        .social-icons { display: flex; justify-content: center; gap: 1.5rem; margin-top: 0.5rem; }
+    </style>
 </head>
 <body>
-    <div id="popup" class="popup hidden">Invalid credentials. Please try again.</div>
-    <div class="container">
-        <div class="row col-md-12 wrapper">
-            <div class="col-md-6">
-                <div class="imagewrap">
-                    <div class="image-container">
-                        <img src="LOGO.svg" class="Logo" alt="AOS Logo">
+
+    <div id="popup" class="hidden"></div>
+
+    <div class="login-container">
+        <div class="cards-wrapper">
+            <div class="transparenCard">
+                <div class="logo-container">
+                     <a href="index.html"><img src="AOSlogo(sub).svg" alt="Logo"></a>
+                </div>
+
+                <form id="loginForm">
+                    <input
+                        id="username"
+                        class="input"
+                        type="text" 
+                        placeholder="Username or Email"
+                        autocomplete="username"
+                        required
+                    />
+                    <input
+                        id="password"
+                        class="input"
+                        type="password"
+                        placeholder="Password"
+                        autocomplete="current-password"
+                        required
+                    />
+                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.95rem;">
+                        <label style="display: flex; align-items: center;">
+                            <input type="checkbox" id="rememberMe" style="margin-right: 6px;"> Remember Me
+                        </label>
+                        <span class="link">Forgot Password?</span>
                     </div>
+                    <button class="button" type="submit">
+                        Login
+                    </button>
+                </form>
+
+                <div class="switch">
+                    Don't have an account?
+                    <a href="sign-up.html" class="link">Sign Up</a>
+                </div>
+
+                <div style="text-align: center; margin-top: 1.5rem; color: #64748b;"></div>
+
+                <div class="social-icons">
+                   
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="Loginwrap">
-                    <div>
-                        <form onsubmit="event.preventDefault(); login();">
-                            <h1 class="question">Login</h1>
-                            <br>
-                            <label for="username">Name</label>
-                            <br>
-                            <input type="text" id="username" placeholder="Username" required>
-                            <br>
-                            <label for="password">Password</label>
-                            <br>
-                            <input type="password" id="password" placeholder="Password" required>
-                            <br>
-                        </form>
-                    </div>
-                    <div class="btn-group">
-                        <button type="submit" id="lgbtn" onclick="login()" class="login-btn">Login</button>
-                    </div>
-                        <br>
-                        <p>Dosent Have an Account?<a href="sign-up.html">SignUp</a></p>
-                        <a href="index.html">HomePage</a>
+
+            <div class="image-card">
+                <img src="login pic.jpg" alt="Building" class="background-image">
+                <div class="dark-overlay"></div>
+                <div class="content-overlay">
+                    <img src="AOSlogo(Login).svg" alt="Logo">
                 </div>
             </div>
         </div>
     </div>
-    <script src="login.js"></script>
+
+    <script>
+        const API_USERS = 'api/users.php';
+        const loginForm = document.getElementById('loginForm');
+        const usernameField = document.getElementById('username');
+        const passwordField = document.getElementById('password');
+        const popup = document.getElementById('popup');
+
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const identifier = usernameField.value.trim();
+            const password = passwordField.value;
+
+            // UI Reset
+            usernameField.classList.remove('invalid');
+            passwordField.classList.remove('invalid');
+
+            try {
+                const res = await fetch(`${API_USERS}?action=login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        identifier: identifier, 
+                        password: password 
+                    })
+                });
+
+                const data = await res.json();
+
+                if (data.success) {
+                    // Save session
+                    sessionStorage.setItem('loggedInUser', JSON.stringify(data.user));
+
+                    // Redirect based on role
+                    if (data.user.role === 'manager' || data.user.role === 'admin' || data.user.role === 'owner') {
+                        window.location.href = 'home.html';
+                    } else {
+                        window.location.href = 'user.html';
+                    }
+                } else {
+                    // Handle Error UI
+                    if (data.error && data.error.toLowerCase().includes('password')) {
+                        passwordField.classList.add('invalid');
+                    } else {
+                        usernameField.classList.add('invalid');
+                    }
+                    showPopup(data.error || 'Invalid credentials.');
+                }
+            } catch (err) {
+                console.error('Login error:', err);
+                showPopup('Server error. Please check your connection.');
+            }
+        });
+
+        function showPopup(message) {
+            popup.innerText = message;
+            popup.classList.remove('hidden');
+            setTimeout(() => popup.classList.add('hidden'), 3000);
+        }
+
+        // Remove error highlights when user types
+        [usernameField, passwordField].forEach(field => {
+            field.addEventListener('input', () => field.classList.remove('invalid'));
+        });
+    </script>
 </body>
 </html>
