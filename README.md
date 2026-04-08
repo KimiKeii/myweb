@@ -1,4 +1,4 @@
-# Apartment Organizing System
+# Apartment Organizing System (AOS)
 
 ## 📌 Overview
 The Apartment Organizing System is a simple management application designed to help organize and manage apartment-related information such as tenants, units, and records efficiently. This project was developed as part of an academic requirement to demonstrate fundamental software development concepts.
