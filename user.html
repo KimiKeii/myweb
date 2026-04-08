@@ -3,18 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AOS</title>
+    <title>AOS - Tenant Dashboard</title>
     <link rel="stylesheet" href="tenants.css">
+    <style>
+        #sidebar {
+            transition: width 0.3s ease;
+            overflow: visible;
+        }
+        
+        #sidebar.collapsed {
+            width: 80px !important;
+        }
+
+        #sidebar.collapsed .text-wrapper {
+            opacity: 0;
+            width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        #sidebar .text-wrapper {
+            opacity: 1;
+            transition: opacity 0.3s ease, width 0.3s ease;
+        }
+
+        #sidebar .menu .link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #sidebar .icon {
+            flex-shrink: 0;
+        }
+        
+        .toggle-sidebar-btn {
+            position: fixed;
+            left: 20px;
+            top: 80px;
+            z-index: 1001;
+            background: #0056b3;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        .toggle-sidebar-btn:hover {
+            background: #003d82;
+        }
+
+        .profile-settings-wrap {
+            max-width: 700px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .profile-settings-wrap h2 {
+            margin-bottom: 30px;
+            color: #001F4D;
+            text-align: center;
+        }
+
+        .profile-image-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .profile-image-preview {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid #0056b3;
+        }
+
+        .profile-image-section input[type="file"] {
+            display: none;
+        }
+
+        .upload-btn {
+            background: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: inline-block;
+            margin: 10px 5px;
+            border: none;
+        }
+
+        .upload-btn:hover {
+            background: #003d82;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .save-profile-btn {
+            background: #28a745;
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .save-profile-btn:hover {
+            background: #218838;
+        }
+
+        .change-password-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .change-password-section h3 {
+            margin-bottom: 20px;
+            color: #001F4D;
+        }
+
+        .change-password-btn {
+            background: #ffc107;
+            color: #333;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .change-password-btn:hover {
+            background: #e0a800;
+        }
+
+        .success-message, .error-message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="header-content">
             <div class="profile-section">
-                <img src="Emmy.jpg" alt="Profile Picture">
-                <h3 class="profile-name">Emmy</h3>
+                <img src="USER.svg" alt="Profile Picture" id="headerProfileImage">
+                <h3 class="profile-name" id="profileName">User</h3>
                     <div class="dropdown">
                         <button class="dropdown-toggle">▼</button>
-                        <a href="index.html" class="logout">
+                        <a href="#" class="logout" onclick="logout(); return false;">
                             <span class="text-wrapper">
                                 <h5 class="logout-name">Logout</h5>
                             </span>
@@ -51,10 +233,24 @@
                 </span>
             </a>
             <br>
-            <a href="#" class="link" onclick="loadContent('report',)">
+            <a href="#" class="link" onclick="loadContent('contract')">
+                <img src="TRANSACTION.svg" alt="transaction-icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Contract</h5>
+                </span>
+            </a>
+            <br>
+            <a href="#" class="link" onclick="loadContent('report')">
                 <img src="CONTACT.svg" alt="contact-icon" class="icon">
                 <span class="text-wrapper">
                     <h5 class="icon-name">Report</h5>
+                </span>
+            </a>
+            <br>
+            <a href="#profileSettings" class="link" onclick="loadContent('profileSettings')">
+                <img src="USER.svg" alt="profile-icon" class="icon">
+                <span class="text-wrapper">
+                    <h5 class="icon-name">Profile Settings</h5>
                 </span>
             </a>
             <br>
@@ -62,27 +258,159 @@
         </nav>
     </div>
 
-    <div class="content">
-        
-    </div>
+    <div class="content"></div>
 
     <footer>
         <p>&copy; 2024 AOS. All rights reserved.</p>
     </footer>
-
     <script>
-        // Function to change both content and header title
-        function loadContent(section, headerTitle) {
-            const content = document.querySelector('.content'); // Get content div
-            const header = document.getElementById('header-title'); // Get header title
+        let currentUser = null;
+        const API_USERS = 'api/users.php';
 
-            // Define different content for each section
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('toggleBtn');
+            
+            sidebar.classList.toggle('collapsed');
+            toggleBtn.textContent = sidebar.classList.contains('collapsed') ? '→' : '☰';
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            currentUser = JSON.parse(sessionStorage.getItem('loggedInUser') || 'null');
+            
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            if (currentUser.username) {
+                document.getElementById('profileName').textContent = currentUser.username;
+            }
+            
+            if (currentUser.profile_pic) {
+                document.getElementById('headerProfileImage').src = currentUser.profile_pic;
+            }
+        });
+
+        function loadContent(section, headerTitle) {
+            if (section === 'profileSettings') {
+                showProfileSettings();
+                return;
+            }
+
+            const content = document.querySelector('.content');
+            const header = document.getElementById('header-title');
+
             const sections = {
                 myproperty: '<img src="MyProperty.png" class="myproperty">',
-                payment: '<img src="Payment.png" class="myproperty">',
-                mydetails: '<img src="MyDetails.png" class="myproperty">',
+                payment: `
+                    <img src="Payment.png" class="myproperty"> 
+                    <div class="pay-here"><a href="payment.html" class="paybtn">Pay Here<a></div>
+                    `,
+                mydetails: `
+                    <div class="card">
+                        <div class="profile">
+                        <section>
+                            <div class="profile-icon">
+                            <img class="tenant-image" src="${currentUser.profile_pic}">    
+                            </div>
+                        </section>
+                        <section class="profile-info">
+                            <div class="section-title">Tenant Information</div>
+                            <p><strong>Name:</strong> ${currentUser.username}</p>
+                            <p><strong>Email:</strong> ${currentUser.email}</p>
+                            <p><strong>Phone:</strong> ${currentUser.phone || 'Not provided'}</p>
+                        </section>
+                        </div>
+
+                        <div>
+                        <section class="docs">
+                            <div class="section-title">Documents</div>
+
+                            <p><strong>View/Upload Contract</strong></p>
+                            <a href="#">Upload contract with signature</a>
+
+                            <p><strong>Tenant ID Proof (PDF):</strong></p>
+                            <a href="#">View/Download Tenant ID Proof</a>
+
+                            <p><strong>SMDC Rules & Regulations (PDF):</strong></p>
+                            <a href="#">View/Download Rules & Regulations</a>
+                        </section>
+
+                        <section class="utilities">
+                            <div class="section-title">Utilities Provider</div>
+                            <p><strong>Water Provider:</strong> PrimeWater</p>
+                            <p><strong>Electricity Provider:</strong> Meralco</p>
+                            <p><strong>Internet Provider:</strong> PLDT</p>
+                        </section>
+                        </div>
+
+                    </div>
+                `,
+                contract:`
+                <div class="container" id="leaseContent">
+                    <h1>RESIDENTIAL LEASE AGREEMENT</h1>
+
+                    <h2>1. PARTIES.</h2>
+                    <p>
+                    This Residential Lease Agreement ("Agreement") made on May 23, 2023 is between:<br>
+                    Landlord Name: Jordan Ronsairo<br>
+                    with a mailing address of: jordan.ronsairo@gmail.com 
+                    <br>AND<br>
+                    Tenant Name(s): ${currentUser.username}
+                    </p>
+
+                    <h2>2. PROPERTY.</h2>
+                    <p>
+                    The Landlord agrees to lease the described property to the Tenant:<br>
+                    Address:  Unit 1820, Tower 1, Sun Residences<br>
+                    España Boulevard corner Mayon Street<br>
+                    Barangay Lourdes, Quezon City<br>
+                    Metro Manila, Luzon<br>
+                    Philippines
+                    <br><br>
+                    Residence Type:<br>
+                    <input type="checkbox" checked> Single-family<br>
+                    <input type="checkbox"> Apartment<br>
+                    <input type="checkbox"> Condominium<br>
+                    <input type="checkbox"> Other: <input type="text" class="short">
+                    </p>
+
+                    <h2>3. TERM.</h2>
+                    <p>
+                    The Agreement shall begin on May 29, 2023 and end on May 29, 2024.
+                    </p>
+
+                    <h2>4. RENT.</h2>
+                    <p>
+                    The Tenant shall pay the Landlord in equal monthly installments of ₱25,000 ("Rent"). 
+                    The Rent shall be due on the 5th of every month and paid under the following instructions:<br>
+                    Payment must be made via GCash to the number 09171234567 under the name Jordan Ronsairo. 
+                    Please include the unit number and month covered in the message or reference field (e.g., "Unit 1820 – July Rent"). 
+                    A screenshot of the payment confirmation must be sent to rentpayments@example.com after each transaction.
+                    </p>
+
+                    <h2>5. SECURITY DEPOSIT.</h2>
+                    <p>
+                    The Tenant (check one):<br>
+                    <input type="checkbox" checked> Shall deposit with the Landlord the sum of ₱5,000 
+                    as security for any damage caused to the Premises during the Term. 
+                    Such deposit shall be returned to the Tenant, less any itemized deductions, within 7 days after the end of the Term.<br><br>
+                    <input type="checkbox"> Shall NOT be required to pay a security deposit.
+                    </p>
+
+                    <h2>6. SIGNATURES.</h2>
+                    <p>
+                    Landlord Signature: <input type="text" class="long"> Date: <input type="text" class="short"><br>
+                    Printed Name: <input type="text" class="long"><br><br>
+                    Tenant Signature: <input type="text" class="long"> Date: <input type="text" class="short"><br>
+                    Printed Name: <input type="text" class="long">
+                    </p>
+
+                    <button id="downloadBtn">Download as PDF</button>
+                </div>
+                `,
                 report: `
-                <!-- Chat Box Section -->
                 <div class="message-wrap">
                     <p class="message-name" id="chatName">Owner</p>
 
@@ -97,19 +425,17 @@
                 </div>`,
             };
 
-            // Update the inner HTML of the content section
             content.innerHTML = sections[section] || '<p>Content not found.</p>';
             
-            // Update the header title to match the selected section
-            header.textContent = headerTitle;
+            if (header) {
+                header.textContent = headerTitle;
+            }
 
-            // Debug log to check if the function works
-            console.log(`Header changed to: ${headerTitle}`);
+            console.log(`Content changed to: ${section}`);
         }
 
-        // Load default content when the page loads
         window.onload = function() {
-            loadContent('myproperty') // Load Contract Access by default
+            loadContent('myproperty')
         };
 
         document.addEventListener("keydown", function(event) {
@@ -119,21 +445,17 @@
     }
 });
 
-// Send message function
 function sendMessage() {
     const input = document.getElementById("messageInput");
     const message = input.value.trim();
     const chatBox = document.getElementById("chatBox");
 
     if (message !== "") {
-        // Create user message (aligned right)
         const newMessage = document.createElement("div");
         newMessage.classList.add("message", "user");
         newMessage.textContent = message;
 
         chatBox.appendChild(newMessage);
-
-        // Scroll to the bottom of the chat box
         chatBox.scrollTop = chatBox.scrollHeight;
 
         let reply = "";
@@ -147,20 +469,199 @@ function sendMessage() {
             reply = "I'm sorry, I didn't understand that.";
         }
 
-        // Simulate friend response (aligned left)
         setTimeout(() => {
             const friendMessage = document.createElement("div");
             friendMessage.classList.add("message", "friend");
-            friendMessage.textContent = reply; // Use the reply as the friend's message
+            friendMessage.textContent = reply;
 
             chatBox.appendChild(friendMessage);
             chatBox.scrollTop = chatBox.scrollHeight;
-        }, 600); // Simulated delay for friend reply
+        }, 600);
 
-        // Clear the input field
-        input.value = "";  // This line clears the input field after sending the message
+        input.value = "";
     }
 }
+
+        function showProfileSettings() {
+            const content = document.querySelector('.content');
+            content.innerHTML = `
+                <div class="profile-settings-wrap">
+                    <h2>Profile Settings</h2>
+                    
+                    <div id="successMessage" class="success-message"></div>
+                    <div id="errorMessage" class="error-message"></div>
+
+                    <div class="profile-image-section">
+                        <img src="${currentUser.profile_pic}" alt="Profile" class="profile-image-preview" id="profileImagePreview">
+                        <br>
+                        <input type="file" id="profileImageInput" accept="image/*">
+                        <label for="profileImageInput" class="upload-btn">Choose Image</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="usernameInput">Username</label>
+                        <input type="text" id="usernameInput" value="${currentUser.username}" placeholder="Enter username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emailInput">Email</label>
+                        <input type="email" id="emailInput" value="${currentUser.email}" placeholder="Enter email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phoneInput">Phone (optional)</label>
+                        <input type="text" id="phoneInput" value="${currentUser.phone || ''}" placeholder="Enter phone number">
+                    </div>
+
+                    <button class="save-profile-btn" onclick="saveProfileSettings()">Save Changes</button>
+
+                    <div class="change-password-section">
+                        <h3>Change Password</h3>
+                        
+                        <div class="form-group">
+                            <label for="currentPasswordInput">Current Password</label>
+                            <input type="password" id="currentPasswordInput" placeholder="Enter current password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newPasswordInput">New Password</label>
+                            <input type="password" id="newPasswordInput" placeholder="Enter new password (min 6 characters)">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPasswordInput">Confirm New Password</label>
+                            <input type="password" id="confirmPasswordInput" placeholder="Confirm new password">
+                        </div>
+
+                        <button class="change-password-btn" onclick="changePassword()">Change Password</button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('profileImageInput').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('profileImagePreview').src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        async function saveProfileSettings() {
+            const username = document.getElementById('usernameInput').value.trim();
+            const email    = document.getElementById('emailInput').value.trim();
+            const phone    = document.getElementById('phoneInput').value.trim();
+            const imageFile = document.getElementById('profileImageInput').files[0];
+
+            if (!username || !email) {
+                showError('Username and email are required.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('user_id', currentUser.id);
+            formData.append('username', username);
+            formData.append('email', email);
+            formData.append('phone', phone);
+            
+            if (imageFile) {
+                formData.append('profile_image', imageFile);
+            }
+
+            try {
+                const res = await fetch(`${API_USERS}?action=update_profile`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await res.json();
+
+                if (data.success) {
+                    currentUser = data.user;
+                    sessionStorage.setItem('loggedInUser', JSON.stringify(currentUser));
+                    
+                    document.getElementById('profileName').textContent = currentUser.username;
+                    document.getElementById('headerProfileImage').src = currentUser.profile_pic;
+                    
+                    showSuccess('Profile updated successfully!');
+                } else {
+                    showError(data.error || 'Failed to update profile.');
+                }
+            } catch (err) {
+                console.error('Profile update error:', err);
+                showError('Something went wrong. Please try again.');
+            }
+        }
+
+        async function changePassword() {
+            const currentPassword = document.getElementById('currentPasswordInput').value;
+            const newPassword     = document.getElementById('newPasswordInput').value;
+            const confirmPassword = document.getElementById('confirmPasswordInput').value;
+
+            if (!currentPassword || !newPassword || !confirmPassword) {
+                showError('All password fields are required.');
+                return;
+            }
+
+            if (newPassword.length < 6) {
+                showError('New password must be at least 6 characters.');
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                showError('New passwords do not match.');
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API_USERS}?action=change_password`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_id: currentUser.id,
+                        current_password: currentPassword,
+                        new_password: newPassword
+                    })
+                });
+
+                const data = await res.json();
+
+                if (data.success) {
+                    showSuccess('Password changed successfully!');
+                    document.getElementById('currentPasswordInput').value = '';
+                    document.getElementById('newPasswordInput').value = '';
+                    document.getElementById('confirmPasswordInput').value = '';
+                } else {
+                    showError(data.error || 'Failed to change password.');
+                }
+            } catch (err) {
+                console.error('Password change error:', err);
+                showError('Something went wrong. Please try again.');
+            }
+        }
+
+        function showSuccess(message) {
+            const el = document.getElementById('successMessage');
+            el.textContent = message;
+            el.style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
+            setTimeout(() => el.style.display = 'none', 5000);
+        }
+
+        function showError(message) {
+            const el = document.getElementById('errorMessage');
+            el.textContent = message;
+            el.style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+
+        function logout() {
+            sessionStorage.removeItem('loggedInUser');
+            window.location.href = 'index.html';
+        }
     </script>
 </body>
 </html>

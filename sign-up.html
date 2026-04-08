@@ -1,268 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sign Up</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="Signup.css">
-  <script>
-    function hideToggleButtons() {
-    document.querySelector(".btn-group2").style.display = "none";
-}
-
-document.querySelector(".toggle-btn").addEventListener("click", hideToggleButtons);
-
-// Inside your `signup` function, add this logic after setting the section to owner or tenant
-function signup(section) {
-    // Hide toggle buttons when a section is selected
-    hideToggleButtons();
-    var username, email, password, confirmPassword;
-    
-    // Get the appropriate values based on the section (Owner or Tenant)
-    if (section === 'owner') {
-        username = document.getElementById("owner-username").value;
-        email = document.getElementById("owner-email").value;
-        password = document.getElementById("owner-password").value;
-        confirmPassword = document.getElementById("owner-confirmPassword").value;
-    } else if (section === 'tenant') {
-        username = document.getElementById("tenant-username").value;
-        email = document.getElementById("tenant-email").value;
-        password = document.getElementById("tenant-password").value;
-        confirmPassword = document.getElementById("tenant-confirmPassword").value;
-    }
-
-    var popup = document.getElementById("popup");
-
-    // Remove "invalid" class from inputs and hide popup initially
-    document.querySelectorAll("input").forEach(input => input.classList.remove("invalid"));
-    popup.classList.add("hidden");
-
-    // Check for valid email
-    if (!email.includes("@")) {
-        document.getElementById(section + "-email").classList.add("invalid");
-        popup.innerText = "Invalid email.";
-        popup.classList.remove("hidden");
-        setTimeout(() => popup.classList.add("hidden"), 2000); // Hide the popup after 2 seconds
-        document.getElementById(section + "-email").focus();
-        return;
-    }
-
-    // Check for password match
-    if (password !== confirmPassword) {
-        document.getElementById(section + "-confirmPassword").classList.add("invalid");
-        popup.innerText = "Passwords do not match.";
-        popup.classList.remove("hidden");
-        setTimeout(() => popup.classList.add("hidden"), 2000); // Hide the popup after 2 seconds
-        document.getElementById(section + "-confirmPassword").focus();
-        return;
-    }
-
-    // If all checks pass, show success message
-    popup.innerText = "Signup successful!";
-    popup.classList.remove("hidden");
-    setTimeout(() => popup.classList.add("hidden"), 2000); // Hide the popup after 2 seconds
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Event listeners for Enter key navigation for Owner
-    var usernameFieldOwner = document.getElementById("owner-username");
-    var emailFieldOwner = document.getElementById("owner-email");
-    var passwordFieldOwner = document.getElementById("owner-password");
-    var confirmPasswordFieldOwner = document.getElementById("owner-confirmPassword");
-
-    // Event listeners for Enter key navigation for Tenant
-    var usernameFieldTenant = document.getElementById("tenant-username");
-    var emailFieldTenant = document.getElementById("tenant-email");
-    var passwordFieldTenant = document.getElementById("tenant-password");
-    var confirmPasswordFieldTenant = document.getElementById("tenant-confirmPassword");
-
-    // Event listeners for Owner Section
-    usernameFieldOwner.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            emailFieldOwner.focus();
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; 
+            -webkit-font-smoothing: antialiased;
         }
-    });
 
-    emailFieldOwner.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            passwordFieldOwner.focus();
+        /* --- POPUP STYLES FROM OLD VERSION --- */
+        #popup {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 1px solid #f5c6cb;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-    });
-
-    passwordFieldOwner.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            confirmPasswordFieldOwner.focus();
+        .hidden { display: none; opacity: 0; }
+        
+        /* Error state for inputs */
+        .input.invalid {
+            border: 2px solid #dc3545 !important;
+            outline: none;
         }
-    });
 
-    confirmPasswordFieldOwner.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();  // Prevent form submission
-            signup('owner');  // Trigger the signup function for owner
+        /* Container & Wrapper */
+        .register-container { 
+            min-height: 100vh; 
+            background-image: url('bg-loginpic.jpg'); 
+            background-color: rgba(17, 21, 67, 0.5); 
+            background-blend-mode: multiply; 
+            background-size: cover; 
+            background-position: center; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
         }
-    });
 
-    // Event listeners for Tenant Section
-    usernameFieldTenant.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            emailFieldTenant.focus();
+        .cards-wrapper { 
+            display: flex; 
+            align-items: stretch; 
+            justify-content: flex-start; 
+            max-width: 900px; 
+            width: 100%;
+            margin: 1rem;
         }
-    });
 
-    emailFieldTenant.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            passwordFieldTenant.focus();
+        /* Left Side: Form Card */
+        .transparenCard { 
+            background: #ffff; 
+            border: 1px solid rgba(255, 255, 255, 0.3); 
+            border-radius: 1.5rem 0 0 1.5rem; 
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); 
+            padding: 2.5rem 2rem; 
+            max-width: 400px; 
+            width: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1rem; 
         }
-    });
 
-    passwordFieldTenant.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            confirmPasswordFieldTenant.focus();
+        .logo-container img { height: 50px; margin-bottom: 0.5rem; }
+        .title { color: #1e40af; font-size: 1.8rem; font-weight: 700; }
+        .subtitle { color: #64748b; font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+        .input { 
+            border: 1px solid #dbeafe; 
+            border-radius: 0.75rem; 
+            padding: 0.75rem 1rem; 
+            font-size: 0.95rem; 
+            outline: solid 1px #5bc0be; 
+            transition: border 0.2s; 
+            width: 100%; 
+            margin-bottom: 0.5rem; 
         }
-    });
 
-    confirmPasswordFieldTenant.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();  // Prevent form submission
-            signup('tenant');  // Trigger the signup function for tenant
+        .button { 
+            background-color: #1e40af; 
+            color: #ffff; 
+            border-radius: 2rem; 
+            padding: 0.75rem 0; 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            cursor: pointer; 
+            width: 100%; 
+            margin-top: 0.5rem; 
+            border: none; 
         }
-    });
-});
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Owner section input fields
-    var emailFieldOwner = document.getElementById("owner-email");
-    var confirmPasswordFieldOwner = document.getElementById("owner-confirmPassword");
+        .button:disabled { background-color: #94a3b8; }
 
-    // Tenant section input fields
-    var emailFieldTenant = document.getElementById("tenant-email");
-    var confirmPasswordFieldTenant = document.getElementById("tenant-confirmPassword");
+        /* Right Side: Image Card */
+        .image-card { 
+            flex: 1; 
+            display: flex; 
+            position: relative; 
+            border-radius: 0 1.5rem 1.5rem 0; 
+            overflow: hidden; 
+        }
 
-    // Event listener to remove the "invalid" class when typing in email (Owner)
-    emailFieldOwner.addEventListener("input", function() {
-        this.classList.remove("invalid");
-        document.getElementById("popup").classList.add("hidden");
-    });
+        .image-card img.background-image { 
+            position: absolute; 
+            inset: 0; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+        }
 
-    // Event listener to remove the "invalid" class when typing in confirmPassword (Owner)
-    confirmPasswordFieldOwner.addEventListener("input", function() {
-        this.classList.remove("invalid");
-        document.getElementById("popup").classList.add("hidden");
-    });
+        .dark-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.2); }
+        .content-overlay { 
+            position: relative; 
+            z-index: 10; 
+            display: flex; 
+            justify-content: flex-end; 
+            padding: 1.5rem; 
+            width: 100%; 
+        }
+        .content-overlay img { height: 60px; }
 
-    // Event listener to remove the "invalid" class when typing in email (Tenant)
-    emailFieldTenant.addEventListener("input", function() {
-        this.classList.remove("invalid");
-        document.getElementById("popup").classList.add("hidden");
-    });
+        .link { color: #3b82f6; text-decoration: underline; cursor: pointer; font-size: 0.9rem; }
+        .switch { text-align: center; margin-top: 0.5rem; font-size: 0.9rem; }
 
-    // Event listener to remove the "invalid" class when typing in confirmPassword (Tenant)
-    confirmPasswordFieldTenant.addEventListener("input", function() {
-        this.classList.remove("invalid");
-        document.getElementById("popup").classList.add("hidden");
-    });
-});
-
-function hideToggleButtons() {
-    document.querySelector(".btn-group2").style.display = "none";
-    document.querySelector("#owner-section").style.display = "block"; // Show Owner section when toggling
-    document.querySelector("#tenant-section").style.display = "none"; // Hide Tenant section when toggling
-}
-
-function hideToggleButtons2() {
-    document.querySelector(".btn-group2").style.display = "none";
-    document.querySelector("#owner-section").style.display = "none"; // Show Owner section when toggling
-    document.querySelector("#tenant-section").style.display = "block"; // Hide Tenant section when toggling
-}
-
-function showToggleButtons() {
-    document.querySelector(".btn-group2").style.display = "flex"; // Show the toggle buttons
-    document.querySelector("#owner-section").style.display = "none"; // Hide Owner section
-    document.querySelector("#tenant-section").style.display = "none"; // Hide Tenant section
-}
-
-  </script>
+        @media (max-width: 768px) {
+            .image-card { display: none; }
+            .transparenCard { border-radius: 1.5rem; }
+        }
+    </style>
 </head>
 <body>
-    <div id="popup" class="popup hidden">Invalid credentials. Please try again.</div>
-    <div class="container">
-        <div class="content-wrap">
-            <div class="row col-md-12 wrapper">
-                <div class="col-md-6">
-                    <div class="imagewrap">
-                        <div class="image-container">
-                            <img src="LOGO.svg" class="Logo" alt="AOS Logo">
-                        </div>
-                    </div>
+
+    <div id="popup" class="hidden"></div>
+
+    <div class="register-container">
+        <div class="cards-wrapper">
+            <div class="transparenCard">
+                <div class="logo-container">
+                    <a href="index.html"><img src="AOSlogo(sub).svg" alt="Logo"></a>
                 </div>
-                <div class="col-md-6">
-                    <div class="signup-wrap">
-                        <!-- Toggle buttons for Owner and Tenant -->
-                        <div class="btn-group2">
-                            <a href="#owner-section" class="toggle-btn" onclick="hideToggleButtons()">Owner</a>
-                            <a href="#tenant-section" class="toggle-btn" onclick="hideToggleButtons2()">Tenant</a>
-                        </div>
+                
+                <div class="title">Sign Up</div>
+                <p class="subtitle">Join our community today</p>
+
+                <form id="registerForm">
+                    <input class="input" type="text" name="username" placeholder="User Name" required />
+                    <input class="input" type="email" name="email" id="email" placeholder="Email Address" required />
+                    <input class="input" type="password" name="password" placeholder="Password" required />
+                    <input class="input" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required />
                     
-                        <!-- Owner Sign-Up Form -->
-                        <div id="owner-section" class="content owner-signup" style="display: none;">
-                            <h2>Owner Sign Up</h2>
-                            <label for="owner-username">Username</label>
-                            <input type="text" id="owner-username" placeholder="Enter username" required>
+                    <select class="input" name="userType" required>
+                        <option value="" disabled selected>Select Account Type</option>
+                        <option value="student">Student</option>
+                        <option value="tenant">Tenant</option>
+                        <option value="landlord">Landlord</option>
+                    </select>
+                    <button class="button" type="submit" id="submitButton">Register</button>
+                </form>
 
-                            <label for="owner-email">Email</label>
-                            <input type="text" id="owner-email" placeholder="Enter email" required>
+                <div class="switch">
+                    Already have an account? <a href="login.html" class="link">Log In</a>
+                </div>
+            </div>
 
-                            <label for="owner-password">Password</label>
-                            <input type="password" id="owner-password" placeholder="Enter password" required>
-
-                            <label for="owner-confirmPassword">Confirm Password</label>
-                            <input type="password" id="owner-confirmPassword" placeholder="Confirm password" required>
-
-                            <button type="submit" onclick="signup('owner')" class="signup-btn">Sign Up</button>
-                            <!-- Back Button for Owner Section -->
-                            <div class="btn-group3">
-                                <button type="button" onclick="showToggleButtons()" class="back-btn">Back</button>
-                            </div>
-                        </div>
-
-                        <!-- Tenant Sign-Up Form -->
-                        <div id="tenant-section" class="content tenant-signup" style="display: none;">
-                            <h2>Tenant Sign Up</h2>
-                            <label for="tenant-username">Username</label>
-                            <input type="text" id="tenant-username" placeholder="Enter username" required>
-
-                            <label for="tenant-email">Email</label>
-                            <input type="text" id="tenant-email" placeholder="Enter email" required>
-
-                            <label for="tenant-password">Password</label>
-                            <input type="password" id="tenant-password" placeholder="Enter password" required>
-
-                            <label for="tenant-confirmPassword">Confirm Password</label>
-                            <input type="password" id="tenant-confirmPassword" placeholder="Confirm password" required>
-
-                            <button type="submit" onclick="history.back()" class="signup-btn">Sign Up</button>
-                            <!-- Back Button for Tenant Section -->
-                            <div class="btn-group3">
-                                <button type="button" onclick="showToggleButtons()" class="back-btn">Back</button>
-                            </div>
-                        </div>
-                    
-                        <p class="links">
-                            Already Have an Account? <a href="login.html">Login</a>
-                            <br>
-                            <a href="index.html">HomePage</a>
-                        </p>
-                    </div>
+            <div class="image-card">
+                <img src="login pic.jpg" alt="Building" class="background-image">
+                <div class="dark-overlay"></div>
+                <div class="content-overlay">
+                    <img src="AOSlogo(Login).svg" alt="Logo">
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        const popup = document.getElementById('popup');
+        const registerForm = document.getElementById('registerForm');
+        const submitButton = document.getElementById('submitButton');
+
+        function showPopup(message, isSuccess = false) {
+            popup.innerText = message;
+            popup.style.background = isSuccess ? "#d4edda" : "#f8d7da";
+            popup.style.color = isSuccess ? "#155724" : "#721c24";
+            popup.style.borderColor = isSuccess ? "#c3e6cb" : "#f5c6cb";
+            
+            popup.classList.remove('hidden');
+            setTimeout(() => popup.classList.add('hidden'), 3000);
+        }
+
+        registerForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const API_USERS = 'api/users.php'; 
+            const emailField = document.getElementById('email');
+            const confirmField = document.getElementById('confirmPassword');
+            
+            // Reset input styles
+            document.querySelectorAll('.input').forEach(input => input.classList.remove('invalid'));
+
+            const formData = {
+                username: this.querySelector('input[name="username"]').value,
+                email: emailField.value,
+                password: this.querySelector('input[name="password"]').value,
+                confirmPassword: confirmField.value,
+                userType: this.querySelector('select[name="userType"]').value
+            };
+
+            // Validation: Password Match
+            if (formData.password !== formData.confirmPassword) {
+                confirmField.classList.add('invalid');
+                showPopup("Passwords do not match.");
+                confirmField.focus();
+                return;
+            }
+
+            // Validation: Email check (similar to old version)
+            if (!formData.email.includes("@")) {
+                emailField.classList.add('invalid');
+                showPopup("Invalid email address.");
+                emailField.focus();
+                return;
+            }
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'Registering...';
+
+            const role = (formData.userType === 'landlord') ? 'manager' : 'tenant';
+
+            try {
+                const res = await fetch(`${API_USERS}?action=signup`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: formData.username,
+                        email: formData.email,
+                        password: formData.password,
+                        role: role
+                    })
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                    showPopup('Registration successful!', true);
+                    setTimeout(() => {
+                        window.location.href = (role === 'manager') ? 'subscription.html' : 'index.html';
+                    }, 2000);
+                } else {
+                    throw new Error(data.error || 'Registration failed');
+                }
+            } catch (error) {
+                showPopup(error.message);
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Register';
+            }
+        });
+
+        // Remove "invalid" class when user types
+        document.querySelectorAll('.input').forEach(input => {
+            input.addEventListener('input', () => input.classList.remove('invalid'));
+        });
+    </script>
 </body>
 </html>

@@ -1,7 +1,36 @@
+// ============================================================
+// Global user data - MUST BE AT THE TOP
+// ============================================================
+let currentUser = null;
+const API_USERS = 'api/users.php';
+
+// ============================================================
+// Load logged-in user's data on page load
+// ============================================================
+window.addEventListener('DOMContentLoaded', function() {
+    currentUser = JSON.parse(sessionStorage.getItem('loggedInUser') || 'null');
+    
+    if (!currentUser) {
+        window.location.href = 'login.html';
+        return;
+    }
+    
+    // Update profile name and image
+    const profileNameElement = document.querySelector('.profile-name');
+    const headerImageElement = document.querySelector('.profile-section img');
+    
+    if (profileNameElement && currentUser.username) {
+        profileNameElement.textContent = currentUser.username;
+    }
+    
+    if (headerImageElement && currentUser.profile_pic) {
+        headerImageElement.src = currentUser.profile_pic;
+    }
+});
+
 // Function to change both content and header title
 function loadContent(section) {
-    const content = document.querySelector('.content'); // Get content div
-    const message = document.querySelector('.message-inner'); // Get the message div
+    const content = document.querySelector('.content');
     
     // Define different content for each section
     const sections = {
@@ -38,7 +67,7 @@ function loadContent(section) {
                 <div class="profile-tenant">
                     <img class="tenant-image" src="Emmy.jpg">
                     <div class="profile-info">
-                        <h3>My Profile</h3>
+                        <h3>Profile</h3>
                         <p><strong>Name:</strong> MANALOTO, EMMANUEL</p>
                         <p><strong>Email:</strong> manalotoeman@gmail.com</p>
                         <p><strong>Phone:</strong> 63+ 956 776 1982</p>
@@ -133,12 +162,12 @@ function loadContent(section) {
         <div class="message-wrap">
             <div class="message-inner"> 
                 <div class="profile-icon-wrap">
-                    <div class="profile-main-icon"><a onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Emanuel</p></a></div>
-                    <div class="profile-main-icon2"><a onclick="loadContent('paimon')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Paimon</p></a></div>
-                    <div class="profile-main-icon3"><a onclick="loadContent('zhongli')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Zhongli</p></a></div>
-                    <div class="profile-main-icon4"><a onclick="loadContent('kazuha')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Kazuha</p></a></div>
-                    <div class="profile-main-icon5"><a onclick="loadContent('ninguang')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Ninguang</p></a></div>
-                    <div class="profile-main-icon6"><a onclick="loadContent('hutao')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Hutao</p></a></div>
+                    <div class="profile-main-icon"><a href="javascript:void(0);" onclick="loadContent('eman')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Emanuel</p></a></div>
+                    <div class="profile-main-icon2"><a href="javascript:void(0);" onclick="loadContent('paimon')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Paimon</p></a></div>
+                    <div class="profile-main-icon3"><a href="javascript:void(0);" onclick="loadContent('zhongli')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Zhongli</p></a></div>
+                    <div class="profile-main-icon4"><a href="javascript:void(0);" onclick="loadContent('kazuha')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Kazuha</p></a></div>
+                    <div class="profile-main-icon5"><a href="javascript:void(0);" onclick="loadContent('ninguang')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Ninguang</p></a></div>
+                    <div class="profile-main-icon6"><a href="javascript:void(0);" onclick="loadContent('hutao')"><img src="Profile2-icon.svg" class="profile-main-icon-pic"><p>Hutao</p></a></div>
                 </div> 
             </div>
         </div>
@@ -146,14 +175,13 @@ function loadContent(section) {
         eman: `
             <div class="container-msg">
                 <div class="profiles">
-                    <div class="profile-icon" onclick="loadContent('paimon')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Paimon</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('zhongli')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Zhongli</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('kazuha')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('ninguang')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('hutao')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('paimon')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Paimon</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('zhongli')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Zhongli</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('kazuha')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('ninguang')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('hutao')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
                 </div> 
 
-                <!-- Chat Box Section -->
                 <div class="message-wrap">
                     <p class="message-name" id="chatName">Emanuel</p>
 
@@ -171,14 +199,13 @@ function loadContent(section) {
         paimon: `
             <div class="container-msg">
                 <div class="profiles">
-                        <div class="profile-icon" onclick="loadContent('eman')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Emanuel</p></a></div>
-                        <div class="profile-icon" onclick="loadContent('zhongli')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Zhongli</p></a></div>
-                        <div class="profile-icon" onclick="loadContent('kazuha')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
-                        <div class="profile-icon" onclick="loadContent('ninguang')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
-                        <div class="profile-icon" onclick="loadContent('hutao')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
+                        <div class="profile-icon" onclick="loadContent('eman')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Emanuel</p></a></div>
+                        <div class="profile-icon" onclick="loadContent('zhongli')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Zhongli</p></a></div>
+                        <div class="profile-icon" onclick="loadContent('kazuha')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
+                        <div class="profile-icon" onclick="loadContent('ninguang')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
+                        <div class="profile-icon" onclick="loadContent('hutao')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
                 </div> 
 
-                <!-- Chat Box Section -->
                 <div class="message-wrap">
                     <p class="message-name" id="chatName">Paimon</p>
 
@@ -196,14 +223,13 @@ function loadContent(section) {
         zhongli: `
             <div class="container-msg">
                 <div class="profiles">
-                    <div class="profile-icon" onclick="loadContent('eman')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Emanuel</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('paimon')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Paimon</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('kazuha')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('ninguang')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('hutao')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('eman')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Emanuel</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('paimon')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Paimon</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('kazuha')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('ninguang')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('hutao')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
                 </div> 
                 
-                <!-- Chat Box Section -->
                 <div class="message-wrap">
                     <p class="message-name" id="chatName">Zhongli</p>
 
@@ -221,14 +247,13 @@ function loadContent(section) {
         kazuha: `
              <div class="container-msg">
                 <div class="profiles">
-                    <div class="profile-icon" onclick="loadContent('eman')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Emanuel</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('paimon')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Paimon</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('zhongli')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Zhongli</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('ninguang')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('hutao')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('eman')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Emanuel</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('paimon')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Paimon</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('zhongli')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Zhongli</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('ninguang')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('hutao')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
                 </div> 
                 
-                <!-- Chat Box Section -->
                 <div class="message-wrap">
                     <p class="message-name" id="chatName">Kazuha</p>
     
@@ -246,14 +271,13 @@ function loadContent(section) {
         ninguang: `
             <div class="container-msg">
                 <div class="profiles">
-                    <div class="profile-icon" onclick="loadContent('eman')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Emanuel</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('paimon')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Paimon</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('zhongli')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Zhongli</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('kazuha')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('hutao')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('eman')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Emanuel</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('paimon')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Paimon</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('zhongli')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Zhongli</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('kazuha')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('hutao')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Hutao</p></a></div>
                 </div> 
                 
-                <!-- Chat Box Section -->
                 <div class="message-wrap">
                     <p class="message-name" id="chatName">Ninguang</p>
 
@@ -271,14 +295,13 @@ function loadContent(section) {
         hutao: `
             <div class="container-msg">
                 <div class="profiles">
-                    <div class="profile-icon" onclick="loadContent('eman')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Emanuel</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('paimon')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Paimon</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('zhongli')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Zhongli</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('kazuha')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
-                    <div class="profile-icon" onclick="loadContent('ninguang')"><a><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('eman')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Emanuel</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('paimon')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Paimon</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('zhongli')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Zhongli</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('kazuha')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Kazuha</p></a></div>
+                    <div class="profile-icon" onclick="loadContent('ninguang')"><a href="javascript:void(0);"><img src="Profile2-icon.svg" class="profile-icon-pic"><p>Ninguang</p></a></div>
                 </div> 
                 
-                <!-- Chat Box Section -->
                 <div class="message-wrap">
                     <p class="message-name" id="chatName">Hutao</p>
 
@@ -293,17 +316,93 @@ function loadContent(section) {
                 </div>
             </div>
             `,
+        profileSettings: `
+            <div class="profile-settings-wrap">
+                <h2>Profile Settings</h2>
+                
+                <div id="successMessage" class="success-message"></div>
+                <div id="errorMessage" class="error-message"></div>
+
+                <div class="profile-image-section">
+                    <img src="${currentUser?.profile_pic || 'USER.svg'}" 
+                        alt="Profile" 
+                        class="profile-image-preview" 
+                        id="profileImagePreview">
+                    <br>
+                    <input type="file" id="profileImageInput" accept="image/*">
+                    <label for="profileImageInput" class="upload-btn">Choose Image</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="usernameInput">Username</label>
+                    <input type="text" id="usernameInput" 
+                        value="${currentUser?.username || ''}" 
+                        placeholder="Enter username">
+                </div>
+
+                <div class="form-group">
+                    <label for="emailInput">Email</label>
+                    <input type="email" id="emailInput" 
+                        value="${currentUser?.email || ''}" 
+                        placeholder="Enter email">
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneInput">Phone (optional)</label>
+                    <input type="text" id="phoneInput" 
+                        value="${currentUser?.phone || ''}" 
+                        placeholder="Enter phone number">
+                </div>
+
+                <button class="save-profile-btn" onclick="saveProfileSettings()">Save Changes</button>
+
+                <div class="change-password-section">
+                    <h3>Change Password</h3>
+                    <div class="form-group">
+                        <label for="currentPasswordInput">Current Password</label>
+                        <input type="password" id="currentPasswordInput" placeholder="Enter current password">
+                    </div>
+                    <div class="form-group">
+                        <label for="newPasswordInput">New Password</label>
+                        <input type="password" id="newPasswordInput" placeholder="Enter new password (min 6 characters)">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPasswordInput">Confirm New Password</label>
+                        <input type="password" id="confirmPasswordInput" placeholder="Confirm new password">
+                    </div>
+                    <button class="change-password-btn" onclick="changePassword()">Change Password</button>
+                </div>
+            </div>
+            `,
     };
 
     // Update the inner HTML of the content section
     content.innerHTML = sections[section] || '<p>Content not found.</p>';
+    
+    // Attach events for dynamically loaded sections
+    if (section === "profileSettings") {
+        const imageInput = document.getElementById("profileImageInput");
+        const previewImg = document.getElementById("profileImagePreview");
+
+        if (imageInput && previewImg) {
+            imageInput.addEventListener("change", function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImg.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+    }
 }
 
 // Load default content when the page loads
 window.onload = function() {
-    loadContent('dashboard'); // Load Unit Management by default
+    loadContent('dashboard');
 };
-
 
 document.addEventListener("keydown", function(event) {
     if (event.target.id === "messageInput" && event.key === "Enter") {
@@ -319,14 +418,11 @@ function sendMessage() {
     const chatBox = document.getElementById("chatBox");
 
     if (message !== "") {
-        // Create user message (aligned right)
         const newMessage = document.createElement("div");
         newMessage.classList.add("message", "user");
         newMessage.textContent = message;
 
         chatBox.appendChild(newMessage);
-
-        // Scroll to the bottom of the chat box
         chatBox.scrollTop = chatBox.scrollHeight;
 
         let reply = "";
@@ -340,19 +436,146 @@ function sendMessage() {
             reply = "I'm sorry, I didn't understand that.";
         }
 
-        // Simulate friend response (aligned left)
         setTimeout(() => {
             const friendMessage = document.createElement("div");
             friendMessage.classList.add("message", "friend");
-            friendMessage.textContent = reply; // Use the reply as the friend's message
+            friendMessage.textContent = reply;
 
             chatBox.appendChild(friendMessage);
             chatBox.scrollTop = chatBox.scrollHeight;
-        }, 600); // Simulated delay for friend reply
+        }, 600);
 
-        // Clear the input field
-        input.value = "";  // This line clears the input field after sending the message
+        input.value = "";
     }
 }
 
-  
+// ============================================================
+// Save Profile Settings
+// ============================================================
+async function saveProfileSettings() {
+    const username = document.getElementById('usernameInput').value.trim();
+    const email    = document.getElementById('emailInput').value.trim();
+    const phone    = document.getElementById('phoneInput').value.trim();
+    const imageFile = document.getElementById('profileImageInput').files[0];
+
+    if (!username || !email) {
+        showError('Username and email are required.');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('user_id', currentUser.id);
+    formData.append('username', username);
+    formData.append('email', email);
+    formData.append('phone', phone);
+    
+    if (imageFile) {
+        formData.append('profile_image', imageFile);
+    }
+
+    try {
+        const res = await fetch(`${API_USERS}?action=update_profile`, {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+            currentUser = data.user;
+            sessionStorage.setItem('loggedInUser', JSON.stringify(currentUser));
+            
+            document.querySelector('.profile-name').textContent = currentUser.username;
+            document.querySelector('.profile-section img').src = currentUser.profile_pic;
+            
+            showSuccess('Profile updated successfully!');
+        } else {
+            showError(data.error || 'Failed to update profile.');
+        }
+    } catch (err) {
+        console.error('Profile update error:', err);
+        showError('Something went wrong. Please try again.');
+    }
+}
+
+// ============================================================
+// Change Password
+// ============================================================
+async function changePassword() {
+    const currentPassword = document.getElementById('currentPasswordInput').value;
+    const newPassword     = document.getElementById('newPasswordInput').value;
+    const confirmPassword = document.getElementById('confirmPasswordInput').value;
+
+    if (!currentPassword || !newPassword || !confirmPassword) {
+        showError('All password fields are required.');
+        return;
+    }
+
+    if (newPassword.length < 6) {
+        showError('New password must be at least 6 characters.');
+        return;
+    }
+
+    if (newPassword !== confirmPassword) {
+        showError('New passwords do not match.');
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API_USERS}?action=change_password`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                user_id: currentUser.id,
+                current_password: currentPassword,
+                new_password: newPassword
+            })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+            showSuccess('Password changed successfully!');
+            document.getElementById('currentPasswordInput').value = '';
+            document.getElementById('newPasswordInput').value = '';
+            document.getElementById('confirmPasswordInput').value = '';
+        } else {
+            showError(data.error || 'Failed to change password.');
+        }
+    } catch (err) {
+        console.error('Password change error:', err);
+        showError('Something went wrong. Please try again.');
+    }
+}
+
+// ============================================================
+// Message helpers
+// ============================================================
+function showSuccess(message) {
+    const el = document.getElementById('successMessage');
+    if (el) {
+        el.textContent = message;
+        el.style.display = 'block';
+        const errorEl = document.getElementById('errorMessage');
+        if (errorEl) errorEl.style.display = 'none';
+        setTimeout(() => el.style.display = 'none', 5000);
+    }
+}
+
+function showError(message) {
+    const el = document.getElementById('errorMessage');
+    if (el) {
+        el.textContent = message;
+        el.style.display = 'block';
+        const successEl = document.getElementById('successMessage');
+        if (successEl) successEl.style.display = 'none';
+    }
+}
+
+// ============================================================
+// Logout
+// ============================================================
+function logout() {
+    sessionStorage.removeItem('loggedInUser');
+    window.location.href = 'index.html';
+}
